@@ -34,8 +34,9 @@ class _Column2DState extends State<Column2D> {
       "numberSuffix": "K",
       "theme": "fusion",
     };
-
+    FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {"chart": chart, "data": chartData};
+    fusionChartsController.addEvents([]);
 
     _fusionChart = FusionCharts(
         dataSource: dataSource,
@@ -43,6 +44,7 @@ class _Column2DState extends State<Column2D> {
         width: "100%",
         height: "100%",
         callBackFromPlugin: callBackFromPlugin,
+        fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
   }
 

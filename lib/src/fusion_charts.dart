@@ -3,6 +3,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'dart:convert';
 
 import './utils/constants.dart';
+import './fusion_charts_controller.dart';
 
 class FusionCharts extends StatefulWidget {
   const FusionCharts(
@@ -10,20 +11,24 @@ class FusionCharts extends StatefulWidget {
       required this.type,
       this.height = "",
       this.width = "",
-      required this.callBackFromPlugin,
+      this.webviewEvent,
+      this.fusionChartEvent,
       this.version = "latest",
       this.licenseKey,
       this.events = const [],
+      this.fusionChartsController,
       super.key});
 
   final Map<String, dynamic> dataSource;
   final String type;
   final String width;
   final String height;
-  final Function callBackFromPlugin;
+  final Function? webviewEvent;
+  final Function? fusionChartEvent;
+  final List<String>? events;
   final String? licenseKey;
   final String? version;
-  final List<String> events;
+  final FusionChartsController? fusionChartsController;
 
   @override
   State<FusionCharts> createState() => _FusionChartsState();
@@ -37,32 +42,38 @@ class _FusionChartsState extends State<FusionCharts> {
   bool gotData = false;
   String json = "";
 
+  late InAppWebViewController _webViewController;
+  FusionChartsController? _fusionChartsController;
   @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
 
+    if (widget.fusionChartsController != null) {
+      _fusionChartsController = FusionChartsController();
+    } else {
+      _fusionChartsController = widget.fusionChartsController;
+    }
+    _fusionChartsController?.setWebViewController(_webViewController);
     String jsonDataSource = jsonEncode(widget.dataSource);
-    
+
     if (widget.licenseKey != null) {
       print('Licensed: ${widget.licenseKey}');
     } else {
       print('Unlicensed Trial');
     }
 
-   
     chartString = """
 
       FusionCharts.ready(function() {
-            var fusionChart = new FusionCharts({
-            type: "${widget.type}",
-            width: "${widget.width}",
-            height: "${widget.height}",
-            renderAt: "chart-container",
-            dataFormat: "json",
-            dataSource: $jsonDataSource,
-              
-            });
+        var fusionChart = new FusionCharts({
+        type: "${widget.type}",
+        width: "${widget.width}",
+        height: "${widget.height}",
+        renderAt: "chart-container",
+        dataFormat: "json",
+        dataSource: $jsonDataSource   
+      });
 
       $registerEvents
 
@@ -70,14 +81,13 @@ class _FusionChartsState extends State<FusionCharts> {
     
     });
     """;
-    
-    // "dataset": $jsonDataset,
-    // "categories": $jsonCategories
+
     setState(() {
       gotData = true;
     });
   }
 
+  _onLoadComplete() {}
   @override
   Widget build(BuildContext context) {
     return gotData
@@ -99,11 +109,23 @@ class _FusionChartsState extends State<FusionCharts> {
               await controller.evaluateJavascript(source: chartString);
             },
             onWebViewCreated: (InAppWebViewController controller) {
+              _webViewController = controller;
               controller.addJavaScriptHandler(
-                  handlerName: 'eventHandler',
+                  handlerName: 'webviewEventHandler',
                   callback: (args) {
-                    print('evenHandler : $args');
-                    widget.callBackFromPlugin(args[0], args[1]);
+                    print('Webview evenHandler cons: $args');
+                     if (widget.webviewEvent != null) {
+                      widget.webviewEvent!(args[0], args[1]);
+                    }
+                  });
+
+              controller.addJavaScriptHandler(
+                  handlerName: 'fusionChartEventHandler',
+                  callback: (args) {
+                    print('FC evenHandler cons: $args');
+                    if (widget.fusionChartEvent != null) {
+                      widget.fusionChartEvent!(args[0], args[1]);
+                    }
                   });
             },
             onConsoleMessage: (controller, message) {

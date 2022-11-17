@@ -11,6 +11,8 @@ class MultiSeries extends StatefulWidget {
 
 class _MultiSeriesState extends State<MultiSeries> {
   late FusionCharts _fusionChart;
+  
+  @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
