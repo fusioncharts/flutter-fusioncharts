@@ -23,8 +23,8 @@ class FusionCharts extends StatefulWidget {
   final String type;
   final String width;
   final String height;
-  final Function? webviewEvent;
-  final Function? fusionChartEvent;
+  final Function(String eventType, String eventDetail)? webviewEvent;
+  final Function(String eventType, String eventDetail)? fusionChartEvent;
   final List<String>? events;
   final String? licenseKey;
   final String? version;
@@ -49,12 +49,12 @@ class _FusionChartsState extends State<FusionCharts> {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
 
-    if (widget.fusionChartsController != null) {
+    if (widget.fusionChartsController == null) {
       _fusionChartsController = FusionChartsController();
     } else {
       _fusionChartsController = widget.fusionChartsController;
     }
-    _fusionChartsController?.setWebViewController(_webViewController);
+
     String jsonDataSource = jsonEncode(widget.dataSource);
 
     if (widget.licenseKey != null) {
@@ -64,7 +64,7 @@ class _FusionChartsState extends State<FusionCharts> {
     }
 
     chartString = """
-
+      let globalFusionCharts;
       FusionCharts.ready(function() {
         var fusionChart = new FusionCharts({
         type: "${widget.type}",
@@ -75,10 +75,9 @@ class _FusionChartsState extends State<FusionCharts> {
         dataSource: $jsonDataSource   
       });
 
-      $registerEvents
-
       fusionChart.render();
-    
+      globalFusionCharts = fusionChart;
+      $registerEvents
     });
     """;
 
@@ -88,11 +87,11 @@ class _FusionChartsState extends State<FusionCharts> {
   }
 
   _onLoadComplete() {}
+
   @override
   Widget build(BuildContext context) {
     return gotData
-        ? SizedBox(
-            child: InAppWebView(
+        ? InAppWebView(
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
                 useOnDownloadStart: true,
@@ -104,17 +103,18 @@ class _FusionChartsState extends State<FusionCharts> {
                 sharedCookiesEnabled: true,
               ),
             ),
-            initialFile: jsIntegrationFolder,
+            initialFile: jsIntegrationHtml,
             onLoadStop: (controller, url) async {
               await controller.evaluateJavascript(source: chartString);
             },
             onWebViewCreated: (InAppWebViewController controller) {
               _webViewController = controller;
+              _fusionChartsController?.setWebViewController(_webViewController);
               controller.addJavaScriptHandler(
                   handlerName: 'webviewEventHandler',
                   callback: (args) {
                     print('Webview evenHandler cons: $args');
-                     if (widget.webviewEvent != null) {
+                    if (widget.webviewEvent != null) {
                       widget.webviewEvent!(args[0], args[1]);
                     }
                   });
@@ -131,7 +131,7 @@ class _FusionChartsState extends State<FusionCharts> {
             onConsoleMessage: (controller, message) {
               print('Console Message: ' + message.toString());
             },
-          ))
+          )
         : const SizedBox();
   }
 }

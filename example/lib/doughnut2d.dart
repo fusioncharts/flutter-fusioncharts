@@ -47,7 +47,6 @@ class _Doughnut2dState extends State<Doughnut2d> {
         type: "doughnut2d",
         width: "100%",
         height: "100%",
-        callBackFromPlugin: callBackFromPlugin,
         licenseKey: licenseKey);
   }
 

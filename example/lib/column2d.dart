@@ -43,7 +43,8 @@ class _Column2DState extends State<Column2D> {
         type: "column2d",
         width: "100%",
         height: "100%",
-        callBackFromPlugin: callBackFromPlugin,
+        webviewEvent: (a,b) => {},
+        fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
   }

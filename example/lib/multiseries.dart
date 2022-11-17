@@ -11,7 +11,9 @@ class MultiSeries extends StatefulWidget {
 
 class _MultiSeriesState extends State<MultiSeries> {
   late FusionCharts _fusionChart;
-  
+  late FusionChartsController _fusionChartsController =
+      FusionChartsController();
+  bool _2d = true;
   @override
   void initState() {
     super.initState();
@@ -67,12 +69,24 @@ class _MultiSeriesState extends State<MultiSeries> {
         type: "mscolumn2d",
         width: "100%",
         height: "100%",
-        callBackFromPlugin: callBackFromPlugin,
+        fusionChartsController: _fusionChartsController,
         licenseKey: licenseKey);
   }
 
   void callBackFromPlugin(arg1, arg2) {
     print('Back to consumer: $arg1 , $arg2');
+  }
+
+  changeType() {
+    print('Change type msColumn3D');
+    if (_2d) {
+      _fusionChartsController
+          .executeScript("globalFusionCharts.chartType('msColumn3D')");
+    } else {
+      _fusionChartsController
+          .executeScript("globalFusionCharts.chartType('msColumn2D')");
+    }
+    _2d = !_2d;
   }
 
   @override
@@ -85,7 +99,25 @@ class _MultiSeriesState extends State<MultiSeries> {
               icon: const Icon(Icons.arrow_back)),
           title: const Text('Fusion Charts - MultiSeries'),
         ),
-        body: Center(child: _fusionChart),
+        body: SizedBox(
+            height: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: SizedBox(height: 300, width: 300, child: _fusionChart),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                    onPressed: () => changeType(),
+                    child: Container(
+                        width: 100,
+                        height: 40,
+                        color: Colors.blue,
+                        child: Center(child: Text('Change Type'))))
+              ],
+            )),
       ),
     );
   }
