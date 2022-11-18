@@ -1,7 +1,8 @@
-import './multiseries.dart';
 import 'package:flutter/material.dart';
-import 'column2d.dart';
-import 'doughnut2d.dart';
+
+import '/chart_widgets/column2d.dart';
+import '/chart_widgets/doughnut2d.dart';
+import '/chart_widgets/multiseries.dart';
 
 class Menu extends StatefulWidget {
   const Menu({super.key});

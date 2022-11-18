@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import './constants.dart';
+import '../constants.dart';
 
 class MultiSeries extends StatefulWidget {
   const MultiSeries({super.key});
@@ -52,7 +52,7 @@ class _MultiSeriesState extends State<MultiSeries> {
     ];
 
     Map<String, dynamic> chart = {
-      "theme": "fusion",
+      "theme": "candy",
       "caption": "Comparison of Quarterly Sales",
       "xAxisname": "Quarter",
       "yAxisName": "Sales"
@@ -100,13 +100,13 @@ class _MultiSeriesState extends State<MultiSeries> {
           title: const Text('Fusion Charts - MultiSeries'),
         ),
         body: SizedBox(
-            height: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                  child: SizedBox(height: 300, width: 300, child: _fusionChart),
+                  child: SizedBox(height: 700, width: 500, child: _fusionChart),
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import 'constants.dart';
+import '../constants.dart';
 
 class Column2D extends StatefulWidget {
   const Column2D({super.key});

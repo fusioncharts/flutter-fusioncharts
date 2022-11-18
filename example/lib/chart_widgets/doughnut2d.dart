@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import 'constants.dart';
+import '../constants.dart';
 
 class Doughnut2d extends StatefulWidget {
   const Doughnut2d({super.key});
