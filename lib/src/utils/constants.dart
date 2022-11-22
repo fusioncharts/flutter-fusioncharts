@@ -13,7 +13,7 @@ String registerEvents = """
 
       const args = [ eventObj.sender.id, eventObj.eventType];
       console.log(args);
-      window.flutter_inappwebview.callHandler('eventHandler', ...args);
+      window.flutter_inappwebview.callHandler('fusionChartEventHandler', ...args);
       console.log('handle');
     
     };
