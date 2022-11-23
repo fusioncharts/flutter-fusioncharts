@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import '../constants.dart';
+import '../../constants.dart';
 
-class Column2D extends StatefulWidget {
-  const Column2D({super.key});
+class Line2D extends StatefulWidget {
+  const Line2D({super.key});
 
   @override
-  State<Column2D> createState() => _Column2DState();
+  State<Line2D> createState() => _Line2DState();
 }
 
-class _Column2DState extends State<Column2D> {
+class _Line2DState extends State<Line2D> {
   late FusionCharts _fusionChart;
   void initState() {
     super.initState();
@@ -32,7 +32,7 @@ class _Column2DState extends State<Column2D> {
       "xAxisName": "Country",
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
-      "theme": "fusion",
+      "theme": "gammel",
     };
     FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {"chart": chart, "data": chartData};
@@ -40,7 +40,7 @@ class _Column2DState extends State<Column2D> {
 
     _fusionChart = FusionCharts(
         dataSource: dataSource,
-        type: "column2d",
+        type: "line",
         width: "100%",
         height: "100%",
         webviewEvent: (a,b) => {},
@@ -61,9 +61,9 @@ class _Column2DState extends State<Column2D> {
           leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop()),
-          title: const Text('Fusion Charts - column2d'),
+          title: const Text('Fusion Charts - Line'),
         ),
-        body: Center(child: _fusionChart),
+        body: _fusionChart
       ),
     );
   }

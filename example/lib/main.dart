@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 import './examples_menu.dart';
 
