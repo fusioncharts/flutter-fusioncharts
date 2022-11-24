@@ -3,7 +3,6 @@ import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/multiseri
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/line2d.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/singleseries_menu.dart';
 
-import 'chart_widgets/singleseries/column.dart';
 import 'chart_widgets/singleseries/doughnut.dart';
 import 'chart_widgets/multiseries/multiseries.dart';
 

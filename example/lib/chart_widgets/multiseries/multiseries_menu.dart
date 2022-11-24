@@ -3,10 +3,7 @@ import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/barmultis
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/column.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/line.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/area.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/bar.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/column.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/doughnut.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/line2d.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/pareto.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/pie.dart';
 
