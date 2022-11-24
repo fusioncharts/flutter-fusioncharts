@@ -43,6 +43,7 @@ class _StackedColumnState extends State<StackedColumn> {
         }
       ]
     };
+
     fusionChartsController.addEvents([]);
 
     _fusionChart2D = FusionCharts(
@@ -54,9 +55,52 @@ class _StackedColumnState extends State<StackedColumn> {
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
+
+    dataSource = {
+      "chart": {
+        "caption": "Revenue split by product category",
+        "subCaption": "For current year",
+        "xAxisname": "Quarter",
+        "yAxisName": "Revenues (In USD)",
+        "showSum": "1",
+        "numberPrefix": "\$",
+        "theme": "fusion"
+      },
+      "categories": [
+        {
+          "category": [
+            {"label": "Q1"},
+            {"label": "Q2"},
+            {"label": "Q3"},
+            {"label": "Q4"}
+          ]
+        }
+      ],
+      "dataset": [
+        {
+          "seriesname": "Food Products",
+          "data": [
+            {"value": "11000"},
+            {"value": "15000"},
+            {"value": "13500"},
+            {"value": "15000"}
+          ]
+        },
+        {
+          "seriesname": "Non-Food Products",
+          "data": [
+            {"value": "11400"},
+            {"value": "14800"},
+            {"value": "8300"},
+            {"value": "11800"}
+          ]
+        }
+      ]
+    };
+ 
     _fusionChart3D = FusionCharts(
         dataSource: dataSource,
-        type: "stackedcolumn3d",
+        type: "stackedcolumn2d",
         width: "100%",
         height: "100%",
         webviewEvent: (a, b) => {},
@@ -82,7 +126,7 @@ class _StackedColumnState extends State<StackedColumn> {
       ),
       body: Column(
         children: [
-          Expanded(child: _fusionChart2D),
+          Expanded(child: _fusionChart3D),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [

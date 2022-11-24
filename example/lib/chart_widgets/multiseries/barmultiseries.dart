@@ -56,7 +56,9 @@ class _BarMultiSeriesState extends State<BarMultiSeries> {
       "theme": "zune",
       "caption": "Comparison of Quarterly Sales",
       "xAxisname": "Quarter",
-      "yAxisName": "Sales"
+      "yAxisName": "Sales",
+      "baseFontSize": "30px",
+      "captionFontSize": "30px",
     };
 
     Map<String, dynamic> dataSource = {
@@ -85,17 +87,6 @@ class _BarMultiSeriesState extends State<BarMultiSeries> {
     print('Back to consumer: $arg1 , $arg2');
   }
 
-  // changeType() {
-  //   print('Change type msColumn3D');
-  //   if (_2d) {
-  //     _fusionChartsController
-  //         .executeScript("globalFusionCharts.chartType('msColumn3D')");
-  //   } else {
-  //     _fusionChartsController
-  //         .executeScript("globalFusionCharts.chartType('msColumn2D')");
-  //   }
-  //   _2d = !_2d;
-  // }
 
   @override
   Widget build(BuildContext context) {

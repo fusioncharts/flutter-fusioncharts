@@ -24,7 +24,9 @@ class _BarState extends State<Bar> {
       "xAxisName": "Country",
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
-      "theme": "gammel",
+      "theme": "umber",
+      "baseFontSize": "30px",
+      "captionFontSize": "30px",
     };
     FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {"chart": chart, "data": ChartData.chartData};

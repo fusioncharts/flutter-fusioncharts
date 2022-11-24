@@ -57,13 +57,26 @@ class _FusionChartsState extends State<FusionCharts> {
 
     String jsonDataSource = jsonEncode(widget.dataSource);
 
+    String licenseString = "";
+
     if (widget.licenseKey != null) {
-      print('Licensed: ${widget.licenseKey}');
+      licenseString = """
+
+      FusionCharts.options.license({
+        key:
+    "vtA3dB-11wF2A2H2A9C6E5A5F6B3E3E1G2C11tgoB4F1h1fdzoE6F4B-9jH-9D2I3B6A8B6E5G5B1C3D4A1C8B6D1D3D1rmoA32B2B9gC6B5G4zyhA9C5A5vraA2A1A1zbnE2D6G2E3E2B2C6D5C8B4E6aikC3A5RA5moB-9D3G4F2wqE4D2C2pzC1I2A3B-16hE1G3D1fvH4A6B7ueA4D4C3llC7PE7E4uufC2B2C4D8E6B4A3G2F3A28D2C7A6E7C-11==",
+    creditLabel: false
+      });
+
+    """;
     } else {
       print('Unlicensed Trial');
     }
 
     chartString = """
+
+      $licenseString
+
       let globalFusionCharts;
       FusionCharts.ready(function() {
         var fusionChart = new FusionCharts({
@@ -74,7 +87,7 @@ class _FusionChartsState extends State<FusionCharts> {
         dataFormat: "json",
         dataSource: $jsonDataSource   
       });
-
+      
       fusionChart.render();
       globalFusionCharts = fusionChart;
       $registerEvents
@@ -110,15 +123,6 @@ class _FusionChartsState extends State<FusionCharts> {
             onWebViewCreated: (InAppWebViewController controller) {
               _webViewController = controller;
               _fusionChartsController?.setWebViewController(_webViewController);
-              controller.addJavaScriptHandler(
-                  handlerName: 'webviewEventHandler',
-                  callback: (args) {
-                    print('Webview evenHandler cons: $args');
-                    if (widget.webviewEvent != null) {
-                      widget.webviewEvent!(args[0], args[1]);
-                    }
-                  });
-
               controller.addJavaScriptHandler(
                   handlerName: 'fusionChartEventHandler',
                   callback: (args) {

@@ -1,4 +1,4 @@
-class ChartData{
+class ChartData {
   static List<dynamic> chartData = [
     {"label": "Venezuela", "value": "290"},
     {"label": "Saudi", "value": "260"},
@@ -10,7 +10,6 @@ class ChartData{
     {"label": "China", "value": "30"}
   ];
 
-
   static List<dynamic> chartData2 = [
     {"label": "Ice Cream Sandwich", "value": "5300"},
     {"label": "Jelly Bean", "value": "5000"},
@@ -19,5 +18,24 @@ class ChartData{
     {"label": "Marshmallow", "value": "17904"}
   ];
 
-
+  static List<dynamic> chartData3 = [
+    {
+      "seriesname": "Food Products",
+      "data": [
+        {"value": "121000"},
+        {"value": "135000"},
+        {"value": "123500"},
+        {"value": "145000"}
+      ]
+    },
+    {
+      "seriesname": "Non-Food Products",
+      "data": [
+        {"value": "131400"},
+        {"value": "154800"},
+        {"value": "98300"},
+        {"value": "131800"}
+      ]
+    }
+  ];
 }

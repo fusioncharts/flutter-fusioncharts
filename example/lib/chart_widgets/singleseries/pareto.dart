@@ -35,7 +35,9 @@ class _ParetoState extends State<Pareto> {
       "plottooltext":
       "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
       "theme": "fusion",
-      "centerLabel": "# Users: \$value"
+      "centerLabel": "# Users: \$value",
+      "baseFontSize": "30px",
+      "captionFontSize": "30px",
     };
 
 

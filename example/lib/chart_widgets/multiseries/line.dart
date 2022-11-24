@@ -74,7 +74,9 @@ class _LineMultiSeriesState extends State<LineMultiSeries> {
       "caption": "Number of visitors last week",
       "subCaption": "Bakersfield Central vs Los Angeles Topanga",
       "xAxisName": "Day",
-      "theme": "fusion"
+      "theme": "fusion",
+      "baseFontSize": "30px",
+      "captionFontSize": "30px",
     };
 
     Map<String, dynamic> dataSource = {

@@ -56,7 +56,9 @@ class _ColumnMultiSeriesState extends State<ColumnMultiSeries> {
       "theme": "candy",
       "caption": "Comparison of Quarterly Sales",
       "xAxisname": "Quarter",
-      "yAxisName": "Sales"
+      "yAxisName": "Sales",
+      "baseFontSize": "30px",
+      "captionFontSize": "30px",
     };
 
     Map<String, dynamic> dataSource = {

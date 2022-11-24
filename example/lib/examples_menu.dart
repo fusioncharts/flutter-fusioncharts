@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/multiseries_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/line2d.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/singleseries_menu.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/stacked/stacked_menu.dart';
 
+import 'chart_widgets/singleseries/column.dart';
 import 'chart_widgets/singleseries/doughnut.dart';
 import 'chart_widgets/multiseries/multiseries.dart';
 
@@ -43,30 +45,34 @@ class _MenuState extends State<Menu> {
             child: Container(height: 40,
             child: InkWell(child: const Text("Single Series", style: TextStyle(fontSize: 16)),
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>const  SingleSeriesMenu()))),
-        )),
+        ),),
              InkWell(
             child: Container(height: 40,
             child: InkWell(child: const Text("Multi Series", style: TextStyle(fontSize: 16)),
             onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>const  MultiSeriesMenu()))),
-        )),
+        ),),
            InkWell(
                   child: Container(
                 height: 40,
                 child: InkWell(
                     child:
                         const Text("Stacked", style: TextStyle(fontSize: 16)),
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Doughnut()))),
-              ))
+                    onTap: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const StackedMenu()));
+                    }),
+              ),)
            ,InkWell(
-                  child: Container(
+                  child: SizedBox(
                 height: 40,
                 child: InkWell(
                     child:
                         const Text("Combination", style: TextStyle(fontSize: 16)),
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const MultiSeries()))),
-              ))
+                    onTap: () {
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) => const MultiSeries()));
+                    }),
+              ),),
         ],
       ),
     ));
