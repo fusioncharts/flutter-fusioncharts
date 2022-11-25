@@ -12,7 +12,6 @@ class StackedBar extends StatefulWidget {
 }
 
 class _StackedBarState extends State<StackedBar> {
-
   late FusionCharts _fusionChart2D;
   late FusionCharts _fusionChart3D;
 
@@ -22,21 +21,22 @@ class _StackedBarState extends State<StackedBar> {
     WidgetsFlutterBinding.ensureInitialized();
 
     Map<String, dynamic> chart = {
-      "caption": "Countries With Most Oil Reserves [2017-18]",
-      "subCaption": "In MMbbl = One Million barrels",
-      "xAxisName": "Country",
-      "yAxisName": "Reserves (MMbbl)",
-      "numberSuffix": "K",
-      "theme": "ocean",
+      "caption": "Product-wise quarterly revenue in current year",
+      "subCaption": "Harry's SuperMart",
+      "xAxisname": "Quarter",
+      "yAxisName": "Revenue (In USD)",
+      "numberPrefix": "\$",
+      "theme": "umber",
       "baseFontSize": "30px",
       "captionFontSize": "30px",
     };
 
-
-
-
     FusionChartsController fusionChartsController = FusionChartsController();
-    Map<String, dynamic> dataSource = {"chart": chart, "data": ChartData.chartData3, "categories":[{"category": [{"label": "Q1"},{"label": "Q2"},{"label": "Q3"},{"label": "Q4"}]}]};
+    Map<String, dynamic> dataSource = {
+      "chart": chart,
+      "dataset": ChartData.chartData3,
+      "categories": [{"category": [{"label": "Q1"},{"label": "Q2"},{"label": "Q3"},{"label": "Q4"}]}]
+    };
     fusionChartsController.addEvents([]);
 
     _fusionChart2D = FusionCharts(
@@ -44,7 +44,7 @@ class _StackedBarState extends State<StackedBar> {
         type: "stackedbar2d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a,b) => {},
+        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
@@ -53,7 +53,7 @@ class _StackedBarState extends State<StackedBar> {
         type: "stackedbar3d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a,b) => {},
+        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);

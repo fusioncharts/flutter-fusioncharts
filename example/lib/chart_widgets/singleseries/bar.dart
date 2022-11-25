@@ -11,7 +11,8 @@ class Bar extends StatefulWidget {
 }
 
 class _BarState extends State<Bar> {
-  late FusionCharts _fusionChart;
+  late FusionCharts _fusionChart2D;
+  late FusionCharts _fusionChart3D;
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,7 @@ class _BarState extends State<Bar> {
       "xAxisName": "Country",
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
-      "theme": "umber",
+      "theme": "carbon",
       "baseFontSize": "30px",
       "captionFontSize": "30px",
     };
@@ -32,9 +33,18 @@ class _BarState extends State<Bar> {
     Map<String, dynamic> dataSource = {"chart": chart, "data": ChartData.chartData};
     fusionChartsController.addEvents([]);
 
-    _fusionChart = FusionCharts(
+    _fusionChart2D = FusionCharts(
         dataSource: dataSource,
         type: "bar2d",
+        width: "100%",
+        height: "100%",
+        webviewEvent: (a,b) => {},
+        fusionChartEvent: (a, b) => {},
+        fusionChartsController: fusionChartsController,
+        licenseKey: licenseKey);
+    _fusionChart3D = FusionCharts(
+        dataSource: dataSource,
+        type: "bar3d",
         width: "100%",
         height: "100%",
         webviewEvent: (a,b) => {},
@@ -57,7 +67,30 @@ class _BarState extends State<Bar> {
                 onPressed: () => Navigator.of(context).pop()),
             title: const Text('Fusion Charts - Bar'),
           ),
-          body: _fusionChart
+          body: Column(
+            children: [
+              Expanded(child: _fusionChart2D),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Bar 2D'),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(child: _fusionChart3D),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Bar 3D'),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
       ),
     );
   }

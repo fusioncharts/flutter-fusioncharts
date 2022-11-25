@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/combination/combination_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/multiseries_menu.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/other_chart_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/line2d.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/singleseries_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/stacked/stacked_menu.dart';
@@ -7,7 +9,7 @@ import 'package:flutter_fusioncharts_example/chart_widgets/stacked/stacked_menu.
 import 'chart_widgets/singleseries/column.dart';
 import 'chart_widgets/singleseries/doughnut.dart';
 import 'chart_widgets/multiseries/multiseries.dart';
-import './chart_widgets/drill_down/drill_down.dart';
+import 'chart_widgets/drilldown/drill_down.dart';
 
 class Menu extends StatefulWidget {
   const Menu({super.key});
@@ -84,8 +86,8 @@ class _MenuState extends State<Menu> {
                       child: const Text("Combination",
                           style: TextStyle(fontSize: 16)),
                       onTap: () {
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) => const MultiSeries()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => const CombinationMenu()));
                       }),
                 ),
               ),
@@ -100,6 +102,20 @@ class _MenuState extends State<Menu> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const DrillDown()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Other",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const OtherChartMenu()));
                       }),
                 ),
               ),

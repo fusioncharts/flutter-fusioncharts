@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 import '../../constants.dart';
 
-class StackedAreaColumn extends StatefulWidget {
-  const StackedAreaColumn({super.key});
+class StackedAreaLineColumn extends StatefulWidget {
+  const StackedAreaLineColumn({super.key});
 
   @override
-  State<StackedAreaColumn> createState() =>
-      _StackedAreaColumnState();
+  State<StackedAreaLineColumn> createState() =>
+      _StackedAreaLineColumnState();
 }
 
-class _StackedAreaColumnState
-    extends State<StackedAreaColumn> {
+class _StackedAreaLineColumnState
+    extends State<StackedAreaLineColumn> {
   late FusionCharts _fusionChart2d;
   late FusionCharts _fusionChart3d;
   FusionChartsController fusionChartsController = FusionChartsController();

@@ -4,14 +4,14 @@ import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
-class StackedColumn extends StatefulWidget {
-  const StackedColumn({super.key});
+class StackedColumnMultiSeries extends StatefulWidget {
+  const StackedColumnMultiSeries({super.key});
 
   @override
-  State<StackedColumn> createState() => _StackedColumnState();
+  State<StackedColumnMultiSeries> createState() => _StackedColumnMultiSeriesState();
 }
 
-class _StackedColumnState extends State<StackedColumn> {
+class _StackedColumnMultiSeriesState extends State<StackedColumnMultiSeries> {
   late FusionCharts _fusionChart2D;
   late FusionCharts _fusionChart3D;
 
@@ -21,19 +21,21 @@ class _StackedColumnState extends State<StackedColumn> {
     WidgetsFlutterBinding.ensureInitialized();
 
     Map<String, dynamic> chart = {
-      "caption": "Product-wise quarterly revenue in current year",
-      "subCaption": "Harry's SuperMart",
-      "xAxisname": "Quarter",
-      "yAxisName": "Revenue (In USD)",
+      "caption": "Product-wise break-up of quarterly revenue in last year",
+      "subcaption": "Harry's SuperMart",
+      "xaxisname": "Quarter",
+      "yaxisname": "Sales (In USD)",
       "numberPrefix": "\$",
-      "theme": "ocean",
-      "baseFontSize": "30",
+      "numbersuffix": "M",
+      "theme": "carbon",
+      "baseFontSize": "30px",
       "captionFontSize": "30px",
     };
+
     FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {
       "chart": chart,
-      "dataset": ChartData.chartData3,
+      "dataset": ChartData.chartData4,
       "categories": [
         {
           "category": [
@@ -45,22 +47,11 @@ class _StackedColumnState extends State<StackedColumn> {
         }
       ]
     };
-
     fusionChartsController.addEvents([]);
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
-        type: "stackedcolumn2d",
-        width: "100%",
-        height: "100%",
-        webviewEvent: (a, b) => {},
-        fusionChartEvent: (a, b) => {},
-        fusionChartsController: fusionChartsController,
-        licenseKey: licenseKey);
- 
-    _fusionChart3D = FusionCharts(
-        dataSource: dataSource,
-        type: "stackedcolumn3d",
+        type: "msstackedcolumn2d",
         width: "100%",
         height: "100%",
         webviewEvent: (a, b) => {},
@@ -82,7 +73,7 @@ class _StackedColumnState extends State<StackedColumn> {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop()),
-        title: const Text('Fusion Charts - Stacked Column'),
+        title: const Text('Fusion Charts - MS Stacked Column'),
       ),
       body: Column(
         children: [
@@ -90,17 +81,7 @@ class _StackedColumnState extends State<StackedColumn> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Text('Stacked Column2D'),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(child: _fusionChart3D),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Stacked Column3D'),
+              Text('Multi Series Stacked Column2D'),
             ],
           ),
           const SizedBox(

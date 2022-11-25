@@ -58,43 +58,7 @@ class _CombinationMenuState extends State<CombinationMenu> {
                         child:
                         const Text("Stacked Area Line Column", style: TextStyle(fontSize: 16)),
                         onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const StackedAreaColumn()))),
-                  )),
-              InkWell(
-                  child: SizedBox(
-                    height: 40,
-                    child: InkWell(
-                        child:
-                        const Text("Overlapped Bar", style: TextStyle(fontSize: 16)),
-                        onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const OverlappedBar()))),
-                  )),
-              InkWell(
-                  child: SizedBox(
-                    height: 40,
-                    child: InkWell(
-                        child:
-                        const Text("Marimekko", style: TextStyle(fontSize: 16)),
-                        onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const Marimekko()))),
-                  )),
-              InkWell(
-                  child: SizedBox(
-                    height: 40,
-                    child: InkWell(
-                        child:
-                        const Text("Zoomline", style: TextStyle(fontSize: 16)),
-                        onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const Zoomline()))),
-                  )),
-              InkWell(
-                  child: SizedBox(
-                    height: 40,
-                    child: InkWell(
-                        child:
-                        const Text("Zoomline DY", style: TextStyle(fontSize: 16)),
-                        onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const ZoomlineDY()))),
+                            MaterialPageRoute(builder: (context) => const StackedAreaLineColumn()))),
                   )),
             ],
           ),

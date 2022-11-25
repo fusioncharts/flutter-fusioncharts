@@ -4,14 +4,14 @@ import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
-class StackedColumn extends StatefulWidget {
-  const StackedColumn({super.key});
+class StackedArea2D extends StatefulWidget {
+  const StackedArea2D({super.key});
 
   @override
-  State<StackedColumn> createState() => _StackedColumnState();
+  State<StackedArea2D> createState() => _StackedArea2DState();
 }
 
-class _StackedColumnState extends State<StackedColumn> {
+class _StackedArea2DState extends State<StackedArea2D> {
   late FusionCharts _fusionChart2D;
   late FusionCharts _fusionChart3D;
 
@@ -21,15 +21,16 @@ class _StackedColumnState extends State<StackedColumn> {
     WidgetsFlutterBinding.ensureInitialized();
 
     Map<String, dynamic> chart = {
-      "caption": "Product-wise quarterly revenue in current year",
-      "subCaption": "Harry's SuperMart",
+      "caption": "Harry's SuperMart",
+      "subCaption": "Product-wise quarterly revenue in current year",
       "xAxisname": "Quarter",
-      "yAxisName": "Revenue (In USD)",
+      "yAxisName": "Amount",
       "numberPrefix": "\$",
-      "theme": "ocean",
-      "baseFontSize": "30",
+      "theme": "zune",
+      "baseFontSize": "30px",
       "captionFontSize": "30px",
     };
+
     FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {
       "chart": chart,
@@ -45,22 +46,11 @@ class _StackedColumnState extends State<StackedColumn> {
         }
       ]
     };
-
     fusionChartsController.addEvents([]);
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
-        type: "stackedcolumn2d",
-        width: "100%",
-        height: "100%",
-        webviewEvent: (a, b) => {},
-        fusionChartEvent: (a, b) => {},
-        fusionChartsController: fusionChartsController,
-        licenseKey: licenseKey);
- 
-    _fusionChart3D = FusionCharts(
-        dataSource: dataSource,
-        type: "stackedcolumn3d",
+        type: "stackedarea2d",
         width: "100%",
         height: "100%",
         webviewEvent: (a, b) => {},
@@ -82,7 +72,7 @@ class _StackedColumnState extends State<StackedColumn> {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop()),
-        title: const Text('Fusion Charts - Stacked Column'),
+        title: const Text('Fusion Charts - Stacked Bar'),
       ),
       body: Column(
         children: [
@@ -90,17 +80,7 @@ class _StackedColumnState extends State<StackedColumn> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Text('Stacked Column2D'),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(child: _fusionChart3D),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Stacked Column3D'),
+              Text('Stacked Bar2D'),
             ],
           ),
           const SizedBox(
