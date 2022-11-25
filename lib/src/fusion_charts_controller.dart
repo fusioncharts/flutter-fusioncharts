@@ -13,13 +13,15 @@ class FusionChartsController extends ChangeNotifier {
   }
 
   void addEvents(List<String> events) async {
-    await _webViewController?.addUserScript(
-        userScript: UserScript(
-            source: 'addChartEvent("test")',
-            injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END));
+    String addEvents = events.join(',');
+    await _webViewController?.evaluateJavascript(
+        source: 'addChartEvents($addEvents)');
   }
 
-  void removeEvents(List<String> events) {}
+  void removeEvents(List<String> events) async {
+    await _webViewController?.evaluateJavascript(
+        source: 'removeChartEvents($addEvents)');
+  }
 
   void setWebViewController(InAppWebViewController webViewController) {
     _webViewController = webViewController;

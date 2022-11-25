@@ -7,6 +7,7 @@ import 'package:flutter_fusioncharts_example/chart_widgets/stacked/stacked_menu.
 import 'chart_widgets/singleseries/column.dart';
 import 'chart_widgets/singleseries/doughnut.dart';
 import 'chart_widgets/multiseries/multiseries.dart';
+import './chart_widgets/drill_down/drill_down.dart';
 
 class Menu extends StatefulWidget {
   const Menu({super.key});
@@ -28,53 +29,82 @@ class _MenuState extends State<Menu> {
   @override
   void initState() {
     super.initState();
-   
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-         title: Text('Choose Chart Type')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children:[
-             InkWell(
-            child: Container(height: 40,
-            child: InkWell(child: const Text("Single Series", style: TextStyle(fontSize: 16)),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>const  SingleSeriesMenu()))),
-        ),),
-             InkWell(
-            child: Container(height: 40,
-            child: InkWell(child: const Text("Multi Series", style: TextStyle(fontSize: 16)),
-            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>const  MultiSeriesMenu()))),
-        ),),
-           InkWell(
+        appBar: AppBar(title: Text('Choose Chart Type')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              InkWell(
+                child: Container(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Single Series",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SingleSeriesMenu()))),
+                ),
+              ),
+              InkWell(
+                child: Container(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Multi Series",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MultiSeriesMenu()))),
+                ),
+              ),
+              InkWell(
                   child: Container(
                 height: 40,
                 child: InkWell(
                     child:
                         const Text("Stacked", style: TextStyle(fontSize: 16)),
                     onTap: () {
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const StackedMenu()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const StackedMenu()));
                     }),
-              ),)
-           ,InkWell(
-                  child: SizedBox(
-                height: 40,
-                child: InkWell(
-                    child:
-                        const Text("Combination", style: TextStyle(fontSize: 16)),
-                    onTap: () {
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (context) => const MultiSeries()));
-                    }),
-              ),),
-        ],
-      ),
-    ));
+              )),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Combination",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context) => const MultiSeries()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Drill Down",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const DrillDown()));
+                      }),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }
