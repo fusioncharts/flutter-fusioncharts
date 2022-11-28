@@ -4,7 +4,7 @@ version: 0.0.1
 homepage:
 
 environment:
-  sdk: '>=2.18.4 <3.0.0'
+  sdk: ">=2.18.4 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -16,34 +16,3 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-
-
-flutter:
-  assets:
-    - packages/flutter_fusioncharts/js_integration/index.html
-    - packages/flutter_fusioncharts/js_integration/index.js
-    - packages/flutter_fusioncharts/assets/latest/maps/fusioncharts.usa.js
-    - packages/flutter_fusioncharts/assets/latest/maps/readme.txt
-    - packages/flutter_fusioncharts/assets/latest/maps/fusioncharts.world.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.charts.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.overlappedbar2d.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.timeseries.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.treemap.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.powercharts.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.maps.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.zoomscatter.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.excelexport.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.widgets.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.zoomline.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.gantt.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.overlappedcolumn2d.js
-    - packages/flutter_fusioncharts/assets/latest/fusioncharts.vml.js
-    - packages/flutter_fusioncharts/assets/latest/themes/fusioncharts.theme.fusion.js
-    - packages/flutter_fusioncharts/assets/latest/themes/fusioncharts.theme.umber.js
-    - packages/flutter_fusioncharts/assets/latest/themes/fusioncharts.theme.candy.js
-    - packages/flutter_fusioncharts/assets/latest/themes/fusioncharts.theme.zune.js
-    - packages/flutter_fusioncharts/assets/latest/themes/fusioncharts.theme.ocean.js
-    - packages/flutter_fusioncharts/assets/latest/themes/fusioncharts.theme.gammel.js
-    - packages/flutter_fusioncharts/assets/latest/themes/fusioncharts.theme.fint.js
-    - packages/flutter_fusioncharts/assets/latest/themes/fusioncharts.theme.carbon.js

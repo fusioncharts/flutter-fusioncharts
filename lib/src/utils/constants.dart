@@ -1,8 +1,4 @@
-String jsIntegrationHtml =
-    "packages/flutter_fusioncharts/js_integration/index.html";
-String jsRootLatest = 'packages/flutter_fusioncharts/assets/latest';
-String jsRoot317 = 'packages/flutter_fusioncharts/assets/js_3.17';
-String jsRoot318 = 'packages/flutter_fusioncharts/assets/js_3.18';
+String fcHome = 'fusioncharts';
 
 String registerEvents = """
     var fcEventListener = function(eventObj, eventArgs) {

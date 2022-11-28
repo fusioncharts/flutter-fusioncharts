@@ -80,8 +80,8 @@ class _FusionChartsState extends State<FusionCharts> {
           "items": [
             {
               //Text annotation 1
-              "id": "001",
-              "type": "text",
+              "id": "002",
+              "type": "image",
               "text": "Manish annotations",
               "x": "300",
               "y": "300",
@@ -141,7 +141,7 @@ class _FusionChartsState extends State<FusionCharts> {
                 sharedCookiesEnabled: true,
               ),
             ),
-            initialFile: jsIntegrationHtml,
+            initialFile: fcHome + '/integrate/index.html',
             onLoadStop: (controller, url) async {
               await controller.evaluateJavascript(source: chartString);
             },
