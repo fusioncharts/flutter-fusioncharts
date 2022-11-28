@@ -54,11 +54,11 @@ class _AreaState extends State<Area> {
   }
 
   addEvents() {
-    fc.addEvents(['event1', 'event2']);
+    fc.addEvents(['dataLabelRollOver']);
   }
 
   removeEvents() {
-    fc.removeEvents(['event1', 'event2']);
+    fc.removeEvents(['dataLabelRollOver']);
   }
 
   void callBackFromPlugin(arg1, arg2) {

@@ -73,30 +73,7 @@ class _FusionChartsState extends State<FusionCharts> {
       print('Unlicensed Trial');
     }
 
-    Map<String, dynamic> annotations = {
-      "groups": [
-        {
-          "id": "MG Group",
-          "items": [
-            {
-              //Text annotation 1
-              "id": "002",
-              "type": "image",
-              "text": "Manish annotations",
-              "x": "300",
-              "y": "300",
-              "width": "200",
-              "fontSize": "20",
-              "bold": "1"
-              //Define the attributes needed to create a text annotation
-            }
-          ]
-        }
-      ]
-    };
-
-    String annotationString = jsonEncode(annotations);
-
+    jsonDataSource = jsonEncode(jsonDataSource);
     chartString = """
 
       $licenseString
@@ -107,7 +84,6 @@ class _FusionChartsState extends State<FusionCharts> {
         type: "${widget.type}",
         width: "${widget.width}",
         height: "${widget.height}",
-        annotations: $annotationString,
         renderAt: "chart-container",
         dataFormat: "json",
         dataSource: $jsonDataSource   
@@ -119,6 +95,7 @@ class _FusionChartsState extends State<FusionCharts> {
     });
     """;
 
+    print(chartString);
     setState(() {
       gotData = true;
     });

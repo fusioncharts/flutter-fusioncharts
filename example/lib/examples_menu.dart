@@ -10,6 +10,7 @@ import 'chart_widgets/singleseries/column.dart';
 import 'chart_widgets/singleseries/doughnut.dart';
 import 'chart_widgets/multiseries/multiseries.dart';
 import 'chart_widgets/drilldown/drill_down.dart';
+import 'chart_widgets/annotations/bar_example.dart';
 
 class Menu extends StatefulWidget {
   const Menu({super.key});
@@ -86,8 +87,24 @@ class _MenuState extends State<Menu> {
                       child: const Text("Combination",
                           style: TextStyle(fontSize: 16)),
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const CombinationMenu()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CombinationMenu()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Annotations",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AnnotatedBar()));
                       }),
                 ),
               ),
@@ -109,8 +126,8 @@ class _MenuState extends State<Menu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("Other",
-                          style: TextStyle(fontSize: 16)),
+                      child:
+                          const Text("Other", style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,
