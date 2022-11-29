@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/combination/combination_menu.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/maps/maps_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/multiseries_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/other_chart_menu.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/line2d.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/singleseries_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/stacked/stacked_menu.dart';
-
-import 'chart_widgets/singleseries/column.dart';
-import 'chart_widgets/singleseries/doughnut.dart';
-import 'chart_widgets/multiseries/multiseries.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/xyplot/xyplot_menu.dart';
 import 'chart_widgets/drilldown/drill_down.dart';
-import 'chart_widgets/annotations/bar_example.dart';
-
+import 'chart_widgets/events_others/annotated_bar.dart';
 class Menu extends StatefulWidget {
   const Menu({super.key});
 
@@ -37,14 +33,14 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Choose Chart Type')),
+        appBar: AppBar(title: const Text('Choose Chart Type')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               InkWell(
-                child: Container(
+                child: SizedBox(
                   height: 40,
                   child: InkWell(
                       child: const Text("Single Series",
@@ -56,7 +52,7 @@ class _MenuState extends State<Menu> {
                 ),
               ),
               InkWell(
-                child: Container(
+                child: SizedBox(
                   height: 40,
                   child: InkWell(
                       child: const Text("Multi Series",
@@ -68,7 +64,7 @@ class _MenuState extends State<Menu> {
                 ),
               ),
               InkWell(
-                  child: Container(
+                  child: SizedBox(
                 height: 40,
                 child: InkWell(
                     child:
@@ -105,6 +101,34 @@ class _MenuState extends State<Menu> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const AnnotatedBar()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("XY Plot",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const XYPlotMenu()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Maps",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const WorldMapMenu()));
                       }),
                 ),
               ),

@@ -53,7 +53,6 @@ class _StackedArea2DState extends State<StackedArea2D> {
         type: "stackedarea2d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);

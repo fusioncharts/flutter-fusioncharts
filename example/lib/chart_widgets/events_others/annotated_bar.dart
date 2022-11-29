@@ -125,7 +125,6 @@ class _AnnotatedBarState extends State<AnnotatedBar> {
         type: "column2d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
@@ -134,7 +133,6 @@ class _AnnotatedBarState extends State<AnnotatedBar> {
         type: "bar3d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
