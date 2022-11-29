@@ -134,7 +134,7 @@ class _WorldMapState extends State<WorldMap> {
 
     _fusionChart = FusionCharts(
         dataSource: dataSource,
-        type: "maps/world",
+        type: "maps/worldwithantarctica",
         width: "100%",
         height: "100%",
         fusionChartsController: fusionChartsController,

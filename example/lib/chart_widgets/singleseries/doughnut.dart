@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
+import 'package:flutter_fusioncharts_example/button.dart';
 import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
@@ -13,8 +14,6 @@ class Doughnut extends StatefulWidget {
 class _DoughnutState extends State<Doughnut> {
   late FusionCharts _fusionChart2D;
   late FusionCharts _fusionChart3D;
-
-
 
   @override
   void initState() {
@@ -40,9 +39,10 @@ class _DoughnutState extends State<Doughnut> {
       "captionFontSize": "30px",
     };
 
-
-
-    Map<String, dynamic> dataSource = {"chart": chart, "data": ChartData.chartData2};
+    Map<String, dynamic> dataSource = {
+      "chart": chart,
+      "data": ChartData.chartData2
+    };
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
@@ -62,6 +62,7 @@ class _DoughnutState extends State<Doughnut> {
     print('Back to consumer: $arg1 , $arg2');
   }
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -78,7 +79,7 @@ class _DoughnutState extends State<Doughnut> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('Doughnut2D'),
+                Text('Doughnut 2D'),
               ],
             ),
             const SizedBox(
@@ -88,7 +89,7 @@ class _DoughnutState extends State<Doughnut> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('Doughnut3D'),
+                Text('Doughnut 3D'),
               ],
             ),
             const SizedBox(

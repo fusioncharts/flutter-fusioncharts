@@ -10,6 +10,7 @@ import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/zoomline.
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/zoomline_dy.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/gant_chart.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/pyramid_chart.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/sparkline.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/waterfall_or_cascade.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/area.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/bar.dart';
@@ -69,6 +70,20 @@ class _OtherChartMenuState extends State<OtherChartMenu> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const PyramidChart()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Sparkiline",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Sparkline()));
                       }),
                 ),
               ),

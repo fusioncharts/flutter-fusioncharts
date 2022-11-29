@@ -4,17 +4,16 @@ import 'package:flutter_fusioncharts_example/button.dart';
 import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
-class AreaEvents extends StatefulWidget {
-  const AreaEvents({super.key});
+class DoughnutEvent extends StatefulWidget {
+  const DoughnutEvent({super.key});
 
   @override
-  State<AreaEvents> createState() => _AreaEventsState();
+  State<DoughnutEvent> createState() => _DoughnutEventState();
 }
 
-class _AreaEventsState extends State<AreaEvents> {
+class _DoughnutEventState extends State<DoughnutEvent> {
   late FusionCharts _fusionChart2D;
   FusionChartsController fc = FusionChartsController();
-  // late FusionCharts _fusionChart3D;
 
   @override
   void initState() {
@@ -33,7 +32,7 @@ class _AreaEventsState extends State<AreaEvents> {
       "captionpadding": "0",
       "decimals": "1",
       "plottooltext":
-          "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
+      "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
       "theme": "fusion",
       "centerLabel": "# Users: \$value",
       "baseFontSize": "30px",
@@ -45,19 +44,24 @@ class _AreaEventsState extends State<AreaEvents> {
       "data": ChartData.chartData2
     };
 
+
+
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
-        type: "area2d",
+        type: "doughnut2d",
         width: "100%",
         height: "100%",
-        licenseKey: licenseKey,
+        fusionChartsController: fc,
         fusionChartEvent: (eventType, eventDetail) =>
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content:
-                    Text("Event Raised: $eventType + Details: $eventDetail"))),
-        fusionChartsController: fc);
+                Text("Event Raised: $eventType + Details: $eventDetail"))),
+        licenseKey: licenseKey);
   }
 
+  void callBackFromPlugin(arg1, arg2) {
+    print('Back to consumer: $arg1 , $arg2');
+  }
 
   addEvents() {
     fc.addEvents(result);
@@ -70,9 +74,6 @@ class _AreaEventsState extends State<AreaEvents> {
     fc.executeScript(js);
   }
 
-  void callBackFromPlugin(arg1, arg2) {
-    print('Back to consumer: $arg1 , $arg2');
-  }
 
   final TextEditingController _controller = TextEditingController();
   List<String> result = [];
@@ -86,12 +87,16 @@ class _AreaEventsState extends State<AreaEvents> {
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
-          title: const Text('Fusion Charts - AreaEvents 2D'),
+          title: const Text('Fusion Charts - Doughnut'),
         ),
         body: Column(
           children: [
-            Expanded(
-              child: _fusionChart2D,
+            Expanded(child: _fusionChart2D),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text('Doughnut2D'),
+              ],
             ),
             const SizedBox(
               height: 10,

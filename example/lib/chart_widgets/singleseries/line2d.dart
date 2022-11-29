@@ -11,6 +11,7 @@ class Line2D extends StatefulWidget {
 
 class _Line2DState extends State<Line2D> {
   late FusionCharts _fusionChart;
+  @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();

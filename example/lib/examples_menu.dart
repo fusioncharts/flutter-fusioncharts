@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/combination/combination_menu.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/events_others/events_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/maps_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/multiseries_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/other_chart_menu.dart';
@@ -94,13 +95,13 @@ class _MenuState extends State<Menu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("Annotations",
+                      child: const Text("Events",
                           style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const AnnotatedBar()));
+                                builder: (context) => const EventsMenu()));
                       }),
                 ),
               ),
