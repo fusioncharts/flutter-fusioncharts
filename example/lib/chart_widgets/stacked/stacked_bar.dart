@@ -35,7 +35,16 @@ class _StackedBarState extends State<StackedBar> {
     Map<String, dynamic> dataSource = {
       "chart": chart,
       "dataset": ChartData.chartData3,
-      "categories": [{"category": [{"label": "Q1"},{"label": "Q2"},{"label": "Q3"},{"label": "Q4"}]}]
+      "categories": [
+        {
+          "category": [
+            {"label": "Q1"},
+            {"label": "Q2"},
+            {"label": "Q3"},
+            {"label": "Q4"}
+          ]
+        }
+      ]
     };
     fusionChartsController.addEvents([]);
 
@@ -44,7 +53,6 @@ class _StackedBarState extends State<StackedBar> {
         type: "stackedbar2d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
@@ -53,7 +61,6 @@ class _StackedBarState extends State<StackedBar> {
         type: "stackedbar3d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);

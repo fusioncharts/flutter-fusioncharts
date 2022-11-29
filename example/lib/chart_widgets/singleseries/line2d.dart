@@ -45,7 +45,6 @@ class _Line2DState extends State<Line2D> {
         type: "line",
         width: "100%",
         height: "100%",
-        webviewEvent: (a,b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
@@ -59,14 +58,13 @@ class _Line2DState extends State<Line2D> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () => Navigator.of(context).pop()),
-          title: const Text('Fusion Charts - Line'),
-        ),
-        body: _fusionChart
-      ),
+          appBar: AppBar(
+            leading: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () => Navigator.of(context).pop()),
+            title: const Text('Fusion Charts - Line'),
+          ),
+          body: _fusionChart),
     );
   }
 }

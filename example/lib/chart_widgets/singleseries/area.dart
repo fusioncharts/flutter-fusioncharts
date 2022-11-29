@@ -50,6 +50,10 @@ class _AreaState extends State<Area> {
         width: "100%",
         height: "100%",
         licenseKey: licenseKey,
+        fusionChartEvent: (eventType, eventDetail) =>
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content:
+                    Text("Event Raised: $eventType + Details: $eventDetail"))),
         fusionChartsController: fc);
   }
 

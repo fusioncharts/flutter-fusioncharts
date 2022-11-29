@@ -6,12 +6,11 @@ import './utils/constants.dart';
 import './fusion_charts_controller.dart';
 
 class FusionCharts extends StatefulWidget {
-  const FusionCharts(
+  FusionCharts(
       {required this.dataSource,
       required this.type,
       this.height = "",
       this.width = "",
-      this.webviewEvent,
       this.fusionChartEvent,
       this.version = "latest",
       this.licenseKey,
@@ -23,9 +22,8 @@ class FusionCharts extends StatefulWidget {
   final String type;
   final String width;
   final String height;
-  final Function(String eventType, String eventDetail)? webviewEvent;
   final Function(String eventType, String eventDetail)? fusionChartEvent;
-  final List<String>? events;
+  final List<String> events;
   final String? licenseKey;
   final String? version;
   final FusionChartsController? fusionChartsController;
@@ -43,20 +41,15 @@ class _FusionChartsState extends State<FusionCharts> {
   String json = "";
 
   late InAppWebViewController _webViewController;
-  FusionChartsController? _fusionChartsController;
+  late FusionChartsController _fusionChartsController;
   @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
 
-    if (widget.fusionChartsController == null) {
-      _fusionChartsController = FusionChartsController();
-    } else {
-      _fusionChartsController = widget.fusionChartsController;
-    }
-
     String jsonDataSource = jsonEncode(widget.dataSource);
-
+    _fusionChartsController =
+        widget.fusionChartsController ?? FusionChartsController();
     String licenseString = "";
 
     if (widget.licenseKey != null) {
@@ -91,7 +84,6 @@ class _FusionChartsState extends State<FusionCharts> {
       
       fusionChart.render();
       globalFusionCharts = fusionChart;
-      $registerEvents
     });
     """;
 
@@ -100,8 +92,6 @@ class _FusionChartsState extends State<FusionCharts> {
       gotData = true;
     });
   }
-
-  _onLoadComplete() {}
 
   @override
   Widget build(BuildContext context) {
@@ -118,13 +108,16 @@ class _FusionChartsState extends State<FusionCharts> {
                 sharedCookiesEnabled: true,
               ),
             ),
-            initialFile: fcHome + '/integrate/index.html',
+            initialFile: '$fcHome/integrate/index.html',
             onLoadStop: (controller, url) async {
               await controller.evaluateJavascript(source: chartString);
             },
             onWebViewCreated: (InAppWebViewController controller) {
               _webViewController = controller;
-              _fusionChartsController?.setWebViewController(_webViewController);
+              if (widget.events.isNotEmpty) {
+                _fusionChartsController.addEvents(widget.events);
+              }
+              _fusionChartsController.setWebViewController(_webViewController);
               controller.addJavaScriptHandler(
                   handlerName: 'fusionChartEventHandler',
                   callback: (args) {

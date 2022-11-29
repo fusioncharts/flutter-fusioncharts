@@ -13,12 +13,12 @@ class DrillDown extends StatefulWidget {
 
 class _DrillDownState extends State<DrillDown> {
   late FusionCharts _fusionCharDrillDown;
-  
+
   @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-  
+
     Map<String, dynamic> chart = {
       "subcaption": "Last year",
       "xaxisName": "Flavor",
@@ -102,37 +102,36 @@ class _DrillDownState extends State<DrillDown> {
         }
       }
     ];
-  
+
     FusionChartsController fusionChartsController = FusionChartsController();
 
     fusionChartsController.addEvents([]);
 
-     _fusionCharDrillDown = FusionCharts(
+    _fusionCharDrillDown = FusionCharts(
         dataSource: {"chart": chart, "data": data, "linkeddate": linkeddata},
         type: "DrillDown2d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
-}
-    void callBackFromPlugin(arg1, arg2) {
-      if (kDebugMode) {
-        print('Back to consumer: $arg1 , $arg2');
-      }
-    }
+  }
 
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () => Navigator.of(context).pop()),
-            title: const Text('Fusion Charts - Drill Down'),
-          ),
-          body: _fusionCharDrillDown);
+  void callBackFromPlugin(arg1, arg2) {
+    if (kDebugMode) {
+      print('Back to consumer: $arg1 , $arg2');
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => Navigator.of(context).pop()),
+          title: const Text('Fusion Charts - Drill Down'),
+        ),
+        body: _fusionCharDrillDown);
+  }
+}

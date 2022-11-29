@@ -101,18 +101,6 @@ class _StackedColumnLineSingleYAxisState
     print('Back to consumer: $arg1 , $arg2');
   }
 
-  // changeType() {
-  //   print('Change type msColumn3D');
-  //   if (_2d) {
-  //     _fusionChartsController
-  //         .executeScript("globalFusionCharts.chartType('msColumn3D')");
-  //   } else {
-  //     _fusionChartsController
-  //         .executeScript("globalFusionCharts.chartType('msColumn2D')");
-  //   }
-  //   _2d = !_2d;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

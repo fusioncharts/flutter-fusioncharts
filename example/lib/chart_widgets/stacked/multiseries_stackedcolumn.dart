@@ -8,7 +8,8 @@ class StackedColumnMultiSeries extends StatefulWidget {
   const StackedColumnMultiSeries({super.key});
 
   @override
-  State<StackedColumnMultiSeries> createState() => _StackedColumnMultiSeriesState();
+  State<StackedColumnMultiSeries> createState() =>
+      _StackedColumnMultiSeriesState();
 }
 
 class _StackedColumnMultiSeriesState extends State<StackedColumnMultiSeries> {
@@ -54,7 +55,6 @@ class _StackedColumnMultiSeriesState extends State<StackedColumnMultiSeries> {
         type: "msstackedcolumn2d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);

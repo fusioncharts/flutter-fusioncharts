@@ -54,7 +54,6 @@ class _StackedBarMultiSeriesState extends State<StackedBarMultiSeries> {
         type: "msstackedbar2d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);

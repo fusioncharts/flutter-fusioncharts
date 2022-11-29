@@ -53,17 +53,15 @@ class _StackedColumnState extends State<StackedColumn> {
         type: "stackedcolumn2d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
- 
+
     _fusionChart3D = FusionCharts(
         dataSource: dataSource,
         type: "stackedcolumn3d",
         width: "100%",
         height: "100%",
-        webviewEvent: (a, b) => {},
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
