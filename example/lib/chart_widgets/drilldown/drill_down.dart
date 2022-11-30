@@ -169,7 +169,6 @@ class _DrillDownState extends State<DrillDown> {
               "baseFontSize": "30px",
               "captionFontSize": "30px",
               "subcaptionFontSize": "30px",
-              "baseFontSize": "30px",
               "plottooltext": "\$label, \$dataValue,  \$percentValue"
             },
             "data": [
