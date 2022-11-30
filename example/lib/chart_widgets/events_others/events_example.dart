@@ -38,6 +38,7 @@ class _AreaEventsState extends State<AreaEvents> {
       "centerLabel": "# Users: \$value",
       "baseFontSize": "30px",
       "captionFontSize": "30px",
+      "exportEnabled": "1"
     };
 
     Map<String, dynamic> dataSource = {
@@ -58,7 +59,6 @@ class _AreaEventsState extends State<AreaEvents> {
         fusionChartsController: fc);
   }
 
-
   addEvents() {
     fc.addEvents(result);
   }
@@ -66,7 +66,8 @@ class _AreaEventsState extends State<AreaEvents> {
   removeEvents() {
     fc.removeEvents(result);
   }
-  executeScript(String js){
+
+  executeScript(String js) {
     fc.executeScript(js);
   }
 
@@ -106,32 +107,39 @@ class _AreaEventsState extends State<AreaEvents> {
                       maxLines: 3,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: 'Enter comma separated string for add/remove events and simple string for script',
+                        hintText:
+                            'Enter comma separated string for add/remove events and simple string for script',
                       ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    PrimaryButton(onPressed: (){
-                      result = _controller.text.split(',');
-                      addEvents();
-                      _controller.clear();
-                    }, title: 'add event'),
+                    PrimaryButton(
+                        onPressed: () {
+                          result = _controller.text.split(',');
+                          addEvents();
+                          _controller.clear();
+                        },
+                        title: 'add event'),
                     const SizedBox(
                       height: 10,
                     ),
-                    PrimaryButton(onPressed: (){
-                      result = _controller.text.split(',');
-                      removeEvents();
-                      _controller.clear();
-                    }, title: 'remove event'),
+                    PrimaryButton(
+                        onPressed: () {
+                          result = _controller.text.split(',');
+                          removeEvents();
+                          _controller.clear();
+                        },
+                        title: 'remove event'),
                     const SizedBox(
                       height: 10,
                     ),
-                    PrimaryButton(onPressed: (){
-                      executeScript(_controller.text);
-                      _controller.clear();
-                    }, title: 'Execute Script')
+                    PrimaryButton(
+                        onPressed: () {
+                          executeScript(_controller.text);
+                          _controller.clear();
+                        },
+                        title: 'Execute Script')
                   ],
                 ),
               ),

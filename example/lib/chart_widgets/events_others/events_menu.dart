@@ -5,7 +5,7 @@ import 'package:flutter_fusioncharts_example/chart_widgets/events_others/events_
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/trial_map.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/usa.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/worldmap.dart';
-
+import './export.dart';
 
 class EventsMenu extends StatefulWidget {
   const EventsMenu({Key? key}) : super(key: key);
@@ -18,18 +18,23 @@ class _EventsMenuState extends State<EventsMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text('Choose Example')),
+        appBar: AppBar(title: const Text('Choose Example')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children:[
+            children: [
               InkWell(
-                  child: SizedBox(height: 40,
-                    child: InkWell(child: const Text("Annotated Bar", style: TextStyle(fontSize: 16)),
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  const AnnotatedBar()))),
-                  )),
+                  child: SizedBox(
+                height: 40,
+                child: InkWell(
+                    child: const Text("Annotated Bar",
+                        style: TextStyle(fontSize: 16)),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AnnotatedBar()))),
+              )),
               InkWell(
                 child: SizedBox(
                   height: 40,
@@ -55,6 +60,21 @@ class _EventsMenuState extends State<EventsMenu> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const DoughnutEvent()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Export Column Data",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ColumnChartExport()));
                       }),
                 ),
               ),

@@ -6,7 +6,7 @@ import './utils/constants.dart';
 import './fusion_charts_controller.dart';
 
 class FusionCharts extends StatefulWidget {
-  FusionCharts(
+  const FusionCharts(
       {required this.dataSource,
       required this.type,
       this.height = "",
@@ -50,6 +50,7 @@ class _FusionChartsState extends State<FusionCharts> {
     String jsonDataSource = jsonEncode(widget.dataSource);
     _fusionChartsController =
         widget.fusionChartsController ?? FusionChartsController();
+
     String licenseString = "";
 
     if (widget.licenseKey != null) {
@@ -87,7 +88,6 @@ class _FusionChartsState extends State<FusionCharts> {
     });
     """;
 
-    print(chartString);
     setState(() {
       gotData = true;
     });
@@ -114,10 +114,18 @@ class _FusionChartsState extends State<FusionCharts> {
             },
             onWebViewCreated: (InAppWebViewController controller) {
               _webViewController = controller;
+              _webViewController.addJavaScriptHandler(
+                  handlerName: "webviewEvent",
+                  callback: (args) {
+                    print("Webview Event: " + args.toString());
+                  });
+              _fusionChartsController.addEvents(["download"]);
               if (widget.events.isNotEmpty) {
                 _fusionChartsController.addEvents(widget.events);
               }
+
               _fusionChartsController.setWebViewController(_webViewController);
+
               controller.addJavaScriptHandler(
                   handlerName: 'fusionChartEventHandler',
                   callback: (args) {

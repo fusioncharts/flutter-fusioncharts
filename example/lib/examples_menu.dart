@@ -9,6 +9,7 @@ import 'package:flutter_fusioncharts_example/chart_widgets/stacked/stacked_menu.
 import 'package:flutter_fusioncharts_example/chart_widgets/xyplot/xyplot_menu.dart';
 import 'chart_widgets/drilldown/drill_down.dart';
 import 'chart_widgets/events_others/annotated_bar.dart';
+
 class Menu extends StatefulWidget {
   const Menu({super.key});
 
@@ -95,8 +96,8 @@ class _MenuState extends State<Menu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("Events",
-                          style: TextStyle(fontSize: 16)),
+                      child:
+                          const Text("Events", style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -109,8 +110,8 @@ class _MenuState extends State<Menu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("XY Plot",
-                          style: TextStyle(fontSize: 16)),
+                      child:
+                          const Text("XY Plot", style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -123,8 +124,7 @@ class _MenuState extends State<Menu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("Maps",
-                          style: TextStyle(fontSize: 16)),
+                      child: const Text("Maps", style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,

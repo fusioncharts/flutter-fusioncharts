@@ -24,3 +24,4 @@ function removeChartEvents(removeEvents) {
     );
     console.log("Events removed successfully!!", removeEvents);
 }
+

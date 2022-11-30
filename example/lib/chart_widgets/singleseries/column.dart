@@ -12,7 +12,6 @@ class ColumnChart extends StatefulWidget {
 }
 
 class _ColumnChartState extends State<ColumnChart> {
-
   late FusionCharts _fusionChart2D;
   late FusionCharts _fusionChart3D;
 
@@ -32,7 +31,10 @@ class _ColumnChartState extends State<ColumnChart> {
       "captionFontSize": "30px",
     };
     FusionChartsController fusionChartsController = FusionChartsController();
-    Map<String, dynamic> dataSource = {"chart": chart, "data": ChartData.chartData};
+    Map<String, dynamic> dataSource = {
+      "chart": chart,
+      "data": ChartData.chartData
+    };
     fusionChartsController.addEvents([]);
 
     _fusionChart2D = FusionCharts(

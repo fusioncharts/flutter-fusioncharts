@@ -28,6 +28,7 @@ class _DrillDownState extends State<DrillDown> {
       "rotateValues": "0",
       "baseFontSize": "30px",
       "captionFontSize": "30px",
+      "subcaptionFontSize": "30px"
     };
 
     List<dynamic> data = [
@@ -51,7 +52,10 @@ class _DrillDownState extends State<DrillDown> {
             "yaxisname": "Amount (In USD)",
             "numberprefix": "\$",
             "theme": "fusion",
-            "rotateValues": "0"
+            "rotateValues": "0",
+            "baseFontSize": "30px",
+            "captionFontSize": "30px",
+            "subcaptionFontSize": "30px"
           },
           "data": [
             {"label": "Q1", "value": "157000"},
@@ -71,7 +75,10 @@ class _DrillDownState extends State<DrillDown> {
             "yaxisname": "Amount (In USD)",
             "numberprefix": "\$",
             "theme": "fusion",
-            "rotateValues": "0"
+            "rotateValues": "0",
+            "baseFontSize": "30px",
+            "captionFontSize": "30px",
+            "subcaptionFontSize": "30px"
           },
           "data": [
             {"label": "Q1", "value": "102000"},
@@ -91,7 +98,10 @@ class _DrillDownState extends State<DrillDown> {
             "yaxisname": "Amount (In USD)",
             "numberprefix": "\$",
             "theme": "fusion",
-            "rotateValues": "0"
+            "rotateValues": "0",
+            "baseFontSize": "30px",
+            "captionFontSize": "30px",
+            "subcaptionFontSize": "30px"
           },
           "data": [
             {"label": "Q1", "value": "45000"},
@@ -103,13 +113,104 @@ class _DrillDownState extends State<DrillDown> {
       }
     ];
 
+    Map<String, dynamic> dataSource = {
+      "chart": {
+        "caption": "Top 3 Juice Flavors",
+        "subcaption": "Last year",
+        "xaxisname": "Flavor",
+        "yaxisname": "Amount (In USD)",
+        "numberprefix": "\$",
+        "theme": "fusion",
+        "rotateValues": "0",
+        "baseFontSize": "30px",
+        "captionFontSize": "30px",
+        "subcaptionFontSize": "30px"
+      },
+      "data": [
+        {"label": "Apple", "value": "810000", "link": "newchart-xml-apple"},
+        {
+          "label": "Cranberry",
+          "value": "620000",
+          "link": "newchart-xml-cranberry"
+        },
+        {"label": "Grapes", "value": "350000", "link": "newchart-xml-grapes"}
+      ],
+      "linkeddata": [
+        {
+          "id": "apple",
+          "linkedchart": {
+            "chart": {
+              "caption": "Apple Juice - Quarterly Sales",
+              "subcaption": "Last year",
+              "numberprefix": "\$",
+              "theme": "fusion",
+              "rotateValues": "0",
+              "baseFontSize": "30px",
+              "captionFontSize": "30px",
+              "subcaptionFontSize": "30px",
+              "plottooltext": "\$label, \$dataValue,  \$percentValue"
+            },
+            "data": [
+              {"label": "Q1", "value": "157000"},
+              {"label": "Q2", "value": "172000"},
+              {"label": "Q3", "value": "206000"},
+              {"label": "Q4", "value": "275000"}
+            ]
+          }
+        },
+        {
+          "id": "cranberry",
+          "linkedchart": {
+            "chart": {
+              "caption": "Cranberry Juice - Quarterly Sales",
+              "subcaption": "Last year",
+              "numberprefix": "\$",
+              "theme": "fusion",
+              "baseFontSize": "30px",
+              "captionFontSize": "30px",
+              "subcaptionFontSize": "30px",
+              "baseFontSize": "30px",
+              "plottooltext": "\$label, \$dataValue,  \$percentValue"
+            },
+            "data": [
+              {"label": "Q1", "value": "102000"},
+              {"label": "Q2", "value": "142000"},
+              {"label": "Q3", "value": "187000"},
+              {"label": "Q4", "value": "189000"}
+            ]
+          }
+        },
+        {
+          "id": "grapes",
+          "linkedchart": {
+            "chart": {
+              "caption": "Grapes Juice - Quarterly Sales",
+              "subcaption": "Last year",
+              "numberprefix": "\$",
+              "theme": "fusion",
+              "rotateValues": "0",
+              "baseFontSize": "30px",
+              "captionFontSize": "30px",
+              "plottooltext": "\$label, \$dataValue,  \$percentValue"
+            },
+            "data": [
+              {"label": "Q1", "value": "45000"},
+              {"label": "Q2", "value": "72000"},
+              {"label": "Q3", "value": "95000"},
+              {"label": "Q4", "value": "108000"}
+            ]
+          }
+        }
+      ]
+    };
+
     FusionChartsController fusionChartsController = FusionChartsController();
 
     fusionChartsController.addEvents([]);
 
     _fusionCharDrillDown = FusionCharts(
-        dataSource: {"chart": chart, "data": data, "linkeddate": linkeddata},
-        type: "DrillDown2d",
+        dataSource: dataSource,
+        type: "column2d",
         width: "100%",
         height: "100%",
         fusionChartEvent: (a, b) => {},
@@ -119,7 +220,7 @@ class _DrillDownState extends State<DrillDown> {
 
   void callBackFromPlugin(arg1, arg2) {
     if (kDebugMode) {
-      print('Back to consumer: $arg1 , $arg2');
+      print('Back to consumer: \$arg1 , \$arg2');
     }
   }
 
@@ -132,6 +233,6 @@ class _DrillDownState extends State<DrillDown> {
               onPressed: () => Navigator.of(context).pop()),
           title: const Text('Fusion Charts - Drill Down'),
         ),
-        body: _fusionCharDrillDown);
+        body: SizedBox(height: 400, width: 400, child: _fusionCharDrillDown));
   }
 }
