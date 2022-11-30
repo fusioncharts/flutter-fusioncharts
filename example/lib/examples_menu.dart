@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/combination/combination_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/events_others/events_menu.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/gauges/gauges_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/maps_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/multiseries_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/other_chart_menu.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/scroll/scroll_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/singleseries_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/stacked/stacked_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/xyplot/xyplot_menu.dart';
@@ -96,16 +98,17 @@ class _MenuState extends State<Menu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child:
-                          const Text("Events", style: TextStyle(fontSize: 16)),
+                      child: const Text("Scroll",
+                          style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const EventsMenu()));
+                                builder: (context) => const ScrollMenu()));
                       }),
                 ),
               ),
+
               InkWell(
                 child: SizedBox(
                   height: 40,
@@ -151,6 +154,20 @@ class _MenuState extends State<Menu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
+                      child: const Text("Gauges",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const GaugesMenu()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
                       child:
                           const Text("Other", style: TextStyle(fontSize: 16)),
                       onTap: () {
@@ -158,6 +175,20 @@ class _MenuState extends State<Menu> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const OtherChartMenu()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child:
+                      const Text("Events", style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const EventsMenu()));
                       }),
                 ),
               ),
