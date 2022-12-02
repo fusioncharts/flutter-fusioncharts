@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/inverse_yaxis/inverse_area.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/inverse_yaxis/inverse_column.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/inverse_yaxis/inverse_line.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/draggable/draggable_area.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/draggable/draggable_column.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/draggable/draggable_line.dart';
 
 
 
-class InverseMenu extends StatefulWidget {
-  const InverseMenu({Key? key}) : super(key: key);
+class DraggableMenu extends StatefulWidget {
+  const DraggableMenu({Key? key}) : super(key: key);
 
   @override
-  State<InverseMenu> createState() => _InverseMenuState();
+  State<DraggableMenu> createState() => _DraggableMenuState();
 }
 
-class _InverseMenuState extends State<InverseMenu> {
+class _DraggableMenuState extends State<DraggableMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,35 +24,35 @@ class _InverseMenuState extends State<InverseMenu> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children:[
               InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Draggable Column",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const DraggableColumn()));
+                      }),
+                ),
+              ),
+              InkWell(
                   child: SizedBox(height: 40,
-                    child: InkWell(child: const Text("Inverse Area", style: TextStyle(fontSize: 16)),
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  const InverseArea()))),
+                    child: InkWell(child: const Text("Draggable Area", style: TextStyle(fontSize: 16)),
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  const DraggableArea()))),
                   )),
               InkWell(
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("Inverse Column",
+                      child: const Text("Draggable Line",
                           style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const InverseColumn()));
-                      }),
-                ),
-              ),
-              InkWell(
-                child: SizedBox(
-                  height: 40,
-                  child: InkWell(
-                      child: const Text("Inverse Line",
-                          style: TextStyle(fontSize: 16)),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const InverseLine()));
+                                builder: (context) => const DraggableLine()));
                       }),
                 ),
               ),

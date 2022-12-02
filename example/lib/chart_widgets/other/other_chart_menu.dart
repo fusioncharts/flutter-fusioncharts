@@ -1,26 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/areamultiseries.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/barmultiseries.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/column.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/line.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/marimekko.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/overlapped_bar.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/overlapped_column.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/zoomline.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/zoomline_dy.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/dragnode.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/gant_chart.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/heatmap.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/kagi.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/multilevel_pie.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/pyramid_chart.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/radar.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/sparkline.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/stepline.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/treemap.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/waterfall_or_cascade.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/area.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/bar.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/column.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/doughnut.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/line2d.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/pareto.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/pie.dart';
-
-import '../drilldown/drill_down.dart';
 
 class OtherChartMenu extends StatefulWidget {
   const OtherChartMenu({Key? key}) : super(key: key);
@@ -34,7 +23,7 @@ class _OtherChartMenuState extends State<OtherChartMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text('Choose Example')),
+            title: const Text('Choose Example')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -77,13 +66,111 @@ class _OtherChartMenuState extends State<OtherChartMenu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("Sparkiline",
+                      child: const Text("Sparkline",
                           style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const Sparkline()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Kagi",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const KagiChart()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Multilevel Pie",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MultilevelPie()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Step Line",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const StepLine()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Drag Node",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const DragNode()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Heat Map",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HeatMap()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("Radar",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Radar()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("TreeMap",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const TreeMap()));
                       }),
                 ),
               ),
