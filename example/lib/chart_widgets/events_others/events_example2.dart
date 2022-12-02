@@ -70,7 +70,8 @@ class _DoughnutEventState extends State<DoughnutEvent> {
   }
 
   executeScript(String js) {
-    fc.executeScript(js);
+    print(js);
+    fc.executeScript(js.toString());
   }
 
   final TextEditingController _controller = TextEditingController();
@@ -93,7 +94,7 @@ class _DoughnutEventState extends State<DoughnutEvent> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('Doughnut2D'),
+                Text('Doughnut3D'),
               ],
             ),
             const SizedBox(

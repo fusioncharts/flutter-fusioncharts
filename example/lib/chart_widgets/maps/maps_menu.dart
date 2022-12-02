@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/maps/india.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/trial_map.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/usa.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/worldmap.dart';
@@ -53,6 +54,20 @@ class _WorldMapMenuState extends State<WorldMapMenu> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const USA()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child: const Text("INDIA",
+                          style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const India()));
                       }),
                 ),
               ),
