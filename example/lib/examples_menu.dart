@@ -47,277 +47,286 @@ class _MenuState extends State<Menu> {
         appBar: AppBar(title: const Text('Choose Chart Type')),
         body: Center(
           child: ListView(
-            physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+            physics: const AlwaysScrollableScrollPhysics(
+                parent: BouncingScrollPhysics()),
             shrinkWrap: true,
             children: [
-              const SizedBox(height: 20,),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    InkWell(
+              const SizedBox(
+                height: 20,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Single Series",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const SingleSeriesMenu()))),
+                    ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Multi Series",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const MultiSeriesMenu()))),
+                    ),
+                  ),
+                  InkWell(
                       child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Single Series",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () => Navigator.push(
+                    height: 40,
+                    child: InkWell(
+                        child: const Text("Stacked",
+                            style: TextStyle(fontSize: 16)),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const StackedMenu()));
+                        }),
+                  )),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Combination",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const SingleSeriesMenu()))),
-                      ),
+                                    builder: (context) =>
+                                        const CombinationMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Multi Series",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () => Navigator.push(
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Scroll",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const MultiSeriesMenu()))),
-                      ),
+                                    builder: (context) => const ScrollMenu()));
+                          }),
                     ),
-                    InkWell(
-                        child: SizedBox(
-                          height: 40,
-                          child: InkWell(
-                              child:
-                              const Text("Stacked", style: TextStyle(fontSize: 16)),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const StackedMenu()));
-                              }),
-                        )),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Combination",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const CombinationMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("XY Plot",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const XYPlotMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Scroll",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const ScrollMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Maps",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const WorldMapMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child:
-                            const Text("XY Plot", style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const XYPlotMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Drill Down",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const DrillDown()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Maps", style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const WorldMapMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Gauges",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const GaugesMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Drill Down",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const DrillDown()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Realtime",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const RDSMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Gauges",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const GaugesMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Spark",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SparkMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Realtime",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const RDSMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Bullet Graph",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const BulletGraphMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Spark",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const SparkMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Logarithmic",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LogMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Bullet Graph",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const BulletGraphMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Spline",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SplineMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Logarithmic",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const LogMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Error",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ErrorMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Spline",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const SplineMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Inverse",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const InverseMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Error",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const ErrorMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Draggable",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DraggableMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Inverse",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const InverseMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Other/Miscellaneous",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const OtherChartMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child: const Text("Draggable",
-                                style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const DraggableMenu()));
-                            }),
-                      ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Events, API and Others",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const EventsMenu()));
+                          }),
                     ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child:
-                            const Text("Other/Miscellaneous", style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const OtherChartMenu()));
-                            }),
-                      ),
-                    ),
-                    InkWell(
-                      child: SizedBox(
-                        height: 40,
-                        child: InkWell(
-                            child:
-                            const Text("Events", style: TextStyle(fontSize: 16)),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const EventsMenu()));
-                            }),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),

@@ -7,9 +7,9 @@ class FusionChartsController extends ChangeNotifier {
   InAppWebViewController? _webViewController;
 
   void executeScript(String js) async {
-    if (_webViewController != null) {
-      await _webViewController?.evaluateJavascript(source: js);
-    }
+    String script = "executeAPI('$js')";
+    print(js);
+    await _webViewController?.evaluateJavascript(source: script);
   }
 
   void addEvents(List<String> events) async {

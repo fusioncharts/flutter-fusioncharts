@@ -25,3 +25,9 @@ function removeChartEvents(removeEvents) {
     console.log("Events removed successfully!!", removeEvents);
 }
 
+function executeAPI(js) {
+    console.log("Executing API: " + js + globalFusionCharts.chartType());
+    eval(js);
+    // globalFusionCharts.chartType('doughnut2d')
+    console.log("Executing API: " + js + globalFusionCharts.chartType());
+}

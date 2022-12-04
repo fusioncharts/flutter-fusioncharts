@@ -4,16 +4,21 @@ import 'package:flutter_fusioncharts_example/button.dart';
 import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
-class DoughnutEvent extends StatefulWidget {
-  const DoughnutEvent({super.key});
+class CheckGlobal extends StatefulWidget {
+  const CheckGlobal({super.key});
 
   @override
-  State<DoughnutEvent> createState() => _DoughnutEventState();
+  State<CheckGlobal> createState() => _CheckGlobalState();
 }
 
-class _DoughnutEventState extends State<DoughnutEvent> {
+class _CheckGlobalState extends State<CheckGlobal> {
   late FusionCharts _fusionChart2D;
+  late FusionCharts _fusionChart2D1;
+  bool threeD = true;
+  String js =
+      'globalFusionCharts.chartType() == "doughnut3d" ? globalFusionCharts.chartType("doughnut2d") : globalFusionCharts.chartType("doughnut3d")';
   FusionChartsController fc = FusionChartsController();
+  FusionChartsController fc2 = FusionChartsController();
 
   @override
   void initState() {
@@ -55,6 +60,18 @@ class _DoughnutEventState extends State<DoughnutEvent> {
                 content:
                     Text("Event Raised: $eventType + Details: $eventDetail"))),
         licenseKey: licenseKey);
+
+    _fusionChart2D1 = FusionCharts(
+        dataSource: dataSource,
+        type: "doughnut2d",
+        width: "100%",
+        height: "100%",
+        fusionChartsController: fc2,
+        fusionChartEvent: (eventType, eventDetail) =>
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content:
+                    Text("Event Raised: $eventType + Details: $eventDetail"))),
+        licenseKey: licenseKey);
   }
 
   void callBackFromPlugin(arg1, arg2) {
@@ -89,67 +106,30 @@ class _DoughnutEventState extends State<DoughnutEvent> {
           title: const Text('Fusion Charts - Doughnut'),
         ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Expanded(child: _fusionChart2D),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text('Doughnut3D'),
+              children: [
+                Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: _fusionChart2D),
+                Container(
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: _fusionChart2D1),
               ],
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: ListView(
-                  children: [
-                    TextFormField(
-                      controller: _controller,
-                      maxLines: 3,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText:
-                            'Enter comma separated string for add/remove events and simple string for script',
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    PrimaryButton(
-                        onPressed: () {
-                          result = _controller.text.split(',');
-                          addEvents();
-                          //  _controller.clear();
-                        },
-                        title: 'add event'),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    PrimaryButton(
-                        onPressed: () {
-                          result = _controller.text.split(',');
-                          removeEvents();
-                          // _controller.clear();
-                        },
-                        title: 'remove event'),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    PrimaryButton(
-                        onPressed: () {
-                          executeScript(_controller.text);
-                          // _controller.clear();
-                        },
-                        title: 'Execute Script')
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
+            ElevatedButton(
+                onPressed: () {
+                  fc.executeScript(js);
+                  fc2.executeScript(js);
+                },
+                child: const Text('Change Type'))
           ],
         ),
       ),

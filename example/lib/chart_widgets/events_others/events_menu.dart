@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/events_others/annotated_bar.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/events_others/check_global.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/events_others/events_example.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/events_others/events_example2.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/trial_map.dart';
@@ -24,6 +25,17 @@ class _EventsMenuState extends State<EventsMenu> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              InkWell(
+                  child: SizedBox(
+                height: 40,
+                child: InkWell(
+                    child: const Text("Test ChangeType",
+                        style: TextStyle(fontSize: 16)),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CheckGlobal()))),
+              )),
               InkWell(
                   child: SizedBox(
                 height: 40,
