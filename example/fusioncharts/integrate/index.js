@@ -31,3 +31,42 @@ function executeAPI(js) {
     // globalFusionCharts.chartType('doughnut2d')
     console.log("Executing API: " + js + globalFusionCharts.chartType());
 }
+
+
+
+async function loadFusionCharts(cdn) {
+    const existingScript = document.getElementById('fc-plugin');
+    if (cdn == 'CDN') {
+        if (!existingScript) {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js';
+            script.id = 'fc-plugin';
+            document.body.appendChild(script);
+
+            const style = document.createElement('script');
+            style.src = 'https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js';
+            style.id = 'fc-style';
+            document.body.appendChild(style);
+
+            script.onload = () => {
+                console.log('FC Loaded CDN');
+            };
+        }
+    } else {
+        if (!existingScript) {
+            const script = document.createElement('script');
+            script.src = '../core/fusioncharts.js';
+            script.id = 'fc-plugin';
+            document.body.appendChild(script);
+
+            const style = document.createElement('script');
+            style.src = '../core/themes/fusioncharts.theme.fusion.js';
+            style.id = 'fc-style';
+            document.body.appendChild(style);
+
+            script.onload = () => {
+                console.log('FC Loaded Local');
+            };
+        }
+    }
+};

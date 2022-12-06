@@ -40,6 +40,7 @@ class _FusionChartsState extends State<FusionCharts> {
 
   bool gotData = false;
   String json = "";
+  bool fcLoaded = false;
   late InAppWebViewController _webViewController;
   late FusionChartsController _fusionChartsController;
   @override
@@ -74,6 +75,7 @@ class _FusionChartsState extends State<FusionCharts> {
 
       $licenseString
 
+    
       let globalFusionCharts;
       FusionCharts.ready(function() {
         var fusionChart = new FusionCharts({
@@ -89,7 +91,7 @@ class _FusionChartsState extends State<FusionCharts> {
       globalFusionCharts = fusionChart;
     });
     """;
-
+    int x = 0;
     setState(() {
       gotData = true;
     });
@@ -112,6 +114,12 @@ class _FusionChartsState extends State<FusionCharts> {
             ),
             initialFile: '$fcHome/integrate/index.html',
             onLoadStop: (controller, url) async {
+              if (!fcLoaded) {
+                var loaded = await controller.evaluateJavascript(source: """
+                      loadFusionCharts("CDN")
+                      """);
+                fcLoaded = true;
+              }
               await controller.evaluateJavascript(source: chartString);
             },
             onWebViewCreated: (InAppWebViewController controller) {
