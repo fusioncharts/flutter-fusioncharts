@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/src/utils/permission_manager.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'dart:convert';
+import 'dart:collection';
 
 import './utils/constants.dart';
 import './fusion_charts_controller.dart';
@@ -113,13 +114,12 @@ class _FusionChartsState extends State<FusionCharts> {
               ),
             ),
             initialFile: '$fcHome/integrate/index.html',
+            initialUserScripts: UnmodifiableListView<UserScript>([
+              UserScript(
+                  source: 'loadFusionCharts("LOCAL")',
+                  injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END),
+            ]),
             onLoadStop: (controller, url) async {
-              if (!fcLoaded) {
-                var loaded = await controller.evaluateJavascript(source: """
-                      loadFusionCharts("CDN")
-                      """);
-                fcLoaded = true;
-              }
               await controller.evaluateJavascript(source: chartString);
             },
             onWebViewCreated: (InAppWebViewController controller) {
