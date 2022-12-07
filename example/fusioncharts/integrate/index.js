@@ -48,9 +48,7 @@ async function loadFusionCharts(cdn) {
             style.id = 'fc-style';
             document.body.appendChild(style);
 
-            script.onload = () => {
-                console.log('FC Loaded CDN');
-            };
+
         }
     } else {
         if (!existingScript) {
@@ -64,9 +62,13 @@ async function loadFusionCharts(cdn) {
             style.id = 'fc-style';
             document.body.appendChild(style);
 
-            script.onload = () => {
-                console.log('FC Loaded Local');
-            };
         }
+
     }
+
+    script.onload = async () => {
+        console.log('FC Loaded CDN');
+        return await Promise.resolve(true);
+    }
+    return await Promise.resolve(false);
 };
