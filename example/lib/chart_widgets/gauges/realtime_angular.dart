@@ -149,7 +149,7 @@ class _RealTimeAngularState extends State<RealTimeAngular> {
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop()),
-          title: const Text('Fusion Charts - Scroll Area'),
+          title: const Text('FC - Realtime Angular Chart'),
         ),
         body: Column(
           children: [
@@ -157,7 +157,7 @@ class _RealTimeAngularState extends State<RealTimeAngular> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('Scroll Area 2D'),
+                Text('Realtime Angular Chart'),
               ],
             ),
             const SizedBox(

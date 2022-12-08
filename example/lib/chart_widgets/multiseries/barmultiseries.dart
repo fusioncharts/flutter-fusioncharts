@@ -87,7 +87,6 @@ class _BarMultiSeriesState extends State<BarMultiSeries> {
     print('Back to consumer: $arg1 , $arg2');
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
