@@ -74,8 +74,6 @@ class _FusionChartsState extends State<FusionCharts> {
     jsonDataSource = jsonEncode(jsonDataSource);
     chartString = """
 
-      let loaded = await loadFusionCharts("CDN");
-
       $licenseString
 
     
