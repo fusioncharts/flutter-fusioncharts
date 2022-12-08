@@ -30,3 +30,4 @@ function executeAPI(js) {
     eval(js);
     console.log("Executing API: " + js + globalFusionCharts.chartType());
 }
+
