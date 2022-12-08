@@ -74,12 +74,10 @@ class _FusionChartsState extends State<FusionCharts> {
     jsonDataSource = jsonEncode(jsonDataSource);
     chartString = """
 
-      let loaded = await loadFusionCharts("CDN");
-
       $licenseString
 
-    
       let globalFusionCharts;
+
       FusionCharts.ready(function() {
         var fusionChart = new FusionCharts({
         type: "${widget.type}",
@@ -116,21 +114,11 @@ class _FusionChartsState extends State<FusionCharts> {
               ),
             ),
             initialFile: '$fcHome/integrate/index.html',
-            initialUserScripts: UnmodifiableListView<UserScript>([
-              UserScript(
-                  source: 'loadFusionCharts("CDN")',
-                  injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END),
-            ]),
             onLoadStop: (controller, url) async {
               await controller.evaluateJavascript(source: chartString);
             },
             onWebViewCreated: (InAppWebViewController controller) {
               _webViewController = controller;
-              controller.addUserScript(
-                  userScript: UserScript(
-                      source: 'loadFusionCharts("CDN")',
-                      injectionTime:
-                          UserScriptInjectionTime.AT_DOCUMENT_START));
 
               _webViewController.addJavaScriptHandler(
                   handlerName: "webviewEvent",
@@ -141,9 +129,7 @@ class _FusionChartsState extends State<FusionCharts> {
               if (widget.events.isNotEmpty) {
                 _fusionChartsController.addEvents(widget.events);
               }
-
               _fusionChartsController.setWebViewController(_webViewController);
-
               controller.addJavaScriptHandler(
                   handlerName: 'fusionChartEventHandler',
                   callback: (args) {
