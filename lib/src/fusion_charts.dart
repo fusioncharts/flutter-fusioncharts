@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fusioncharts/src/utils/dialogue.dart';
 import 'package:flutter_fusioncharts/src/utils/permission_manager.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'dart:convert';
@@ -74,8 +75,6 @@ class _FusionChartsState extends State<FusionCharts> {
     jsonDataSource = jsonEncode(jsonDataSource);
     chartString = """
 
-      let loaded = await loadFusionCharts("CDN");
-
       $licenseString
 
     
@@ -124,6 +123,12 @@ class _FusionChartsState extends State<FusionCharts> {
             onLoadStop: (controller, url) async {
               await controller.evaluateJavascript(source: chartString);
             },
+      onDownloadStartRequest: (controller,DownloadStartRequest request)async{
+        showDialog(
+          context: context,
+          builder: (context) => DownloadingDialog(fileName: widget.type, request: request),
+        );
+      },
             onWebViewCreated: (InAppWebViewController controller) {
               _webViewController = controller;
               controller.addUserScript(

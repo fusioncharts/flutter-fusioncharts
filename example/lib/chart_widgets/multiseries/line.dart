@@ -73,6 +73,7 @@ class _LineMultiSeriesState extends State<LineMultiSeries> {
     Map<String, dynamic> chart = {
       "caption": "Number of visitors last week",
       "subCaption": "Bakersfield Central vs Los Angeles Topanga",
+      "exportEnabled":"1",
       "xAxisName": "Day",
       "theme": "fusion",
       "baseFontSize": "30px",

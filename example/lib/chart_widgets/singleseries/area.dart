@@ -24,6 +24,8 @@ class _AreaState extends State<Area> {
       "caption": "Android Distribution",
       "subCaption": "subCaption",
       "showlegend": "1",
+      "exportEnabled":"1",
+      "exportAtClientSide":"1",
       "showpercentvalues": "1",
       "legendPosition": "right",
       "plothovereffect": "1",

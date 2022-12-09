@@ -23,6 +23,8 @@ class _ColumnChartState extends State<ColumnChart> {
     Map<String, dynamic> chart = {
       "caption": "Countries With Most Oil Reserves [2017-18]",
       "subCaption": "In MMbbl = One Million barrels",
+      "exportEnabled":"1",
+      "exportAtClientSide":"1",
       "xAxisName": "Country",
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
