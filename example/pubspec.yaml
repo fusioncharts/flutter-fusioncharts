@@ -37,7 +37,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+# following page: https:/dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -48,27 +48,27 @@ flutter:
     - fusioncharts/integrate/index.js
     - fusioncharts/core/maps/fusioncharts.usa.js
     - fusioncharts/core/maps/fusioncharts.india.js
-    - fusioncharts/core//maps/readme.txt
-    - fusioncharts/core//maps/fusioncharts.world.js
-    - fusioncharts/core//fusioncharts.charts.js
-    - fusioncharts/core//fusioncharts.overlappedbar2d.js
-    - fusioncharts/core//fusioncharts.timeseries.js
-    - fusioncharts/core//fusioncharts.treemap.js
-    - fusioncharts/core//fusioncharts.powercharts.js
-    - fusioncharts/core//fusioncharts.maps.js
-    - fusioncharts/core//fusioncharts.zoomscatter.js
-    - fusioncharts/core//fusioncharts.js
-    - fusioncharts/core//fusioncharts.excelexport.js
-    - fusioncharts/core//fusioncharts.widgets.js
-    - fusioncharts/core//fusioncharts.zoomline.js
-    - fusioncharts/core//fusioncharts.gantt.js
-    - fusioncharts/core//fusioncharts.overlappedcolumn2d.js
-    - fusioncharts/core//fusioncharts.vml.js
-    - fusioncharts/core//themes/fusioncharts.theme.fusion.js
-    - fusioncharts/core//themes/fusioncharts.theme.umber.js
-    - fusioncharts/core//themes/fusioncharts.theme.candy.js
-    - fusioncharts/core//themes/fusioncharts.theme.zune.js
-    - fusioncharts/core//themes/fusioncharts.theme.ocean.js
-    - fusioncharts/core//themes/fusioncharts.theme.gammel.js
-    - fusioncharts/core//themes/fusioncharts.theme.fint.js
-    - fusioncharts/core//themes/fusioncharts.theme.carbon.js
+    - fusioncharts/core/maps/readme.txt
+    - fusioncharts/core/maps/fusioncharts.world.js
+    - fusioncharts/core/fusioncharts.charts.js
+    - fusioncharts/core/fusioncharts.overlappedbar2d.js
+    - fusioncharts/core/fusioncharts.timeseries.js
+    - fusioncharts/core/fusioncharts.treemap.js
+    - fusioncharts/core/fusioncharts.powercharts.js
+    - fusioncharts/core/fusioncharts.maps.js
+    - fusioncharts/core/fusioncharts.zoomscatter.js
+    - fusioncharts/core/fusioncharts.js
+    - fusioncharts/core/fusioncharts.excelexport.js
+    - fusioncharts/core/fusioncharts.widgets.js
+    - fusioncharts/core/fusioncharts.zoomline.js
+    - fusioncharts/core/fusioncharts.gantt.js
+    - fusioncharts/core/fusioncharts.overlappedcolumn2d.js
+    - fusioncharts/core/fusioncharts.vml.js
+    - fusioncharts/core/themes/fusioncharts.theme.fusion.js
+    - fusioncharts/core/themes/fusioncharts.theme.umber.js
+    - fusioncharts/core/themes/fusioncharts.theme.candy.js
+    - fusioncharts/core/themes/fusioncharts.theme.zune.js
+    - fusioncharts/core/themes/fusioncharts.theme.ocean.js
+    - fusioncharts/core/themes/fusioncharts.theme.gammel.js
+    - fusioncharts/core/themes/fusioncharts.theme.fint.js
+    - fusioncharts/core/themes/fusioncharts.theme.carbon.js
