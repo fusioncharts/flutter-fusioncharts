@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/src/utils/dialogue.dart';
 import 'package:flutter_fusioncharts/src/utils/permission_manager.dart';
@@ -18,12 +20,14 @@ class FusionCharts extends StatefulWidget {
       this.licenseKey,
       this.events = const [],
       this.fusionChartsController,
+      this.streamController,
       super.key});
 
   final Map<String, dynamic> dataSource;
   final String type;
   final String width;
   final String height;
+  final StreamController? streamController;
   final Function(String eventType, String eventDetail)? fusionChartEvent;
   final List<String> events;
   final String? licenseKey;

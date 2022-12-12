@@ -355,7 +355,11 @@ class _SparklineState extends State<Sparkline> {
       }
     ];
 
-    Map<String, dynamic> dataSource = {"chart": chart, "data": data,"colorrange":colorrange};
+    Map<String, dynamic> dataSource = {
+      "chart": chart,
+      "data": data,
+      "colorrange": colorrange
+    };
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
@@ -378,7 +382,7 @@ class _SparklineState extends State<Sparkline> {
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
           title: const Text(
-            'Fusion Charts - Waterfall/Cascade',
+            'Fusion Charts - Sparkline',
             style: TextStyle(fontSize: 12),
           ),
         ),
@@ -388,7 +392,7 @@ class _SparklineState extends State<Sparkline> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('Waterfall/Cascade chart'),
+                Text('Sparkline'),
               ],
             ),
             const SizedBox(

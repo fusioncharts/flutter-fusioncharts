@@ -23,7 +23,7 @@ class _SparkLineState extends State<SparkLine> {
       "caption": "Stock Price",
       "subcaption": "Last month",
       "numberPrefix": "\$",
-      "canvasleftmargin": "145",
+      // "canvasleftmargin": "145",
       "chartTopMargin": "10",
       "chartRightMargin": "10",
       "theme": "candy",
@@ -81,10 +81,9 @@ class _SparkLineState extends State<SparkLine> {
         fusionChartEvent: (eventType, eventDetail) =>
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content:
-                Text("Event Raised: $eventType + Details: $eventDetail"))),
+                    Text("Event Raised: $eventType + Details: $eventDetail"))),
         fusionChartsController: fc);
   }
-
 
   void callBackFromPlugin(arg1, arg2) {
     if (kDebugMode) {

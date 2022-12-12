@@ -81,7 +81,7 @@ class _MultiSeriesSplineState extends State<MultiSeriesSpline> {
     Map<String, dynamic> dataSource = {
       "chart": chart,
       "dataset": dataset,
-      "categories":categories
+      "categories": categories
     };
 
     _fusionChart2D = FusionCharts(
