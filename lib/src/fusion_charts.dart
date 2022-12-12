@@ -45,6 +45,7 @@ class _FusionChartsState extends State<FusionCharts> {
 
   bool gotData = false;
   String json = "";
+  String eventString = "";
   bool fcLoaded = false;
   late InAppWebViewController _webViewController;
   late FusionChartsController _fusionChartsController;
@@ -75,6 +76,16 @@ class _FusionChartsState extends State<FusionCharts> {
       print('Unlicensed Trial');
     }
 
+    if (widget.events.isNotEmpty) {
+      for (int i = 0; i < widget.events.length; i++) {
+        eventString = """
+        $eventString
+
+        globalFusionCharts.addEventListener('${widget.events[i]}', chartAddEventsListener)
+      
+      """;
+      }
+    }
     jsonDataSource = jsonEncode(jsonDataSource);
     chartString = """
 
@@ -93,6 +104,9 @@ class _FusionChartsState extends State<FusionCharts> {
       fusionChart.render();
       globalFusionCharts = fusionChart;
     });
+
+    $eventString
+    
     """;
     int x = 0;
     setState(() {
@@ -118,6 +132,7 @@ class _FusionChartsState extends State<FusionCharts> {
             initialFile: '$fcHome/integrate/index.html',
             onLoadStop: (controller, url) async {
               await controller.evaluateJavascript(source: chartString);
+              await controller.evaluateJavascript(source: eventString);
             },
             onDownloadStartRequest: (InAppWebViewController controller,
                 DownloadStartRequest request) async {
@@ -139,9 +154,7 @@ class _FusionChartsState extends State<FusionCharts> {
                   callback: (args) {
                     print("Webview Event: " + args.toString());
                   });
-              if (widget.events.isNotEmpty) {
-                _fusionChartsController.addEvents(widget.events);
-              }
+
               _fusionChartsController.setWebViewController(_webViewController);
               controller.addJavaScriptHandler(
                   handlerName: 'fusionChartEventHandler',

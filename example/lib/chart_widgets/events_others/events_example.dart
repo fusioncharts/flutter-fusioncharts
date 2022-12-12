@@ -38,24 +38,21 @@ class _AreaEventsState extends State<AreaEvents> {
       "centerLabel": "# Users: \$value",
       "baseFontSize": "30px",
       "captionFontSize": "30px",
-      "exportEnabled": "1"
+      //    "exportEnabled": "1"
     };
 
     Map<String, dynamic> dataSource = {
       "chart": chart,
       "data": ChartData.chartData2
     };
-
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
         type: "area2d",
         width: "100%",
         height: "100%",
         licenseKey: licenseKey,
-        fusionChartEvent: (eventType, eventDetail) =>
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content:
-                    Text("Event Raised: $eventType + Details: $eventDetail"))),
+        events: const ["chartClick", "dataLabelRollClick"],
+        fusionChartEvent: callBackFromPlugin,
         fusionChartsController: fc);
   }
 
