@@ -47,16 +47,30 @@ class _FusionChartsState extends State<FusionCharts> {
   String json = "";
   String eventString = "";
   bool fcLoaded = false;
+  StreamController<dynamic>? _streamController;
   late InAppWebViewController _webViewController;
   late FusionChartsController _fusionChartsController;
   @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-
-    String jsonDataSource = jsonEncode(widget.dataSource);
     _fusionChartsController =
         widget.fusionChartsController ?? FusionChartsController();
+
+    if (widget.streamController != null) {
+      _streamController = widget.streamController;
+      _streamController?.stream.listen((event) {
+        print('Event: $event');
+
+        _fusionChartsController
+            .executeScript("globalFusionCharts.feedData('" + event + "')");
+      }, onDone: () {
+        print('Done');
+        _streamController = null;
+      }, onError: (error) => {print("Ignore Error: " + error)});
+    }
+
+    String jsonDataSource = jsonEncode(widget.dataSource);
 
     String licenseString = "";
     if (widget.dataSource["chart"]["exportEnabled"] == "1") {
@@ -113,6 +127,17 @@ class _FusionChartsState extends State<FusionCharts> {
       gotData = true;
     });
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  String addLeadingZero(int num) {
+    return (num <= 9) ? "0" + num.toString() : num.toString();
+  }
+
+  listenStream() {}
 
   @override
   Widget build(BuildContext context) {

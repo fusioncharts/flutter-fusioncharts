@@ -14,6 +14,18 @@ class RealTimeArea extends StatefulWidget {
 class _RealTimeAreaState extends State<RealTimeArea> {
   late FusionCharts _fusionChart2D;
   FusionChartsController fc = FusionChartsController();
+  int currentDatasetCount = 1;
+  final streamController = StreamController<String>();
+
+  List<dynamic> dataset = [
+    {"data": 35.65, "label": "Mon"},
+    {"data": 35.15, "label": "Tue"},
+    {"data": 35.75, "label": "Wed"},
+    {"data": 35.25, "label": "Thu"},
+    {"data": 35.89, "label": "Fri"},
+    {"data": 35.12, "label": "Sat"},
+    {"data": 35.42, "label": "Sun"}
+  ];
 
   @override
   void initState() {
@@ -36,27 +48,49 @@ class _RealTimeAreaState extends State<RealTimeArea> {
       "theme": "fusion"
     };
 
-    List<dynamic> categories = [{"category": [{"label": "Day Start"}]}];
-    List<dynamic> dataset = [{"data": [{"value": "35.27"}]}];
+    List<dynamic> categories = [
+      {
+        "category": [
+          {"label": "Day Start"}
+        ]
+      }
+    ];
 
     Map<String, dynamic> dataSource = {
       "chart": chart,
       "categories": categories,
-      "dataset": dataset
+      "dataset":
+          '&label=${dataset[currentDatasetCount]["label"]}&value=${dataset[currentDatasetCount]["data"]}'
     };
 
     _fusionChart2D = FusionCharts(
-        dataSource: dataSource,
-        type: "realtimearea",
-        width: "100%",
-        height: "100%",
-        licenseKey: licenseKey,
-        fusionChartEvent: (eventType, eventDetail) =>
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content:
-                Text("Event Raised: $eventType + Details: $eventDetail"))),
-        fusionChartsController: fc,
+      dataSource: dataSource,
+      type: "realtimearea",
+      width: "100%",
+      height: "100%",
+      licenseKey: licenseKey,
+      fusionChartEvent: callBackFromPlugin,
+      streamController: streamController,
+      fusionChartsController: fc,
     );
+
+    updateDataset();
+  }
+
+  void updateDataset() {
+    Timer.periodic(const Duration(seconds: 3), (_) {
+      if (currentDatasetCount == dataset.length - 1) {
+        currentDatasetCount = 0;
+      }
+      String nextData =
+          '&label=${dataset[currentDatasetCount]["label"]}&value=${dataset[currentDatasetCount]["data"]}';
+
+      streamController.add(nextData);
+      currentDatasetCount++;
+      if (mounted) {
+        setState(() {});
+      }
+    });
   }
 
   void callBackFromPlugin(arg1, arg2) {
@@ -73,15 +107,17 @@ class _RealTimeAreaState extends State<RealTimeArea> {
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop()),
-          title: const Text('Fusion Charts - RealTime Area'),
+          title: const Text('Fusion Charts - RealTime Line'),
         ),
         body: Column(
           children: [
-            Expanded(child: _fusionChart2D),
+            SizedBox(
+                height: MediaQuery.of(context).size.width,
+                child: _fusionChart2D),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('RealTime Area'),
+                Text('RealTime Line'),
               ],
             ),
             const SizedBox(

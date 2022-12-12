@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/dragnode.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/other/gant_chart.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/gantt_chart.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/heatmap.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/kagi.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/multilevel_pie.dart';
@@ -22,18 +22,23 @@ class _OtherChartMenuState extends State<OtherChartMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text('Choose Example')),
+        appBar: AppBar(title: const Text('Choose Example')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children:[
+            children: [
               InkWell(
-                  child: SizedBox(height: 40,
-                    child: InkWell(child: const Text("Gant Chart", style: TextStyle(fontSize: 16)),
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  const GantChart()))),
-                  )),
+                  child: SizedBox(
+                height: 40,
+                child: InkWell(
+                    child: const Text("Gant Chart",
+                        style: TextStyle(fontSize: 16)),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const GanttChart()))),
+              )),
               InkWell(
                 child: SizedBox(
                   height: 40,
@@ -44,7 +49,8 @@ class _OtherChartMenuState extends State<OtherChartMenu> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const WaterfallOrCascade()));
+                                builder: (context) =>
+                                    const WaterfallOrCascade()));
                       }),
                 ),
               ),
@@ -80,8 +86,7 @@ class _OtherChartMenuState extends State<OtherChartMenu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("Kagi",
-                          style: TextStyle(fontSize: 16)),
+                      child: const Text("Kagi", style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -150,8 +155,8 @@ class _OtherChartMenuState extends State<OtherChartMenu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("Radar",
-                          style: TextStyle(fontSize: 16)),
+                      child:
+                          const Text("Radar", style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,
@@ -164,8 +169,8 @@ class _OtherChartMenuState extends State<OtherChartMenu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("TreeMap",
-                          style: TextStyle(fontSize: 16)),
+                      child:
+                          const Text("TreeMap", style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,

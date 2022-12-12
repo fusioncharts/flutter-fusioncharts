@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 import '../../constants.dart';
 
-class GantChart extends StatefulWidget {
-  const GantChart({super.key});
+class GanttChart extends StatefulWidget {
+  const GanttChart({super.key});
 
   @override
-  State<GantChart> createState() => _GantChartState();
+  State<GanttChart> createState() => _GanttChartState();
 }
 
-class _GantChartState extends State<GantChart> {
+class _GanttChartState extends State<GanttChart> {
   late FusionCharts _fusionChart2d;
   FusionChartsController fusionChartsController = FusionChartsController();
 

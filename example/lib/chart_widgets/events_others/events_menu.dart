@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/events_others/annotated_bar.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/events_others/check_global.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/events_others/events_example.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/events_others/area_events_example.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/events_others/events_example2.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/trial_map.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/usa.dart';

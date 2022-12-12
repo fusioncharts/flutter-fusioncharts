@@ -8,7 +8,7 @@ import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/overlappe
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/overlapped_column.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/zoomline.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/zoomline_dy.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/other/gant_chart.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/gantt_chart.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/pyramid_chart.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/waterfall_or_cascade.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/area.dart';
@@ -35,18 +35,23 @@ class _XYPlotMenuState extends State<XYPlotMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: Text('Choose Example')),
+        appBar: AppBar(title: Text('Choose Example')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children:[
+            children: [
               InkWell(
-                  child: SizedBox(height: 40,
-                    child: InkWell(child: const Text("Scattered", style: TextStyle(fontSize: 16)),
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  const Scattered()))),
-                  )),
+                  child: SizedBox(
+                height: 40,
+                child: InkWell(
+                    child:
+                        const Text("Scattered", style: TextStyle(fontSize: 16)),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Scattered()))),
+              )),
               InkWell(
                 child: SizedBox(
                   height: 40,
@@ -65,8 +70,8 @@ class _XYPlotMenuState extends State<XYPlotMenu> {
                 child: SizedBox(
                   height: 40,
                   child: InkWell(
-                      child: const Text("Bubble",
-                          style: TextStyle(fontSize: 16)),
+                      child:
+                          const Text("Bubble", style: TextStyle(fontSize: 16)),
                       onTap: () {
                         Navigator.push(
                             context,
