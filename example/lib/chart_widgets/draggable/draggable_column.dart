@@ -81,7 +81,9 @@ class _DraggableColumnState extends State<DraggableColumn> {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content:
                     Text("Event Raised: $eventType + Details: $eventDetail"))),
-        fusionChartsController: fc);
+        fusionChartsController: fc,
+      events: [],
+    );
   }
 
   void callBackFromPlugin(arg1, arg2) {

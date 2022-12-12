@@ -19,173 +19,189 @@ class _HeatMapState extends State<HeatMap> {
     WidgetsFlutterBinding.ensureInitialized();
 
     Map<String, dynamic> chart = {
-      "caption": "Top Smartphone Ratings",
-      "subcaption": "By Features",
-      "xAxisName": "Features",
-      "yAxisName": "Model",
+      "theme": "fusion",
+      "caption": "Top Smartphones by Features",
+      "subcaption": "Source: Q1 Customer Satisfaction Survey",
+      "showvalues": "1",
       "plottooltext":
-      "<div id='nameDiv' style='font-size: 12px; border-bottom: 1px dashed #666666; font-weight:bold; padding-bottom: 3px; margin-bottom: 5px; display: inline-block; color: #888888;' >\$rowLabel :</div>{br}Rating : <b>\$dataValue</b>{br}\$columnLabel : <b>\$tlLabel</b>{br}<b>\$trLabel</b>",
-      "theme": "gammel",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      "<div><b>\$rowLabel</b><br/>\$columnLabel Rating: <b>\$datavalue</b>/10</div>"
     };
     Map<String, dynamic> rows = {
       "row": [
-        {"id": "SGS5", "label": "Samsung Galaxy S5"},
-        {"id": "HTC1M8", "label": "HTC One (M8)"},
-        {"id": "IPHONES5", "label": "Apple iPhone 5S"},
-        {"id": "LUMIA", "label": "Nokia Lumia 1520"}
+        {
+          "id": "SGS9",
+          "label": "Samsung Galaxy S9"
+        },
+        {
+          "id": "iphonex",
+          "label": "Iphone X"
+        },
+        {
+          "id": "op6",
+          "label": "One Plus 6"
+        },
+        {
+          "id": "motoz2",
+          "label": "Moto Z2 Force"
+        }
       ]
     };
     Map<String, dynamic> columns = {
       "column": [
-        {"id": "processor", "label": "Processor"},
-        {"id": "screen", "label": "Screen Size"},
-        {"id": "price", "label": "Price"},
-        {"id": "backup", "label": "Battery Backup"},
-        {"id": "cam", "label": "Camera"}
+        {
+          "id": "processor",
+          "label": "Processor"
+        },
+        {
+          "id": "screen",
+          "label": "Screen Size"
+        },
+        {
+          "id": "price",
+          "label": "Price"
+        },
+        {
+          "id": "backup",
+          "label": "Battery Capacity"
+        },
+        {
+          "id": "cam",
+          "label": "Camera"
+        }
       ]
     };
-    Map<String, dynamic> colorrange = {"gradient": "0","minvalue": "0","code": "E24B1A","startlabel": "Poor","endlabel": "Good","color": [{"code": "E24B1A","minvalue": "1","maxvalue": "5","label": "Bad"},{"code": "F6BC33","minvalue": "5","maxvalue": "8.5","label": "Average"},{"code": "6DA81E","minvalue": "8.5","maxvalue": "10","label": "Good"}]};
+    Map<String, dynamic> colorrange = {
+      "gradient": "1",
+      "minvalue": "5",
+      "maxvalue": "10",
+      "mapbypercent": "0",
+      "code": "#67CDF2",
+      "startlabel": "Poor",
+      "endlabel": "Outstanding"
+    };
 
-    List<dynamic> dataset = [
+    List<dynamic> dataset =  [
       {
         "data": [
           {
-            "rowid": "SGS5",
+            "rowid": "SGS9",
             "columnid": "processor",
             "value": "8.7",
-            "tllabel": "Quad Core 2.5 GHz",
-            "trlabel": "OS : Android 4.4 Kitkat"
+            "tllabel": "Octa Core 2.8GHz"
           },
           {
-            "rowid": "SGS5",
+            "rowid": "SGS9",
             "columnid": "screen",
             "value": "8.5",
-            "tllabel": "5.1 inch",
-            "trlabel": "AMOLED screen"
+            "bllabel": "5.8 inch"
           },
           {
-            "rowid": "SGS5",
+            "rowid": "SGS9",
             "columnid": "price",
             "value": "9.3",
-            "tllabel": "\$600"
+            "tllabel": "\$720"
           },
           {
-            "rowid": "SGS5",
+            "rowid": "SGS9",
             "columnid": "backup",
             "value": "9.7",
-            "tllabel": "29 Hrs",
-            "trlabel": "Battery : 2800 MAH"
+            "brlabel": "3000 MAH"
           },
           {
-            "rowid": "SGS5",
+            "rowid": "SGS9",
             "columnid": "cam",
             "value": "8",
-            "tllabel": "16 MP",
-            "trlabel": "Front Camera : 2.1 MP"
+            "trlabel": "8 MP"
           },
           {
-            "rowid": "HTC1M8",
+            "rowid": "iphonex",
             "columnid": "processor",
             "value": "9.2",
-            "tllabel": "Quad Core 2.3 GHz",
-            "trlabel": "OS : Android 4.4 Kitkat"
+            "tllabel": "A11 Bionic Chip "
           },
           {
-            "rowid": "HTC1M8",
+            "rowid": "iphonex",
             "columnid": "screen",
             "value": "8.3",
-            "tllabel": "5 inch",
-            "trlabel": "LCD screen"
+            "bllabel": "5.8 inch"
           },
           {
-            "rowid": "HTC1M8",
+            "rowid": "iphonex",
             "columnid": "price",
             "value": "7.3",
-            "tllabel": "\$600"
+            "tllabel": "\$999"
           },
           {
-            "rowid": "HTC1M8",
+            "rowid": "iphonex",
             "columnid": "backup",
             "value": "8.8",
-            "tllabel": "20 Hrs",
-            "trlabel": "Battery : 2600 MAH"
+            "brlabel": "2716 MAH"
           },
           {
-            "rowid": "HTC1M8",
+            "rowid": "iphonex",
             "columnid": "cam",
             "value": "8.7",
-            "tllabel": "4 MP",
-            "trlabel": "Front Camera : 5 MP"
+            "trlabel": "12 MP"
           },
           {
-            "rowid": "IPHONES5",
+            "rowid": "op6",
             "columnid": "processor",
             "value": "9.1",
-            "tllabel": "Dual Core",
-            "trlabel": "OS : iOS 7"
+            "tllabel": "Octa Core 2.8GHz"
           },
           {
-            "rowid": "IPHONES5",
+            "rowid": "op6",
             "columnid": "screen",
             "value": "8.6",
-            "tllabel": "4 inch",
-            "trlabel": "Retina LCD screen"
+            "bllabel": "6.28 inch"
           },
           {
-            "rowid": "IPHONES5",
+            "rowid": "op6",
             "columnid": "price",
             "value": "7.2",
-            "tllabel": "\$649"
+            "tllabel": "\$529"
           },
           {
-            "rowid": "IPHONES5",
+            "rowid": "op6",
             "columnid": "backup",
             "value": "8.4",
-            "tllabel": "10 Hrs",
-            "trlabel": "Battery : 1560 MAH"
+            "brlabel": "3300 MAH"
           },
           {
-            "rowid": "IPHONES5",
+            "rowid": "op6",
             "columnid": "cam",
             "value": "9.5",
-            "tllabel": "8 MP",
-            "trlabel": "Front Camera : 1.2 MP"
+            "trlabel": "16 MP"
           },
           {
-            "rowid": "LUMIA",
+            "rowid": "motoz2",
             "columnid": "processor",
             "value": "8.8",
-            "tllabel": "Quad Core 2.2 GHz",
-            "trlabel": "OS: Windows Phone 8"
+            "tllabel": "Quad Core 2.35GHz"
           },
           {
-            "rowid": "LUMIA",
+            "rowid": "motoz2",
             "columnid": "screen",
-            "value": "9.1",
-            "tllabel": "6 inch",
-            "trlabel": "LCD screen"
+            "value": "8.1",
+            "bllabel": "5.5 inch"
           },
           {
-            "rowid": "LUMIA",
+            "rowid": "motoz2",
             "columnid": "price",
             "value": "9.7",
-            "tllabel": "\$470"
+            "tllabel": "\$370"
           },
           {
-            "rowid": "LUMIA",
+            "rowid": "motoz2",
             "columnid": "backup",
             "value": "9.2",
-            "tllabel": "27 Hrs",
-            "trlabel": "Battery : 3400 MAH"
+            "brlabel": "2730 MAH"
           },
           {
-            "rowid": "LUMIA",
+            "rowid": "motoz2",
             "columnid": "cam",
-            "value": "8.1",
-            "tllabel": "20MP",
-            "trlabel": "Front Camera : 1.2 MP"
+            "value": "7.1",
+            "trlabel": "24 MP"
           }
         ]
       }
@@ -195,7 +211,7 @@ class _HeatMapState extends State<HeatMap> {
       "chart": chart,
       "rows": rows,
       "columns": columns,
-      "colorrange":colorrange,
+      "colorrange": colorrange,
       "dataset": dataset
     };
 

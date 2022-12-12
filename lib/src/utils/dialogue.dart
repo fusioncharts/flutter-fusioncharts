@@ -36,6 +36,10 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
   }
 
   decode() {
+
+    log(widget.request.toString());
+    print('widget.request');
+
     fileName = widget.request.suggestedFilename.toString().split('.')[1];
     if (fileName == 'svg' ||
         fileName == 'png' ||
@@ -47,6 +51,10 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
       base64decode = base64.decode(widget.request.url.toString().split('/')[1]);
     }
 
+
+    print(base64decode);
+    print('base64decode');
+
     // base64decode = base64.decode(widget.request.url.toString().split(',')[1]);
 
     // base64decode = base64Decode('MSwiRWxkb24gQmFzZSBmb3Igc3RhY2thYmxlIHN0b3JhZ2Ugc2hlbGYsIHBsYXRpbnVtIixNdWhhbW1lZCBNYWNJbnR5cmUsMywtMjEzLjI1LDM4Ljk0LDM1LE51bmF2dXQsU3RvcmFnZSAmIE9yZ2FuaXphdGlvbiwwLjgKMiwiMS43IEN1YmljIEZvb3QgQ29tcGFjdCAiIkN1YmUiIiBPZmZpY2UgUmVmcmlnZXJhdG9ycyIsQmFycnkgRnJlbmNoLDI5Myw0NTcuODEsMjA4LjE2LDY4LjAyLE51bmF2dXQsQXBwbGlhbmNlcywwLjU4CjMsIkNhcmRpbmFsIFNsYW50LUTvv70gUmluZyBCaW5kZXIsIEhlYXZ5IEdhdWdlIFZpbnlsIixCYXJyeSBGcmVuY2gsMjkzLDQ2LjcxLDguNjksMi45OSxOdW5hdnV0LEJpbmRlcnMgYW5kIEJpbmRlciBBY2Nlc3NvcmllcywwLjM5CjQsUjM4MCxDbGF5IFJvemVuZGFsLDQ4MywxMTk4Ljk3LDE5NS45OSwzLjk5LE51bmF2dXQsVGVsZXBob25lcyBhbmQgQ29tbXVuaWNhdGlvbiwwLjU4CjUsSG9sbWVzIEhFUEEgQWlyIFB1cmlmaWVyLENhcmxvcyBTb2x0ZXJvLDUxNSwzMC45NCwyMS43OCw1Ljk0LE51bmF2dXQsQXBwbGlhbmNlcywwLjUKNixHLkUuIExvbmdlci1MaWZlIEluZG9vciBSZWNlc3NlZCBGbG9vZGxpZ2h0IEJ1bGJzLENhcmxvcyBTb2x0ZXJvLDUxNSw0LjQzLDYuNjQsNC45NSxOdW5hdnV0LE9mZmljZSBGdXJuaXNoaW5ncywwLjM3CjcsIkFuZ2xlLUQgQmluZGVycyB3aXRoIExvY2tpbmcgUmluZ3MsIExhYmVsIEhvbGRlcnMiLENhcmwgSmFja3Nvbiw2MTMsLTU0LjA0LDcuMyw3LjcyLE51bmF2dXQsQmluZGVycyBhbmQgQmluZGVyIEFjY2Vzc29yaWVzLDAuMzgKOCwiU0FGQ08gTW9iaWxlIERlc2sgU2lkZSBGaWxlLCBXaXJlIEZyYW1lIixDYXJsIEphY2tzb24sNjEzLDEyNy43MCw0Mi43Niw2LjIyLE51bmF2dXQsU3RvcmFnZSAmIE9yZ2FuaXphdGlvbiwKOSwiU0FGQ08gQ29tbWVyY2lhbCBXaXJlIFNoZWx2aW5nLCBCbGFjayIsTW9uaWNhIEZlZGVybGUsNjQzLC02OTUuMjYsMTM4LjE0LDM1LE51bmF2dXQsU3RvcmFnZSAmIE9yZ2FuaXphdGlvbiwKMTAsWGVyb3ggMTk4LERvcm90aHkgQmFkZGVycyw2NzgsLTIyNi4zNiw0Ljk4LDguMzMsTnVuYXZ1dCxQYXBlciwwLjM4Cg==');
@@ -56,7 +64,7 @@ class _DownloadingDialogState extends State<DownloadingDialog> {
   saveFile() async {
     data = await File(
             '${PermissionManager().directory!.absolute.path}.${widget.fileName}.$fileName')
-        .writeAsBytes(base64decode);
+        .writeAsBytes(base64decode,flush: true);
     // File('${PermissionManager().directory!.absolute.path}.${widget.fileName}dfff.xls').writeAsBytesSync(base64decode,flush: true);
     print(data);
     setState(() {});

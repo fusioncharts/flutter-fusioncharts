@@ -150,6 +150,9 @@ class _FusionChartsState extends State<FusionCharts> {
                 javaScriptEnabled: true,
                 useShouldOverrideUrlLoading: true,
               ),
+              android: AndroidInAppWebViewOptions(
+                useHybridComposition: true,
+              ),
               ios: IOSInAppWebViewOptions(
                 sharedCookiesEnabled: true,
               ),
