@@ -57,8 +57,16 @@ class _ColumnMultiSeriesState extends State<ColumnMultiSeries> {
       "caption": "Comparison of Quarterly Sales",
       "xAxisname": "Quarter",
       "yAxisName": "Sales",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      "baseFontSize": "50px",
+      "captionFontSize": "50px",
+      "yAxisValueFontSize": "30px",
+      "xAxisValueFontSize": "30px",
+      "XAxisNameFontSize": "30px",
+      "YAxisNameFontSize": "30px",
+      "valueFontSize": "30px",
+      "showLegend": "1",
+      "legendIconScale": "3",
+      "legendItemFontSize": "30"
     };
 
     Map<String, dynamic> dataSource = {
@@ -110,32 +118,32 @@ class _ColumnMultiSeriesState extends State<ColumnMultiSeries> {
           title: const Text('Fusion Charts - Column MultiSeries'),
         ),
         body: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              children: [
-                Expanded(child: _fusionChart2d),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text('Column2D'),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Expanded(child: _fusionChart3d),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text('Column3D'),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            children: [
+              Expanded(child: _fusionChart2d),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Column2D'),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Expanded(child: _fusionChart3d),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text('Column3D'),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
         ),
       ),
     );

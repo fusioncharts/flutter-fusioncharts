@@ -115,12 +115,18 @@ class _FusionChartsState extends State<FusionCharts> {
             onLoadStop: (controller, url) async {
               await controller.evaluateJavascript(source: chartString);
             },
-      onDownloadStartRequest: (controller,DownloadStartRequest request)async{
-        showDialog(
-          context: context,
-          builder: (context) => DownloadingDialog(fileName: widget.type, request: request),
-        );
-      },
+            onDownloadStartRequest: (InAppWebViewController controller,
+                DownloadStartRequest request) async {
+              print(controller.getUrl());
+
+              String url = (await controller.getUrl()).toString();
+              print("url:" + url);
+              showDialog(
+                context: context,
+                builder: (context) =>
+                    DownloadingDialog(fileName: widget.type, request: request),
+              );
+            },
             onWebViewCreated: (InAppWebViewController controller) {
               _webViewController = controller;
 

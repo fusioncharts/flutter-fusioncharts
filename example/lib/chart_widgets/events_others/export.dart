@@ -30,6 +30,7 @@ class _ColumnChartExportState extends State<ColumnChartExport> {
       "baseFontSize": "30px",
       "captionFontSize": "30px",
       "exportEnabled": "1",
+      "exportMode": "client"
     };
     FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {
