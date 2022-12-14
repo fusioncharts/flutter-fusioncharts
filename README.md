@@ -128,3 +128,7 @@ post_install do |installer|
   end
 end
 ```
+### Use CDN instead of FC Core local asset bundle
+- You can use CDN instead of local asset bundle for Core library. 
+- Delete local folder `fusioncharts/core` 
+- Change the index.html file so as to replace the local relative path to CDN link 
