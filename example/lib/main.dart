@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import './examples_menu.dart';
-import './constants.dart';
+
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -17,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late FusionCharts _fusionChart;
+
   String chartDataHardCoded = '';
   @override
   void initState() {

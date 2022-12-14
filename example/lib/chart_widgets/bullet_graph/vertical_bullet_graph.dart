@@ -94,7 +94,7 @@ class _VerticalBulletGraphState extends State<VerticalBulletGraph> {
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop()),
-          title: const Text('Fusion Charts - Horizontal Bullet'),
+          title: const Text('Fusion Charts - Vertical Bullet'),
         ),
         body: Column(
           children: [
@@ -102,7 +102,7 @@ class _VerticalBulletGraphState extends State<VerticalBulletGraph> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('Horizontal Bullet'),
+                Text('Vertical Bullet'),
               ],
             ),
             const SizedBox(

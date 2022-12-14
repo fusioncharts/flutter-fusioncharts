@@ -26,6 +26,8 @@ class _StackedColumnState extends State<StackedColumn> {
       "xAxisname": "Quarter",
       "yAxisName": "Revenue (In USD)",
       "numberPrefix": "\$",
+      "showsum":"1",
+      "drawcrossline":"1",
       "theme": "ocean",
       "baseFontSize": "30",
       "captionFontSize": "30px",
