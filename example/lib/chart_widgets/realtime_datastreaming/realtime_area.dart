@@ -16,7 +16,7 @@ class _RealTimeAreaState extends State<RealTimeArea> {
   FusionChartsController fc = FusionChartsController();
   int currentDatasetCount = 1;
   final streamController = StreamController<String>();
-
+  bool cancel = false;
   List<dynamic> dataset = [
     {"data": 35.65, "label": "Mon"},
     {"data": 35.15, "label": "Tue"},
@@ -28,10 +28,17 @@ class _RealTimeAreaState extends State<RealTimeArea> {
   ];
 
   @override
+  void dispose() {
+    cancel = true;
+    fc.dispose();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-
+    Timer timer;
     Map<String, dynamic> chart = {
       "caption": "Real-time stock price monitor",
       "subCaption": "Harry's SuperMart",
@@ -78,10 +85,13 @@ class _RealTimeAreaState extends State<RealTimeArea> {
   }
 
   void updateDataset() {
-    Timer.periodic(const Duration(seconds: 3), (_) {
+    Timer.periodic(const Duration(seconds: 3), (timer) {
+      if (cancel) timer.cancel;
+
       if (currentDatasetCount == dataset.length - 1) {
         currentDatasetCount = 0;
       }
+
       String nextData =
           '&label=${dataset[currentDatasetCount]["label"]}&value=${dataset[currentDatasetCount]["data"]}';
 

@@ -25,7 +25,7 @@ class _LogColumnState extends State<LogColumn> {
       "xAxisName": "Quarter",
       "yAxisName": "No of visitors",
       "base": "10",
-      "theme": "carbon",
+      "theme": "candy",
       "baseFontSize": "30px",
       "captionFontSize": "30px",
     };
@@ -101,7 +101,9 @@ class _LogColumnState extends State<LogColumn> {
         ),
         body: Column(
           children: [
-            Expanded(child: _fusionChart2D),
+            SizedBox(
+                height: MediaQuery.of(context).size.height / 2,
+                child: _fusionChart2D),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
