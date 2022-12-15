@@ -28,21 +28,17 @@ import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 
 ```
 
-### Download Fusion Charts JavaScript package
-
-This plugin supports FC Core versions 3.17, 3.18 and 3.19 The installation process requires you to download the FC Core package from either of the below locations based on the FC Core version as per your requirement.
-
-- 3.19: https://fusioncharts/tbd/3.19
-- 3.18: https://fusioncharts/tbd/3.18
-- 3.17: https://fusioncharts/tbd/3.17
-
-Copy the downloaded fusioncharts folder and paste under your project root (parallel to lib). The downloaded folder contains contains following folders:
-- core: Fusion Charts core JS library
-- integrate: Files used for webview integration
+### Download Fusion Charts JavaScript package - SCRIPT TBD
+Script requirments:
+- accept parameter to identify download version.
+- Download the zip file from cdn
+- Unzip and move the downloaded folder to the app root folder
+- Update pubspec.yaml file to include all FC package file asset dependencies under the asset tag
 
 Add the downloaded folder files as assets dependency within your pubspec.yaml file
 
 ```yaml
+  TO BE MOVED TO SCRIPT
   assets:
     - fusioncharts/integrate/index_local.html
     - fusioncharts/integrate/index.js
@@ -130,9 +126,7 @@ end
 ```
 
 ### Use CDN instead of FC Core local asset bundle
-- You can use CDN instead of local asset bundle for Core library. 
-- Delete local folder `fusioncharts/core` 
-- Change the index.html file, replace the local relative path to CDN link [https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js](https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js) within integrate/index.html
+TBD SCRIPT TO HANDLE
 
 
 ## Using FusionCharts in your project

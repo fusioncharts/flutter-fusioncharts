@@ -1,12 +1,12 @@
 # This is a generated file; do not edit or check into version control.
-flutter_inappwebview=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\flutter_inappwebview-5.7.2+2\\
-path_provider=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider-2.0.11\\
-path_provider_android=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_android-2.0.22\\
-path_provider_ios=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_ios-2.0.11\\
-path_provider_linux=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_linux-2.1.7\\
-path_provider_macos=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_macos-2.0.6\\
-path_provider_windows=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\path_provider_windows-2.1.3\\
-permission_handler=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler-10.2.0\\
-permission_handler_android=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler_android-10.2.0\\
-permission_handler_apple=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler_apple-9.0.7\\
-permission_handler_windows=C:\\Users\\sihrizvi\\flutter\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\permission_handler_windows-0.1.2\\
+flutter_inappwebview=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-5.7.1/
+path_provider=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/path_provider-2.0.11/
+path_provider_android=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.22/
+path_provider_ios=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/path_provider_ios-2.0.11/
+path_provider_linux=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-2.1.7/
+path_provider_macos=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-2.0.6/
+path_provider_windows=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-2.1.3/
+permission_handler=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/permission_handler-10.2.0/
+permission_handler_android=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/permission_handler_android-10.2.0/
+permission_handler_apple=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/permission_handler_apple-9.0.7/
+permission_handler_windows=/Users/manishgupta/.pub-cache/hosted/pub.dartlang.org/permission_handler_windows-0.1.2/
