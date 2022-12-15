@@ -536,6 +536,10 @@ class _FusionChartsState extends State<FusionCharts> {
       base64decode = base64.decode(request.url.toString().split('/')[1]);
     }
 
+
+    print(request.url);
+    print(request);
+
     ///The file name is checked accordingly and the data that comes with it is decoded accordingly
 
 
