@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
@@ -57,6 +56,12 @@ class FusionCharts extends StatefulWidget {
         /// when kep at 100% it takes all the available space of its parent widget in terms of width
 
 
+
+
+
+        this.isLocal = true,
+
+        ///this variable is used track if the chart are rendering using local asset folder or cdn
 
 
 
@@ -182,6 +187,12 @@ class FusionCharts extends StatefulWidget {
 
 
   final FusionChartsController? fusionChartsController;
+
+
+
+
+
+  final bool isLocal;
 
 
 
@@ -660,6 +671,11 @@ class _FusionChartsState extends State<FusionCharts> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
     return gotData
     ///Checking if there is valid data that user has passed onto the FusionChart plugin object
 
@@ -706,7 +722,7 @@ class _FusionChartsState extends State<FusionCharts> {
 
 
 
-              initialFile: '$fcHome/integrate/index.html',
+              initialFile: widget.isLocal?'$fcHome/integrate/index_local.html':'$fcHome/integrate/index_cdn.html',
 
               ///Manish
               onLoadStop: (controller, url) async {

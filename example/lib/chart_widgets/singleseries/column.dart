@@ -57,7 +57,9 @@ class _ColumnChartState extends State<ColumnChart> {
         events: const ['chartClick'],
         fusionChartEvent: callBackFromPlugin,
         fusionChartsController: fusionChartsController,
-        licenseKey: licenseKey);
+        licenseKey: licenseKey,
+      isLocal: false,
+    );
   }
 
   void callBackFromPlugin(senderId, eventType) {

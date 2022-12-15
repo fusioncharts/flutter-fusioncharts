@@ -44,7 +44,7 @@ Add the downloaded folder files as assets dependency within your pubspec.yaml fi
 
 ```yaml
   assets:
-    - fusioncharts/integrate/index.html
+    - fusioncharts/integrate/index_local.html
     - fusioncharts/integrate/index.js
     - fusioncharts/core/maps/fusioncharts.usa.js
     - fusioncharts/core/maps/fusioncharts.india.js
