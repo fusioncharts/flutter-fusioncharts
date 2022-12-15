@@ -117,7 +117,7 @@ class _RealTimeAreaState extends State<RealTimeArea> {
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop()),
-          title: const Text('Fusion Charts - RealTime Line'),
+          title: const Text('Fusion Charts - RealTime Area'),
         ),
         body: Column(
           children: [
@@ -127,7 +127,7 @@ class _RealTimeAreaState extends State<RealTimeArea> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('RealTime Line'),
+                Text('RealTime Area'),
               ],
             ),
             const SizedBox(

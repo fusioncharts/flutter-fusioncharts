@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
@@ -96,8 +94,6 @@ class _RealTimeLineState extends State<RealTimeLine> {
     });
   }
 
-
-
   void callBackFromPlugin(arg1, arg2) {
     if (kDebugMode) {
       print('Back to consumer: $arg1 , $arg2');
@@ -106,23 +102,8 @@ class _RealTimeLineState extends State<RealTimeLine> {
 
   Timer? timer;
 
-//   void _updateDataSource(Timer timer) {
-//     chartData.add(_ChartData(count, 10 + random.nextInt(100 - 10)));
-//     if (chartData.length == 20) {
-//       // Removes the last index data of data source.
-//       chartData.removeAt(0);
-//       // Here calling updateDataSource method with addedDataIndexes to add data in last index and removedDataIndexes to remove data from the last.
-//           removedDataIndexes: <int>[0]);
-// fc.addListener(() { });
-//     }
-//     count = count + 1;
-//   }
-
   @override
   Widget build(BuildContext context) {
-
-    // timer = Timer.periodic(const Duration(milliseconds: 1000), _updateDataSource);
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(

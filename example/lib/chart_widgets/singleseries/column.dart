@@ -13,18 +13,17 @@ class ColumnChart extends StatefulWidget {
 
 class _ColumnChartState extends State<ColumnChart> {
   late FusionCharts _fusionChart2D;
-  late FusionCharts _fusionChart3D;
+  FusionChartsController fusionChartsController = FusionChartsController();
 
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
 
     Map<String, dynamic> chart = {
       "caption": "Countries With Most Oil Reserves [2017-18]",
       "subCaption": "In MMbbl = One Million barrels",
-      "exportEnabled":"1",
-      "logoURL": "https://static.fusioncharts.com/sampledata/images/Logo-HM-72x72.png",
+      "logoURL":
+          "https://static.fusioncharts.com/sampledata/images/Logo-HM-72x72.png",
       "logoAlpha": "100",
       "logoScale": "110",
       "logoPosition": "TL",
@@ -32,37 +31,38 @@ class _ColumnChartState extends State<ColumnChart> {
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
       "theme": "carbon",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      "baseFontSize": "35px",
+      "captionFontSize": "35px",
+      "subCaptionFontSize": "30px"
     };
-    FusionChartsController fusionChartsController = FusionChartsController();
-    Map<String, dynamic> dataSource = {
-      "chart": chart,
-      "data": ChartData.chartData
-    };
-    fusionChartsController.addEvents([]);
+
+    List<dynamic> chartData = [
+      {"label": "Venezuela", "value": "290"},
+      {"label": "Saudi", "value": "260"},
+      {"label": "Canada", "value": "180"},
+      {"label": "Iran", "value": "140"},
+      {"label": "Russia", "value": "115"},
+      {"label": "UAE", "value": "100"},
+      {"label": "US", "value": "30"},
+      {"label": "China", "value": "30"}
+    ];
+
+    Map<String, dynamic> dataSource = {"chart": chart, "data": chartData};
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
         type: "column2d",
         width: "100%",
         height: "100%",
-        fusionChartEvent: (a, b) => {},
-        fusionChartsController: fusionChartsController,
-        licenseKey: licenseKey);
-    _fusionChart3D = FusionCharts(
-        dataSource: dataSource,
-        type: "column3d",
-        width: "100%",
-        height: "100%",
-        fusionChartEvent: (a, b) => {},
+        events: const ['chartClick'],
+        fusionChartEvent: callBackFromPlugin,
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
   }
 
-  void callBackFromPlugin(arg1, arg2) {
+  void callBackFromPlugin(senderId, eventType) {
     if (kDebugMode) {
-      print('Back to consumer: $arg1 , $arg2');
+      print('Event Back to consumer: $senderId , $eventType');
     }
   }
 
@@ -75,30 +75,9 @@ class _ColumnChartState extends State<ColumnChart> {
             onPressed: () => Navigator.of(context).pop()),
         title: const Text('Fusion Charts - Column'),
       ),
-      body: Column(
-        children: [
-          Expanded(child: _fusionChart2D),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Column2D'),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(child: _fusionChart3D),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Column3D'),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-        ],
-      ),
+      body: SizedBox(
+          height: MediaQuery.of(context).size.height / 2,
+          child: _fusionChart2D),
     );
   }
 }
