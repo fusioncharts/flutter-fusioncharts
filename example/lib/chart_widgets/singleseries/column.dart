@@ -29,6 +29,7 @@ class _ColumnChartState extends State<ColumnChart> {
       "logoPosition": "TL",
       "xAxisName": "Country",
       "yAxisName": "Reserves (MMbbl)",
+      "exportenabled":"1",
       "numberSuffix": "K",
       "theme": "carbon",
       "baseFontSize": "35px",
