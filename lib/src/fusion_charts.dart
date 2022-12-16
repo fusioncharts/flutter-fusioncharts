@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/src/utils/permission_manager.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -202,7 +200,6 @@ class _FusionChartsState extends State<FusionCharts> {
     super.dispose();
   }
 
-
   String addLeadingZero(int num) {
     return (num <= 9) ? "0" + num.toString() : num.toString();
   }
@@ -235,7 +232,7 @@ class _FusionChartsState extends State<FusionCharts> {
               },
               onDownloadStartRequest: (InAppWebViewController controller,
                   DownloadStartRequest request) async {
-                PermissionManager().decode(request,widget.type,context);
+                PermissionManager().decode(request, widget.type, context);
                 String url = (await controller.getUrl()).toString();
               },
               onWebViewCreated: (InAppWebViewController controller) {

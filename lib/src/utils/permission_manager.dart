@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -7,7 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
-enum RequestStatus { retry, init, granted, inProgress, denied }
+enum RequestStatus { init, granted, inProgress, denied }
 
 class PermissionManager {
   static final PermissionManager _singleton = PermissionManager._internal();
@@ -32,6 +31,7 @@ class PermissionManager {
       return (await _getStoragePermission());
     }
   }
+
   Future<RequestStatus> _getStoragePermission() async {
     try {
       if (Platform.isAndroid) {
@@ -83,28 +83,26 @@ class PermissionManager {
     return requestStatus;
   }
 
-
-
   late Uint8List base64decode;
   late String fileName;
   var data;
 
-  void showSnack(String title,context) {
+  void showSnack(String title, context) {
     final snackbar = SnackBar(
         content: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 15,
-          ),
-        ));
+      title,
+      textAlign: TextAlign.center,
+      style: const TextStyle(
+        fontSize: 15,
+      ),
+    ));
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 
   /// This is the snackbar funtion that is invoked when the file is downloaded or when the
   /// download permission is not given and the user is trying to export the file
 
-  decode(request,type,context) {
+  decode(request, type, context) {
     fileName = request.suggestedFilename.toString().split('.')[1];
 
     ///The file name variable is initialised with suggested file name from the download request callback of the in app web view
@@ -123,7 +121,7 @@ class PermissionManager {
 
     ///The file name is checked accordingly and the data that comes with it is decoded accordingly
 
-    saveFile(context,type);
+    saveFile(context, type);
 
     ///Save file is called to save the file after decoding the data
   }
@@ -148,7 +146,7 @@ class PermissionManager {
     }
   }
 
-  saveFile(context,type)async {
+  saveFile(context, type) async {
     try {
       /// saveFile saves the downloaded file into the external storage
 
@@ -156,7 +154,7 @@ class PermissionManager {
         /// here the permission request is checked if it is granted or not
         /// to save the file the permission to write in external storage should be given
 
-        showSnack('Permission denied for storage',context);
+        showSnack('Permission denied for storage', context);
 
         ///Snackbar alert when the permission is not given
 
@@ -168,7 +166,7 @@ class PermissionManager {
         data = await File('$path/$type.$fileName')
             .writeAsBytes(base64decode, flush: true);
 
-        showSnack('Downloaded $type',context);
+        showSnack('Downloaded $type', context);
 
         /// Snackbar alert is shown once the file is created
 
@@ -177,5 +175,4 @@ class PermissionManager {
       // print(e.message);
     }
   }
-
 }
