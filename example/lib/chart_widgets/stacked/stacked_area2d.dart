@@ -71,7 +71,7 @@ class _StackedArea2DState extends State<StackedArea2D> {
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop()),
-        title: const Text('Fusion Charts - Stacked Bar'),
+        title: const Text('Fusion Charts - Stacked Area'),
       ),
       body: Column(
         children: [
@@ -79,7 +79,7 @@ class _StackedArea2DState extends State<StackedArea2D> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Text('Stacked Bar2D'),
+              Text('Stacked Area'),
             ],
           ),
           const SizedBox(

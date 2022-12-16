@@ -49,10 +49,10 @@ flutter:
     - fusioncharts/integrate/index_local.html
     - fusioncharts/integrate/index_cdn.html
     - fusioncharts/integrate/index.js
-    - fusioncharts/core/maps/fusioncharts.usa.js
-    - fusioncharts/core/maps/fusioncharts.india.js
+    # - fusioncharts/core/maps/fusioncharts.usa.js
+    # - fusioncharts/core/maps/fusioncharts.india.js
     - fusioncharts/core/maps/readme.txt
-    - fusioncharts/core/maps/fusioncharts.world.js
+    # - fusioncharts/core/maps/fusioncharts.world.js
     - fusioncharts/core/fusioncharts.charts.js
     - fusioncharts/core/fusioncharts.overlappedbar2d.js
     - fusioncharts/core/fusioncharts.timeseries.js

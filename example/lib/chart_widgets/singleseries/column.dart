@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
 class ColumnChart extends StatefulWidget {
@@ -29,7 +28,7 @@ class _ColumnChartState extends State<ColumnChart> {
       "logoPosition": "TL",
       "xAxisName": "Country",
       "yAxisName": "Reserves (MMbbl)",
-      "exportenabled":"1",
+      "exportenabled": "1",
       "numberSuffix": "K",
       "theme": "carbon",
       "baseFontSize": "35px",
@@ -51,14 +50,14 @@ class _ColumnChartState extends State<ColumnChart> {
     Map<String, dynamic> dataSource = {"chart": chart, "data": chartData};
 
     _fusionChart2D = FusionCharts(
-        dataSource: dataSource,
-        type: "column2d",
-        width: "100%",
-        height: "100%",
-        events: const ['chartClick'],
-        fusionChartEvent: callBackFromPlugin,
-        fusionChartsController: fusionChartsController,
-        licenseKey: licenseKey,
+      dataSource: dataSource,
+      type: "column2d",
+      width: "100%",
+      height: "100%",
+      events: const ['chartClick'],
+      fusionChartEvent: callBackFromPlugin,
+      fusionChartsController: fusionChartsController,
+      licenseKey: licenseKey,
       isLocal: false,
     );
   }

@@ -134,7 +134,79 @@ class _ScatteredState extends State<Scattered> {
       }
     ];
 
-    List<dynamic> vtrendlines =[{"line": [{"startvalue": "23","endvalue": "32","istrendzone": "1","displayvalue": " ","color": "#adebff","alpha": "25"},{"startvalue": "23","endvalue": "32","istrendzone": "1","alpha": "0","displayvalue": "Very cold"},{"startvalue": "32","endvalue": "50","istrendzone": "1","displayvalue": " ","color": "#adebff","alpha": "15"},{"startvalue": "32","endvalue": "50","istrendzone": "1","alpha": "0","displayvalue": "Cold"},{"startvalue": "50","endvalue": "68","istrendzone": "1","alpha": "0","displayvalue": "Moderate"},{"startvalue": "68","endvalue": "80","istrendzone": "1","alpha": "0","displayvalue": "Hot"},{"startvalue": "68","endvalue": "80","istrendzone": "1","displayvalue": " ","color": "#f2a485","alpha": "15"},{"startvalue": "80","endvalue": "95","istrendzone": "1","alpha": "0","displayvalue": "Very hot"},{"startvalue": "80","endvalue": "95","istrendzone": "1","displayvalue": " ","color": "#f2a485","alpha": "25"}]}];
+    List<dynamic> vtrendlines = [
+      {
+        "line": [
+          {
+            "startvalue": "23",
+            "endvalue": "32",
+            "istrendzone": "1",
+            "displayvalue": " ",
+            "color": "#adebff",
+            "alpha": "25"
+          },
+          {
+            "startvalue": "23",
+            "endvalue": "32",
+            "istrendzone": "1",
+            "alpha": "0",
+            "displayvalue": "Very cold"
+          },
+          {
+            "startvalue": "32",
+            "endvalue": "50",
+            "istrendzone": "1",
+            "displayvalue": " ",
+            "color": "#adebff",
+            "alpha": "15"
+          },
+          {
+            "startvalue": "32",
+            "endvalue": "50",
+            "istrendzone": "1",
+            "alpha": "0",
+            "displayvalue": "Cold"
+          },
+          {
+            "startvalue": "50",
+            "endvalue": "68",
+            "istrendzone": "1",
+            "alpha": "0",
+            "displayvalue": "Moderate"
+          },
+          {
+            "startvalue": "68",
+            "endvalue": "80",
+            "istrendzone": "1",
+            "alpha": "0",
+            "displayvalue": "Hot"
+          },
+          {
+            "startvalue": "68",
+            "endvalue": "80",
+            "istrendzone": "1",
+            "displayvalue": " ",
+            "color": "#f2a485",
+            "alpha": "15"
+          },
+          {
+            "startvalue": "80",
+            "endvalue": "95",
+            "istrendzone": "1",
+            "alpha": "0",
+            "displayvalue": "Very hot"
+          },
+          {
+            "startvalue": "80",
+            "endvalue": "95",
+            "istrendzone": "1",
+            "displayvalue": " ",
+            "color": "#f2a485",
+            "alpha": "25"
+          }
+        ]
+      }
+    ];
 
     Map<String, dynamic> chart = {
       "caption": "Sales of Beer & Ice-cream vs Temperature",
@@ -155,7 +227,7 @@ class _ScatteredState extends State<Scattered> {
       "chart": chart,
       "dataset": dataset,
       "categories": categories,
-      "vtendlines":vtrendlines
+      "vtendlines": vtrendlines
     };
 
     _fusionChart = FusionCharts(
@@ -179,7 +251,10 @@ class _ScatteredState extends State<Scattered> {
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
-          title: const Text('Fusion Charts - Bar MultiSeries'),
+          title: const Text(
+            'Fusion Charts - Bar MultiSeries',
+            style: TextStyle(fontSize: 16),
+          ),
         ),
         body: SizedBox(
           height: MediaQuery.of(context).size.height,

@@ -37,7 +37,21 @@ class _ZoomScatteredState extends State<ZoomScattered> {
       }
     ];
 
-    List<dynamic> trendlines =[{"line": [{"startvalue": "5.2","displayvalue": "Check","linethickness": "2","color": "FF0000","valueonright": "1","dashed": "1","dashgap": "5"}]}];
+    List<dynamic> trendlines = [
+      {
+        "line": [
+          {
+            "startvalue": "5.2",
+            "displayvalue": "Check",
+            "linethickness": "2",
+            "color": "FF0000",
+            "valueonright": "1",
+            "dashed": "1",
+            "dashgap": "5"
+          }
+        ]
+      }
+    ];
 
     List<dynamic> dataset = [
       {
@@ -184,7 +198,7 @@ class _ZoomScatteredState extends State<ZoomScattered> {
       "dataset": dataset,
       "categories": categories,
       "vtrendlines": vtrendlines,
-      "trendlines":trendlines
+      "trendlines": trendlines
     };
 
     _fusionChart = FusionCharts(
@@ -208,7 +222,10 @@ class _ZoomScatteredState extends State<ZoomScattered> {
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
-          title: const Text('Fusion Charts - Zoom Scattered'),
+          title: const Text(
+            'Fusion Charts - Zoom Scattered',
+            style: TextStyle(fontSize: 16),
+          ),
         ),
         body: SizedBox(
           height: MediaQuery.of(context).size.height,
