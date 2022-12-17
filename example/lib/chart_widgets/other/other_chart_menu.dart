@@ -6,8 +6,10 @@ import 'package:flutter_fusioncharts_example/chart_widgets/other/kagi.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/multilevel_pie.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/pyramid_chart.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/radar.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/radial.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/sparkline.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/stepline.dart';
+import 'package:flutter_fusioncharts_example/chart_widgets/other/timeseries.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/treemap.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/waterfall_or_cascade.dart';
 
@@ -176,6 +178,34 @@ class _OtherChartMenuState extends State<OtherChartMenu> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const TreeMap()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child:
+                          const Text("Radial Bar", style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RadialBar()));
+                      }),
+                ),
+              ),
+              InkWell(
+                child: SizedBox(
+                  height: 40,
+                  child: InkWell(
+                      child:
+                          const Text("TimeSeries", style: TextStyle(fontSize: 16)),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const TimeSeries()));
                       }),
                 ),
               ),
