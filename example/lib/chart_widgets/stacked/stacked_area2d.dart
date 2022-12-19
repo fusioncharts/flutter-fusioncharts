@@ -27,8 +27,7 @@ class _StackedArea2DState extends State<StackedArea2D> {
       "yAxisName": "Amount",
       "numberPrefix": "\$",
       "theme": "zune",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     FusionChartsController fusionChartsController = FusionChartsController();

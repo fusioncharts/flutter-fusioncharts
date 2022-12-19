@@ -26,8 +26,7 @@ class _DragNodeState extends State<DragNode> {
       "viewMode": "1",
       "connectorToolText": "\$label Weeks",
       "theme": "umber",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> annotations = {

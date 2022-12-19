@@ -23,8 +23,7 @@ class _RadarState extends State<Radar> {
       "subCaption": "Current month",
       "numberPrefix": "\$",
       "theme": "umber",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
     List<dynamic> dataset = [
       {

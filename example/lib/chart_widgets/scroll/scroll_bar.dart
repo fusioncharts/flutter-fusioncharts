@@ -34,8 +34,7 @@ class _ScrollBar2DState extends State<ScrollBar2D> {
       "scrollShowButtons": "0",
       "scrollColor": "#cccccc",
       "theme": "umber",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

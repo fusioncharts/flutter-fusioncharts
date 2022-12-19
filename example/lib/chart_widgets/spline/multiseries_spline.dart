@@ -25,8 +25,7 @@ class _MultiSeriesSplineState extends State<MultiSeriesSpline> {
       "xAxisName": "Day",
       "yAxisName": "No. of Visitor",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

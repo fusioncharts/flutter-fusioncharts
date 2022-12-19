@@ -56,8 +56,7 @@ class _ZoomlineDYState extends State<ZoomlineDY> {
       "sYAxisMaxValue": "23000",
       "sYAxisMinValue": "15000",
       "theme": "zune",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> dataSource = {

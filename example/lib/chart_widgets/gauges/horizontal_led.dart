@@ -29,8 +29,7 @@ class _HorizontalLEDState extends State<HorizontalLED> {
       "numberSuffix": "%",
       "tickMarkDistance": "5",
       "theme": "candy",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
     Map<String, dynamic> colorrange = {
       "color": [

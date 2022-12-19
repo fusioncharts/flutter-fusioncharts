@@ -28,8 +28,7 @@ class _StackedBarMultiSeriesState extends State<StackedBarMultiSeries> {
       "numberPrefix": "\$",
       "numbersuffix": "M",
       "theme": "carbon",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     FusionChartsController fusionChartsController = FusionChartsController();

@@ -40,8 +40,7 @@ class _CheckGlobalState extends State<CheckGlobal> {
           "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
       "theme": "fusion",
       "centerLabel": "# Users: \$value",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> dataSource = {

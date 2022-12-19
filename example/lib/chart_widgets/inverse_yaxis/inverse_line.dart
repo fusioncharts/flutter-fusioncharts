@@ -27,8 +27,7 @@ class _InverseLineState extends State<InverseLine> {
       "yAxisName": "Time (In Sec)",
       "numberSuffix": "s",
       "theme": "candy",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

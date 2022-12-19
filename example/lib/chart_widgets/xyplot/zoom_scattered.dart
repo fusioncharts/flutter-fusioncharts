@@ -189,8 +189,7 @@ class _ZoomScatteredState extends State<ZoomScattered> {
       "xaxisminvalue": "20",
       "yaxismaxvalue": "7",
       "theme": "carbon",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> dataSource = {

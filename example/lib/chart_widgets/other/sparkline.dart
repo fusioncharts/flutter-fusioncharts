@@ -39,8 +39,7 @@ class _SparklineState extends State<Sparkline> {
       "subcaption": "Year Till Date",
       "legendCaption": "Growth in sales - Compared to previous year",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
     Map<String, dynamic> colorrange = {
       "mapbypercent": "1",

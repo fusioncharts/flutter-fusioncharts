@@ -31,8 +31,7 @@ class _ScrollArea2DState extends State<ScrollArea2D> {
       "flatScrollBars": "1",
       "scrollheight": "10",
       "theme": "gammel",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
 

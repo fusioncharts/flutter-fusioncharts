@@ -27,8 +27,7 @@ class _SparkWinLossState extends State<SparkWinLoss> {
       "chartBottomMargin": "10",
       "chartRightMargin": "10",
       "theme": "zune",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> dataset = [

@@ -29,8 +29,7 @@ class _ScrollStackedColumn2DState extends State<ScrollStackedColumn2D> {
       "flatScrollBars": "1",
       "scrollheight": "10",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

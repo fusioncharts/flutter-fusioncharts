@@ -34,8 +34,7 @@ class _PyramidChartState extends State<PyramidChart> {
       "showPercentValues": "1",
       "chartLeftMargin": "40",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> data = [{"label": "Top 32 mn (0.7%)","value": "98.7"},{"label": "Next 361 mn (7.7%)","value": "101.8"},{"label": "Next 1.1 bn (22.9%)","value": "33"},{"label": "Last 3.2 bn (68.7%)","value": "7.3"}];

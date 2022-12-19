@@ -26,8 +26,7 @@ class _LogColumnState extends State<LogColumn> {
       "yAxisName": "No of visitors",
       "base": "10",
       "theme": "candy",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> dataset = [

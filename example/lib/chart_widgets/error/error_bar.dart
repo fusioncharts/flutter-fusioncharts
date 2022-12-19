@@ -26,9 +26,8 @@ class _ErrorBarState extends State<ErrorBar> {
       "yAxisName": "Life Span",
       "numberSuffix": " Years",
       "halfErrorBar": "0",
-      "theme": "ocean",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      "theme": "carbon",
+      
     };
 
     List<dynamic> categories = [

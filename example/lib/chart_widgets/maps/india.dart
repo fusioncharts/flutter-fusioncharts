@@ -29,8 +29,7 @@ class _IndiaState extends State<India> {
       "numberPrefix": "\$",
       "showLabels": "1",
       "theme": "carbon",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
     Map<String, dynamic> colorrange = {
       "minvalue": "0",

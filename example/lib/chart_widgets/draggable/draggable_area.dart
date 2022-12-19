@@ -25,8 +25,7 @@ class _DraggableAreaState extends State<DraggableArea> {
       "xAxisName": "Quarter",
       "yAxisName": "No. of Units",
       "theme": "fint",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> dataset = [

@@ -27,8 +27,7 @@ class _InverseAreaState extends State<InverseArea> {
       "numberSuffix": "%",
       "plotFillAlpha": "50",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

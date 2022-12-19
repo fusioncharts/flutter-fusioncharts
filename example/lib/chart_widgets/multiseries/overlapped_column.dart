@@ -54,8 +54,7 @@ class _OverlappedColumnState extends State<OverlappedColumn> {
       "caption": "Comparison of Quarterly Sales",
       "xAxisname": "Quarter",
       "yAxisName": "Sales",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> dataSource = {

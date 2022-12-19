@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -116,8 +117,8 @@ class PermissionManager {
       base64decode = base64.decode(request.url.toString().split('/')[1]);
     }
 
-    print(request.url);
-    print(request);
+    log(request.url.toString());
+    log(request.toString());
 
     ///The file name is checked accordingly and the data that comes with it is decoded accordingly
 

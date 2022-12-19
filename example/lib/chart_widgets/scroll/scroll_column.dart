@@ -37,8 +37,7 @@ class _ScrollColumn2DState extends State<ScrollColumn2D> {
       "scrollShowButtons": "0",
       "scrollColor": "#cccccc",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

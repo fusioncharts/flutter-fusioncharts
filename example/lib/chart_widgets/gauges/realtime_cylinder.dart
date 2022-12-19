@@ -30,8 +30,7 @@ class _RealTimeCylinderState extends State<RealTimeCylinder> {
       "numberSuffix": " ltrs",
       "showhovereffect": "1",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
 

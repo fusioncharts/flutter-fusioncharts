@@ -26,8 +26,7 @@ class _DrillDownState extends State<DrillDown> {
       "numberPrefix": "\$",
       "theme": "fusion",
       "rotateValues": "0",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
       "subcaptionFontSize": "30px"
     };
 

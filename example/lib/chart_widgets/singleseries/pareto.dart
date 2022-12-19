@@ -22,22 +22,15 @@ class _ParetoState extends State<Pareto> {
     WidgetsFlutterBinding.ensureInitialized();
 
     Map<String, dynamic> chart = {
-      "caption": "Android Distribution",
-      "subCaption": "subCaption",
-      "showlegend": "1",
-      "showpercentvalues": "1",
-      "legendPosition": "right",
-      "plothovereffect": "1",
-      "defaultcenterlabel": "Android Deristibution",
-      "aligncaptionwithcanvas": "0",
-      "captionpadding": "0",
-      "decimals": "1",
+      "caption": "Countries With Most Oil Reserves [2017-18]",
+      "subCaption": "In MMbbl = One Million barrels",
+      "xAxisName": "Country",
+      "yAxisName": "Reserves (MMbbl)",
+      "numberSuffix": "K",
+      "theme": "fusion",
+      "exportEnabled": "1",
       "plottooltext":
       "<b>\$value</b> of our Android users are on <b>\$label</b>",
-      "theme": "fusion",
-      "centerLabel": "# Users: \$value",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
     };
 
 

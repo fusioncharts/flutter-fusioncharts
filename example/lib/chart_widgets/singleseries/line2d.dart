@@ -33,9 +33,8 @@ class _Line2DState extends State<Line2D> {
       "xAxisName": "Country",
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
-      "theme": "gammel",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      "theme": "fusion",
+      
     };
     FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {"chart": chart, "data": chartData};

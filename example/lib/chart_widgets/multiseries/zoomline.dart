@@ -56,8 +56,7 @@ class _ZoomlineState extends State<Zoomline> {
       "scrollShowButtons": "0",
       "scrollColor": "#cccccc",
       "theme": "carbon",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> dataSource = {

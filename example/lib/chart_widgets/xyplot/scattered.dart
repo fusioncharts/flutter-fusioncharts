@@ -219,8 +219,7 @@ class _ScatteredState extends State<Scattered> {
       "yNumberPrefix": "\$",
       "xNumberSuffix": "&deg; F",
       "theme": "gammel",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> dataSource = {

@@ -26,8 +26,7 @@ class _SingleSeriesAreaState extends State<SingleSeriesArea> {
       "yAxisName": "Units sold",
       "xAxisLineThickness": "1",
       "theme": "gammel",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> dataset = [

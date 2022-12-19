@@ -26,8 +26,7 @@ class _ThermometerState extends State<Thermometer> {
       "upperLimit": "100",
       "numberSuffix": "°C",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
 
