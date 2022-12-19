@@ -26,8 +26,7 @@ class _PieState extends State<Pie> {
       "subCaption": "subCaption",
       "showlegend": "1",
       "showpercentvalues": "1",
-      "legendItemFontSize":"25",
-      "pieRadius":"100",
+      "pieRadius":"40",
       "legendPosition": "bottom",
       "plothovereffect": "1",
       "defaultcenterlabel": "Android Deristibution",
@@ -40,8 +39,7 @@ class _PieState extends State<Pie> {
       "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
       "theme": "fusion",
       "centerLabel": "# Users: \$value",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
 

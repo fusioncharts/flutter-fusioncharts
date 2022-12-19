@@ -27,8 +27,7 @@ class _ErrorScatterState extends State<ErrorScatter> {
       "halfverticalerrorbar": "0",
       "numberPrefix": "\$",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import 'package:flutter_fusioncharts_example/button.dart';
 import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
@@ -35,8 +34,7 @@ class _DoughnutState extends State<Doughnut> {
           "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
       "theme": "fusion",
       "centerLabel": "# Users: \$value",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> dataSource = {

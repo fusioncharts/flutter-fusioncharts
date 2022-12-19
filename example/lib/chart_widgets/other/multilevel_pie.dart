@@ -29,8 +29,7 @@ class _MultilevelPieState extends State<MultilevelPie> {
       "numberPrefix": "\$",
       "plotTooltext": "\$label, \$\$valueK, \$percentValue",
       "theme": "umber",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> category = [

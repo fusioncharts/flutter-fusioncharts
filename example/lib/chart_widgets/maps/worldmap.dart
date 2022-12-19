@@ -40,8 +40,7 @@ class _WorldMapState extends State<WorldMap> {
       "theme": "fusion",
       "formatNumberScale": "0",
       "numberSuffix": "M",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
       "showLabels": "1",
       "useSNameInLabels": "1",
     };

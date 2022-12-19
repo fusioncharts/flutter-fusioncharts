@@ -26,8 +26,7 @@ class _SingleSeriesSplineState extends State<SingleSeriesSpline> {
       "yAxisName": "No. of Footfalls",
       "lineThickness": "2",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> dataset = [

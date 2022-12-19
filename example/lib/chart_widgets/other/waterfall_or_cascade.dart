@@ -28,8 +28,7 @@ class _WaterfallOrCascadeState extends State<WaterfallOrCascade> {
       "positiveColor": "#6baa01",
       "negativeColor": "#e44a00",
       "theme": "candy",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
 

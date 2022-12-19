@@ -60,8 +60,7 @@ class _OverlappedBarState extends State<OverlappedBar> {
       "theme": "fusion",
       "xAxisNameFontSize": "30px",
       "yAxisNameFontSize": "30px",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> dataSource = {

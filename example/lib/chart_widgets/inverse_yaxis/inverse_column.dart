@@ -26,8 +26,7 @@ class _InverseColumnState extends State<InverseColumn> {
       "numberSuffix": "s",
       "xAxisLineThickness": "1",
       "theme": "umber",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

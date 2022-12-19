@@ -26,8 +26,7 @@ class _LogLineState extends State<LogLine> {
       "yAxisName": "No of visitors",
       "base": "10",
       "theme": "zune",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> dataset = [

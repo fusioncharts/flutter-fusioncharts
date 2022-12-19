@@ -27,8 +27,7 @@ class _SparkLineState extends State<SparkLine> {
       "chartTopMargin": "10",
       "chartRightMargin": "10",
       "theme": "candy",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> dataset = [

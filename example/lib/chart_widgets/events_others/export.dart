@@ -27,8 +27,7 @@ class _ColumnChartExportState extends State<ColumnChartExport> {
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
       "theme": "carbon",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
       "exportEnabled": "1",
       "exportMode": "client"
     };

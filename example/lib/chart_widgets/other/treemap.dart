@@ -39,8 +39,7 @@ class _TreeMapState extends State<TreeMap> {
       "subcaption": "Year Till Date",
       "legendCaption": "Growth in sales - Compared to previous year",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> data = [

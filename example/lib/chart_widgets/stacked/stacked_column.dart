@@ -29,8 +29,7 @@ class _StackedColumnState extends State<StackedColumn> {
       "showsum":"1",
       "drawcrossline":"1",
       "theme": "ocean",
-      "baseFontSize": "30",
-      "captionFontSize": "30px",
+
     };
     FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {

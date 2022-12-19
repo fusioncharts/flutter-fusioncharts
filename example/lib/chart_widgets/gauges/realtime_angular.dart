@@ -52,8 +52,7 @@ class _RealTimeAngularState extends State<RealTimeAngular> {
       "gaugeoriginx": "160",
       "gaugeoriginy": "160",
       "theme": "zune",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
     Map<String, dynamic> dials = {
       "dial": [

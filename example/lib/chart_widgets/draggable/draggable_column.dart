@@ -25,8 +25,7 @@ class _DraggableColumnState extends State<DraggableColumn> {
       "xAxisName": "Food Item",
       "yAxisName": "No. of Units",
       "theme": "carbon",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> dataset = [

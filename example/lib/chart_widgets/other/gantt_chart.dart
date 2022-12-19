@@ -84,8 +84,7 @@ class _GanttChartState extends State<GanttChart> {
       "slackFillColor": "#e44a00",
       "taskBarFillMix": "light+0",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> legend = {

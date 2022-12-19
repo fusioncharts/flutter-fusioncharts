@@ -30,8 +30,7 @@ class _ScrollMultiseriesState extends State<ScrollMultiseries> {
       "showvalues": "0",
       "drawcrossline": "1",
       "divlinealpha": "20",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

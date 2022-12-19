@@ -60,8 +60,7 @@ class _MarimekkoState extends State<Marimekko> {
       "xAxisNameFontSize": "30px",
       "yAxisNameFontSize": "30px",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
       "subCaptionFontSize": "30px",
     };
 

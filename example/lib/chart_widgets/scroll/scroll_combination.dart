@@ -33,8 +33,7 @@ class _ScrollCombinationState extends State<ScrollCombination> {
       "flatScrollBars": "1",
       "scrollheight": "10",
       "theme": "candy",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

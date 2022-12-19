@@ -65,8 +65,7 @@ class _BubbleState extends State<Bubble> {
       "showAlternateHGridColor": "0",
       "showAlternateVGridColor": "0",
       "theme": "zune",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> dataSource = {

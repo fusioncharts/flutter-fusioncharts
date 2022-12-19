@@ -25,8 +25,7 @@ class _DraggableLineState extends State<DraggableLine> {
       "xAxisName": "Quarter",
       "yAxisName": "No. of Units",
       "theme": "gammel",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> dataset = [

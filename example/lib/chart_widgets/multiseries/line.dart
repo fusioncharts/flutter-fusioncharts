@@ -76,8 +76,7 @@ class _LineMultiSeriesState extends State<LineMultiSeries> {
       "exportEnabled":"1",
       "xAxisName": "Day",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> dataSource = {

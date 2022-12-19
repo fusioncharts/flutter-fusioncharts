@@ -31,8 +31,7 @@ class _VerticalBulletGraphState extends State<VerticalBulletGraph> {
       "colorRangeFillMix": "{light+0}",
       "valuePadding": "7",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
     Map<String, dynamic> colorrange = {
       "color": [

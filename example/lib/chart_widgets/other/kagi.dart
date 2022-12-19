@@ -27,8 +27,7 @@ class _KagiChartState extends State<KagiChart> {
       "rallythickness": "3",
       "declinethickness": "3",
       "theme": "ocean",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> data = [

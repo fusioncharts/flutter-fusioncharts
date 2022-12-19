@@ -27,8 +27,7 @@ class _StackedBarState extends State<StackedBar> {
       "yAxisName": "Revenue (In USD)",
       "numberPrefix": "\$",
       "theme": "umber",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     FusionChartsController fusionChartsController = FusionChartsController();

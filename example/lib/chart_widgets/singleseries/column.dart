@@ -21,16 +21,11 @@ class _ColumnChartState extends State<ColumnChart> {
     Map<String, dynamic> chart = {
       "caption": "Countries With Most Oil Reserves [2017-18]",
       "subCaption": "In MMbbl = One Million barrels",
-      "logoURL":
-          "https://static.fusioncharts.com/sampledata/images/Logo-HM-72x72.png",
-      "logoAlpha": "100",
-      "logoScale": "110",
-      "logoPosition": "TL",
       "xAxisName": "Country",
       "yAxisName": "Reserves (MMbbl)",
-      "exportenabled": "1",
       "numberSuffix": "K",
-      "theme": "carbon",
+      "theme": "candy",
+      "exportEnabled": 1,
     };
 
     List<dynamic> chartData = [

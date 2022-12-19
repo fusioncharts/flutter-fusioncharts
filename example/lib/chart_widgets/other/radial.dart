@@ -32,11 +32,7 @@ class _RadialBarState extends State<RadialBar> {
       "plotHighlightEffect": "fadeout",
       "showlegend": "1",
       "interactivelegend": "1",
-      "baseFontSize": "30px",
-      "captionFontSize": "60px",
-      "subCaptionFontSize": "30px",
       "placeValuesInside": "0",
-      "legendItemFontSize": "30px",
     };
 
     List<dynamic> data = [

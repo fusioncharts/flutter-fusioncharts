@@ -26,8 +26,7 @@ class _StepLineState extends State<StepLine> {
       "numberprefix": "\$",
       "useforwardsteps": "0",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

@@ -23,8 +23,7 @@ class _AnnotatedBarState extends State<AnnotatedBar> {
       "xAxisName": "Day",
       "yAxisName": "No. of Visitors",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     Map<String, dynamic> annotations = {

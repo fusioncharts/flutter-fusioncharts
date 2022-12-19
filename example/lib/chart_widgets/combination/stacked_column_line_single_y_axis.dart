@@ -71,8 +71,7 @@ class _StackedColumnLineSingleYAxisState
       "yAxisName": "Revenue (In USD)",
       "numberPrefix": "\$",
       "theme": "fusion",
-      "baseFontSize": "30",
-      "captionFontSize": "30px",
+
     };
 
     Map<String, dynamic> dataSource = {

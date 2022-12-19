@@ -30,8 +30,7 @@ class _ScrollLine2DState extends State<ScrollLine2D> {
       "scrollheight": "10",
       "numVisiblePlot": "12",
       "theme": "ocean",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> categories = [

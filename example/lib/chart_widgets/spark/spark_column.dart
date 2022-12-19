@@ -27,8 +27,7 @@ class _SparkColumnState extends State<SparkColumn> {
       "chartRightMargin": "10",
       "numberPrefix": "\$",
       "theme": "fusion",
-      "baseFontSize": "30px",
-      "captionFontSize": "30px",
+      
     };
 
     List<dynamic> dataset = [
