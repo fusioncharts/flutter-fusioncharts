@@ -218,11 +218,11 @@ class _FusionChartsState extends State<FusionCharts> {
                   useShouldOverrideUrlLoading: true,
                 ),
                 android: AndroidInAppWebViewOptions(
-                  defaultFixedFontSize: 20,
-                  defaultFontSize: 30,
-                  useWideViewPort: false,
-                  minimumLogicalFontSize: 20  ,
-                  // useHybridComposition: true,
+                  defaultFixedFontSize: 10,
+                  useWideViewPort: true,
+                  defaultFontSize: 10,
+                  minimumLogicalFontSize: 50,
+                  useHybridComposition: true,
                 ),
                 ios: IOSInAppWebViewOptions(
                   enableViewportScale: true,
