@@ -105,8 +105,7 @@ class _MultiSeriesDualComboState extends State<MultiSeriesDualCombo> {
       "sNumberSuffix": "%",
       "sYAxisMaxValue": "50",
       "theme": "fusion",
-      "baseFontSize": "30",
-      "captionFontSize": "30px",
+
     };
 
     Map<String, dynamic> dataSource = {

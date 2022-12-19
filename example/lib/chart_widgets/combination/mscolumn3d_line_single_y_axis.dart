@@ -60,8 +60,7 @@ class _MSColumn3DLineSingleYAxisState extends State<MSColumn3DLineSingleYAxis> {
       "xaxisname": "Quarters",
       "yaxisname": "Cost",
       "theme": "umber",
-      "baseFontSize": "30",
-      "captionFontSize": "30px",
+
     };
 
     Map<String, dynamic> dataSource = {

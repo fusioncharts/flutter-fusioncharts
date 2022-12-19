@@ -37,8 +37,7 @@ class _StackedAreaLineColumnState
       "showvalues": "0",
       "plottooltext": "Market size for Demo Series in demo is <b>demob</b>",
       "theme": "fusion",
-      "baseFontSize": "30",
-      "captionFontSize": "30px",
+
     };
 
 
