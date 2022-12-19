@@ -104,7 +104,7 @@ class _DraggableAreaState extends State<DraggableArea> {
           leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop()),
-          title: const Text('Fusion Charts - Drag Column'),
+          title: const Text('Fusion Charts - Draggable Area'),
         ),
         body: Column(
           children: [
@@ -112,7 +112,7 @@ class _DraggableAreaState extends State<DraggableArea> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text('Drag Column'),
+                Text('Draggable Area'),
               ],
             ),
             const SizedBox(
