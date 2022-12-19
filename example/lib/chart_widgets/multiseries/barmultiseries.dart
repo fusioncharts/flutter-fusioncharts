@@ -53,10 +53,12 @@ class _BarMultiSeriesState extends State<BarMultiSeries> {
     ];
 
     Map<String, dynamic> chart = {
-      "theme": "zune",
+      "theme": "fusion",
       "caption": "Comparison of Quarterly Sales",
       "xAxisname": "Quarter",
       "yAxisName": "Sales",
+      "xAxisNameFontSize": "30px",
+      "yAxisNameFontSize": "30px",
       "baseFontSize": "30px",
       "captionFontSize": "30px",
     };

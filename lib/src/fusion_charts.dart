@@ -117,16 +117,17 @@ class _FusionChartsState extends State<FusionCharts> {
     /// This will eventually provide all the chart data necessary to render the chart
 
     String licenseString = "";
+    if (widget.dataSource["chart"] != null) {
+      if (widget.dataSource["chart"]["exportEnabled"] == "1") {
+        ///when the export is set to 1, the user will get an export button on the top right corner of the chart
+        ///The user will get the permission popup when the export is set to 1
+        ///if the permission is granted the exported file will be saved in the fusion charts folder in the internal storage
 
-    if (widget.dataSource["chart"]["exportEnabled"] == "1") {
-      ///when the export is set to 1, the user will get an export button on the top right corner of the chart
-      ///The user will get the permission popup when the export is set to 1
-      ///if the permission is granted the exported file will be saved in the fusion charts folder in the internal storage
+        PermissionManager().requestPermission();
 
-      PermissionManager().requestPermission();
+        ///Permission is asked if not already given
 
-      ///Permission is asked if not already given
-
+      }
     }
 
     if (widget.licenseKey != null) {
@@ -223,6 +224,7 @@ class _FusionChartsState extends State<FusionCharts> {
                   defaultFontSize: 10,
                   minimumLogicalFontSize: 50  ,
                   useHybridComposition: true,
+                  useWideViewPort: false,
                 ),
                 ios: IOSInAppWebViewOptions(
                   enableViewportScale: true,

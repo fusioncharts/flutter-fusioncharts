@@ -904,7 +904,7 @@ class _GanttChartState extends State<GanttChart> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text('Gant Chart'),
+                  Text('Gantt Chart'),
                 ],
               ),
               const SizedBox(

@@ -55,8 +55,11 @@ class _OverlappedBarState extends State<OverlappedBar> {
     Map<String, dynamic> chart = {
       "caption": "Split of Sales by Product Category",
       "subCaption": "In top 5 stores last month",
-      "yAxisname": "Sales (In USD)",
+      "xAxisname": "Sales (In USD)",
+      "yAxisname": "Quater",
       "theme": "fusion",
+      "xAxisNameFontSize": "30px",
+      "yAxisNameFontSize": "30px",
       "baseFontSize": "30px",
       "captionFontSize": "30px",
     };

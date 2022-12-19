@@ -20,56 +20,34 @@ class _RadialBarState extends State<RadialBar> {
 
     Map<String, dynamic> chart = {
       "theme": "fusion",
-      "innerradius":"100px",
-      "outerradius":"300px",
+      "innerradius": "100px",
+      "outerradius": "300px",
       "width": "600",
       "height": "400",
-      "showlabels":"1",
+      "showlabels": "1",
       "caption": "Radial Bar",
       "subcaption": "RadialBar",
-      "showContextLabel": 1,
-      "defaultContextLabel" : "VERSIONS",
+      "showContextLabel": "1",
+      "defaultContextLabel": "VERSIONS",
       "plotHighlightEffect": "fadeout",
-      "interactivelegend":1,
+      "showlegend": "1",
+      "interactivelegend": "1",
       "baseFontSize": "30px",
       "captionFontSize": "60px",
       "subCaptionFontSize": "30px",
-      "placeValuesInside":"0",
+      "placeValuesInside": "0",
+      "legendItemFontSize": "30px",
     };
 
     List<dynamic> data = [
-      {
-        "label":"Ice cream sandwich",
-        "value":"5",
-        "color":"#29c3bf"
-      },
-      {
-        "label":"Jellybean",
-        "value":"10",
-        "color":"#5c62b4"
-      },
-      {
-        "label":"Kitkat",
-        "value":"28",
-        "color":"#63b68f"
-      },
-      {
-        "label":"Lollipop",
-        "value":"51",
-        "color":"#ffc534"
-      },
-      {
-        "label":"Marshmallow",
-        "value":"42",
-        "color":"#f2736f"
-      }
+      {"label": "Ice cream sandwich", "value": "5", "color": "#29c3bf"},
+      {"label": "Jellybean", "value": "10", "color": "#5c62b4"},
+      {"label": "Kitkat", "value": "28", "color": "#63b68f"},
+      {"label": "Lollipop", "value": "51", "color": "#ffc534"},
+      {"label": "Marshmallow", "value": "42", "color": "#f2736f"}
     ];
 
-
-    Map<String, dynamic> dataSource = {
-      "chart": chart,
-      "data": data
-    };
+    Map<String, dynamic> dataSource = {"chart": chart, "data": data};
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
@@ -91,12 +69,13 @@ class _RadialBarState extends State<RadialBar> {
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
-          title: const Text(
-              'Fusion Charts - Radial Bar'),
+          title: const Text('Fusion Charts - Radial Bar'),
         ),
         body: Column(
           children: [
-            Expanded(child: _fusionChart2D),
+            SizedBox(
+                height: MediaQuery.of(context).size.height * 3 / 4,
+                child: _fusionChart2D),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [

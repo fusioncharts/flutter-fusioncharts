@@ -124,7 +124,9 @@ class _DrillDownState extends State<DrillDown> {
         "rotateValues": "0",
         "baseFontSize": "30px",
         "captionFontSize": "30px",
-        "subcaptionFontSize": "30px"
+        "subcaptionFontSize": "30px",
+        "xAxisNameFontSize": "40px",
+        "yAxisNameFontSize": "40px",
       },
       "data": [
         {"label": "Apple", "value": "810000", "link": "newchart-xml-apple"},

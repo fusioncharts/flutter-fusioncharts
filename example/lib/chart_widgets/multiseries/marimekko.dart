@@ -55,10 +55,14 @@ class _MarimekkoState extends State<Marimekko> {
     Map<String, dynamic> chart = {
       "caption": "Split of Sales by Product Category",
       "subCaption": "In top 5 stores last month",
-      "yAxisname": "Sales (In USD)",
+      "yAxisName": "Sales (In USD)",
+      "xAxisName": "MMMMMMMM",
+      "xAxisNameFontSize": "30px",
+      "yAxisNameFontSize": "30px",
       "theme": "fusion",
       "baseFontSize": "30px",
       "captionFontSize": "30px",
+      "subCaptionFontSize": "30px",
     };
 
     Map<String, dynamic> dataSource = {
@@ -91,6 +95,7 @@ class _MarimekkoState extends State<Marimekko> {
         width: "100%",
         height: "100%",
         fusionChartsController: fusionChartsController,
+        isLocal: false,
         licenseKey: licenseKey);
   }
 
@@ -113,7 +118,9 @@ class _MarimekkoState extends State<Marimekko> {
           width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
-              Expanded(child: _fusionChart2d),
+              SizedBox(
+                  height: MediaQuery.of(context).size.height * 3 / 4,
+                  child: _fusionChart2d),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [

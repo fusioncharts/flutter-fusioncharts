@@ -100,7 +100,7 @@ class _IndiaState extends State<India> {
 
     Map<String, dynamic> dataSource = {
       "chart": chart,
-      "data":data,
+      "data": data,
       "colorrange": colorrange
     };
 
@@ -127,7 +127,7 @@ class _IndiaState extends State<India> {
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
-          title: const Text('Fusion Charts - USA Map'),
+          title: const Text('Fusion Charts - India Map'),
         ),
         body: SizedBox(
           height: MediaQuery.of(context).size.height,
@@ -138,7 +138,7 @@ class _IndiaState extends State<India> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text('USA Map'),
+                  Text('India Map'),
                 ],
               ),
               const SizedBox(

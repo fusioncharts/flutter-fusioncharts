@@ -89,6 +89,7 @@ class _ZoomlineDYState extends State<ZoomlineDY> {
         type: "zoomlinedy",
         width: "100%",
         height: "100%",
+        isLocal: false,
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
   }

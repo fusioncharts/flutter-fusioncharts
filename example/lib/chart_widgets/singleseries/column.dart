@@ -31,9 +31,6 @@ class _ColumnChartState extends State<ColumnChart> {
       "exportenabled": "1",
       "numberSuffix": "K",
       "theme": "carbon",
-      "baseFontSize": "35px",
-      "captionFontSize": "35px",
-      "subCaptionFontSize": "30px"
     };
 
     List<dynamic> chartData = [
