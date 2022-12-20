@@ -9,7 +9,6 @@ import 'package:flutter_fusioncharts_example/chart_widgets/other/radar.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/radial.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/sparkline.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/stepline.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/other/timeseries.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/treemap.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/radial.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/waterfall_or_cascade.dart';

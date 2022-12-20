@@ -88,6 +88,8 @@ class PermissionManager {
   late String fileName;
   var data;
 
+  /// showSnack is the funtion that is invoked when the file is downloaded or when the
+  /// download permission is not given and the user is trying to export the file
   void showSnack(String title, context) {
     final snackbar = SnackBar(
         content: Text(
@@ -100,13 +102,9 @@ class PermissionManager {
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 
-  /// This is the snackbar funtion that is invoked when the file is downloaded or when the
-  /// download permission is not given and the user is trying to export the file
-
+  ///The file name variable is initialised with suggested file name from the download request callback of the in app web view
   decode(request, type, context) {
     fileName = request.suggestedFilename.toString().split('.')[1];
-
-    ///The file name variable is initialised with suggested file name from the download request callback of the in app web view
 
     if (fileName == 'svg' ||
         fileName == 'png' ||
@@ -117,25 +115,21 @@ class PermissionManager {
       base64decode = base64.decode(request.url.toString().split('/')[1]);
     }
 
+    ///The file name is checked accordingly and the data that comes with it is decoded accordingly
     log(request.url.toString());
     log(request.toString());
 
-    ///The file name is checked accordingly and the data that comes with it is decoded accordingly
-
-    saveFile(context, type);
-
     ///Save file is called to save the file after decoding the data
+    saveFile(context, type);
   }
 
   createFolder() async {
     try {
+      ///This is the name of the folder that is created on the device when user exports charts
       String folderName = "fusionCharts";
 
-      ///This is the name of the folder that is created on the device when user exports charts
-
-      final path = Directory("storage/emulated/0/$folderName");
-
       ///Path of the folder name
+      final path = Directory("storage/emulated/0/$folderName");
 
       if ((await path.exists())) {
       } else {
@@ -147,30 +141,22 @@ class PermissionManager {
     }
   }
 
+  /// saveFile saves the downloaded file into the external storage
   saveFile(context, type) async {
     try {
-      /// saveFile saves the downloaded file into the external storage
-
+      /// here the permission request is checked if it is granted or not
+      /// to save the file the permission to write in external storage should be given
       if (PermissionManager().requestStatus == RequestStatus.denied) {
-        /// here the permission request is checked if it is granted or not
-        /// to save the file the permission to write in external storage should be given
-
         showSnack('Permission denied for storage', context);
-
-        ///Snackbar alert when the permission is not given
-
       } else {
-        final path = await createFolder();
-
         /// path of the folder where the imports will be saved
+        final path = await createFolder();
 
         data = await File('$path/$type.$fileName')
             .writeAsBytes(base64decode, flush: true);
 
-        showSnack('Downloaded $type', context);
-
         /// Snackbar alert is shown once the file is created
-
+        showSnack('Downloaded $type', context);
       }
     } catch (e) {
       // print(e.message);

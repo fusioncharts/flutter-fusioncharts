@@ -10,6 +10,7 @@ import 'package:flutter_fusioncharts_example/chart_widgets/logarithmic/log_menu.
 import 'package:flutter_fusioncharts_example/chart_widgets/maps/maps_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/multiseries/multiseries_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/other/other_chart_menu.dart';
+import 'package:flutter_fusioncharts_example/timeseries/timeseries.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/realtime_datastreaming/rd_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/scroll/scroll_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/singleseries/singleseries_menu.dart';
@@ -82,6 +83,18 @@ class _MenuState extends State<Menu> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       const MultiSeriesMenu()))),
+                    ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Time Series",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const TimeSeries()))),
                     ),
                   ),
                   InkWell(
