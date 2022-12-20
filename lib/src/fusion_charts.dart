@@ -6,7 +6,7 @@ import 'dart:convert';
 import './utils/constants.dart';
 import './fusion_charts_controller.dart';
 
-/// FusionCharts is the widget that renders charts. The plugin user should
+/// FusionCharts is the widget that renders FusionCharts. The user should
 /// instantiate this widget and include within the UI widget tree.
 class FusionCharts extends StatefulWidget {
   const FusionCharts(
@@ -18,58 +18,55 @@ class FusionCharts extends StatefulWidget {
       this.fusionChartEvent,
       this.fusionChartsController,
       this.streamController,
+      this.timeSeriesSchema,
+      this.timeSeriesData,
       this.isLocal = true,
       this.licenseKey,
       super.key});
-
-  final Map<String, dynamic> dataSource;
 
   /// dataSource is used to supply the data to the FusionCharts JS library
   /// Typically the dousource comprises of 'chart' (Map) and 'dataSet' (List) which
   ///  is used by FusionCharts to render the chart. However dataSource may also have
   /// other objects such as 'annotation'
-
-  final String type;
+  final Map<String, dynamic> dataSource;
 
   /// type of chart that the user want's to render. Example: 'column2d'
-
-  final String width;
+  final String type;
 
   /// The width parameter specifies the width of the rendered chart in % or pixels or rem
   /// It is advisable to keep at 100% and manage the chart size by wrapping within a Container or a SizedBox
-
-  final String height;
+  final String width;
 
   /// The height parameter specifies the height of the rendered chart in % or pixels or rem
   /// It is advisable to keep at 100% and manage the size by wrapping within a Container or a SizedBox
-
-  final List<String> events;
+  final String height;
 
   /// User can use events to specify the list of events that should be subscribed to,
   /// at the chart load event
-
-  final Function? fusionChartEvent;
+  final List<String> events;
 
   /// Callback method on trigger of any subscribed event from the FusionCharts
+  final Function? fusionChartEvent;
 
+  /// fusionChartsController enables the user to add/remove events and calls FusionCharts APIs
   final FusionChartsController? fusionChartsController;
-
-  /// fusionChartsController enables the user to add/remove events and call FusionCharts API
-
-  final StreamController? streamController;
 
   /// User can pass refernce to a streamController which emits periodic updates to real time
   /// data charts. The plugin will listen to events on the streamController and update the chart
-
-  final bool isLocal;
+  final StreamController? streamController;
 
   /// User can specifiy if the charts should be renderd from local JS library or the CDN version
   /// By default the value is true implying local version
-
-  final String? licenseKey;
+  final bool isLocal;
 
   /// User can pass a valid license key to avoid Trial watermark on the chart
+  final String? licenseKey;
 
+  /// User can pass a valid schema which describes the time series data to be used
+  final List<dynamic>? timeSeriesSchema;
+
+  /// User can pass dataset for the chart which should be compliant with the schema provided
+  final List<dynamic>? timeSeriesData;
   @override
   State<FusionCharts> createState() => _FusionChartsState();
 }
@@ -82,11 +79,9 @@ class _FusionChartsState extends State<FusionCharts> {
   String json = "";
   String eventString = "";
   StreamController<dynamic>? _streamController;
-  late InAppWebViewController _webViewController;
 
   /// _webViewController manages integration with JS library which uses webview plugin
-
-  /// local variables
+  late InAppWebViewController _webViewController;
 
   late FusionChartsController _fusionChartsController;
 
@@ -139,13 +134,10 @@ class _FusionChartsState extends State<FusionCharts> {
       });
 
     """;
-
-      ///The licensed string is checked whether provided or not
-      ///If not provided the unlicensed trial is run
-
-    } else {
-      // print('Unlicensed Trial');
     }
+
+    ///The licensed string is checked whether provided or not
+    ///If not provided the unlicensed trial is run
 
     if (widget.events.isNotEmpty) {
       /// Events data is checked if it is coming as empty from the FusionChart object from the user side.
@@ -158,15 +150,41 @@ class _FusionChartsState extends State<FusionCharts> {
       
       """;
       }
-
-      ///Manish
-
     }
-    jsonDataSource = jsonEncode(jsonDataSource);
+    // Map<String, dynamic> x = {};
+    // x = widget.dataSource;
+    // x["data"] = "dataStore.createDataTable(data, schema)";
+    // String xt = jsonEncode(x);
+    String renderChartString = '';
 
-    chartString = """
+    if (widget.type == 'timeseries') {
+      if (widget.timeSeriesData != null && widget.timeSeriesSchema != null) {
+        String jsonTimeSeriesData = '';
+        String jsonTimeSeriesSchema = '';
 
-      $licenseString
+        jsonTimeSeriesData = jsonEncode(widget.timeSeriesData);
+        jsonTimeSeriesSchema = jsonEncode(widget.timeSeriesSchema);
+        renderChartString = """
+
+        let data = $jsonTimeSeriesData;
+        let schema = $jsonTimeSeriesSchema;
+        let dataStore = new FusionCharts.DataStore();
+      
+        let chartConfig  = {
+              type: "${widget.type}",
+              width: "${widget.width}",
+              height: "${widget.height}",
+              id: "binning-API-methods1",
+              renderAt: "chart-container",
+              dataFormat: "json",
+              dataSource: $jsonDataSource};
+        chartConfig.dataSource.data = dataStore.createDataTable(data, schema);
+        globalFusionCharts =  new FusionCharts(chartConfig).render();
+
+    """;
+      }
+    } else {
+      renderChartString = """
 
       FusionCharts.ready(function() {
         var fusionChart = new FusionCharts({
@@ -180,14 +198,21 @@ class _FusionChartsState extends State<FusionCharts> {
       
       fusionChart.render();
       globalFusionCharts = fusionChart;
-    });
 
-    $eventString
-    
     """;
+    }
 
-    /// this multiline string is having the data coming from the user end as well as a js function wrapped inside which will
+    /// This multiline string is having the data coming from the user end as well as a js function wrapped inside which will
     /// eventually render the chart for the user
+    chartString = """
+
+      $licenseString
+
+      $renderChartString
+
+      $eventString
+
+    """;
 
     setState(() {
       gotData = true;
@@ -199,10 +224,6 @@ class _FusionChartsState extends State<FusionCharts> {
   @override
   void dispose() {
     super.dispose();
-  }
-
-  String addLeadingZero(int num) {
-    return (num <= 9) ? "0" + num.toString() : num.toString();
   }
 
   @override
@@ -255,7 +276,7 @@ class _FusionChartsState extends State<FusionCharts> {
                     });
               },
               onConsoleMessage: (controller, message) {
-                //       print('Console Message: ' + message.toString());
+                print('Console Message: ' + message.toString());
               },
             ),
           )

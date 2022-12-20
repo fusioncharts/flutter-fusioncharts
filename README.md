@@ -28,17 +28,16 @@ import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 
 ```
 
-### Download Fusion Charts JavaScript package - SCRIPT TBD
-Script requirments:
+### Download Fusion Charts JavaScript package
+<!-- Script requirments:
 - accept parameter to identify download version.
 - Download the zip file from cdn
 - Unzip and move the downloaded folder to the app root folder
-- Update pubspec.yaml file to include all FC package file asset dependencies under the asset tag
+- Update pubspec.yaml file to include all FC package file asset dependencies under the asset tag -->
 
 Add the downloaded folder files as assets dependency within your pubspec.yaml file
 
 ```yaml
-  TO BE MOVED TO SCRIPT
   assets:
     - fusioncharts/integrate/index_local.html
     - fusioncharts/integrate/index.js
@@ -126,7 +125,15 @@ end
 ```
 
 ### Use CDN instead of FC Core local asset bundle
-TBD SCRIPT TO HANDLE
+In order to use FusionCharts over CDN, please set isLocal property to false while instantiating the FusionCharts widget like so:
+
+```dart
+FusionCharts fc = newFusionCharts(
+  ...
+  isLocal: false
+)
+
+```
 
 
 ## Using FusionCharts in your project
