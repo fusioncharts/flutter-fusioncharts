@@ -109,7 +109,9 @@ class PermissionManager {
   decode(request, type, context, fcController) async {
     fileExtension = request.suggestedFilename.toString().split('.')[1];
 
-    if (fileExtension == 'svg' || fileExtension == 'png' || fileExtension == 'jpg') {
+    if (fileExtension == 'svg' ||
+        fileExtension == 'png' ||
+        fileExtension == 'jpg') {
       base64decode = base64.decode(request.url.toString().split(';base64,')[1]);
     } else if (fileExtension == 'pdf') {
       isPDFGen = true;
@@ -118,13 +120,14 @@ class PermissionManager {
         });""");
       return;
     } else {
+      print(request);
       print(request.url.toString());
       var blobUrl = request.url.toString().split('/')[1];
 
       print(blobUrl);
       print(request.url.toString().split('/')[1]);
 
-          var data = await fcController.executeScript("""
+      String xhr = """
               "javascript: var xhr = new XMLHttpRequest();" +
               "xhr.open('GET', '"+ '$blobUrl' +"', true);" +
               "xhr.setRequestHeader('Content-type','application/pdf');" +
@@ -137,17 +140,17 @@ class PermissionManager {
               "        reader.onloadend = function() {" +
               "            base64data = reader.result;" +
               "            Android.getBase64FromBlobData(base64data);" +
+              "           console.log(base64data)
               "        }" +
               "    }" +
               "};" +
               "xhr.send();"
-              """
-          );
+              """;
+      print(xhr);
+      var data = await fcController.executeScript(xhr);
 
-
-          print(data);
-          print('converted blob data');
-
+      print(data);
+      print('converted blob data');
 
       base64decode = base64.decode(request.url.toString().split('/')[1]);
     }
@@ -217,9 +220,7 @@ class PermissionManager {
       /// to save the file the permission to write in external storage should be given
       if (PermissionManager().requestStatus == RequestStatus.denied) {
         showSnack('Permission denied for storage', context);
-
       } else {
-
         /// path of the folder where the imports will be saved
         // final path = await createFolder();
 
@@ -270,11 +271,9 @@ class PermissionManager {
 
         /// Snackbar alert is shown once the file is created
         showSnack('Downloaded $type.$fileExtension', context);
-
       }
     } catch (e) {
       // print(e.message);
     }
   }
 }
-

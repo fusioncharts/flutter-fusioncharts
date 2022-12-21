@@ -267,7 +267,6 @@ class _FusionChartsState extends State<FusionCharts> {
                   : '$fcHome/integrate/index_cdn.html',
               onLoadStop: (controller, url) async {
                 await controller.evaluateJavascript(source: chartString);
-                await controller.evaluateJavascript(source: eventString);
               },
               onDownloadStartRequest: (InAppWebViewController controller,
                   DownloadStartRequest request) async {
@@ -283,7 +282,7 @@ class _FusionChartsState extends State<FusionCharts> {
                     handlerName: 'fusionChartEventHandler',
                     callback: (args) {
                       print('FC evenHandler cons: $args');
-                      if (widget.fusionChartEvent != null){
+                      if (widget.fusionChartEvent != null) {
                         widget.fusionChartEvent!(args[0], args[1]);
                       }
                     });
