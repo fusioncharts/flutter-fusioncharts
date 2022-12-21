@@ -19,14 +19,14 @@ class _ColumnChartState extends State<ColumnChart> {
   void initState() {
     super.initState();
 
-    Map<String, dynamic> chart = {
+    Map<String, String> chart = {
       "caption": "Countries With Most Oil Reserves [2017-18]",
       "subCaption": "In MMbbl = One Million barrels",
       "xAxisName": "Country",
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
       "theme": "candy",
-      "exportEnabled": 1,
+      "exportEnabled": "1",
 
     };
 

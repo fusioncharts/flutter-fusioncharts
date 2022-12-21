@@ -88,7 +88,7 @@ class PermissionManager {
   }
 
   late Uint8List base64decode;
-  late String fileName;
+  late String fileExtension;
   late File exportFile;
 
   /// showSnack is the funtion that is invoked when the file is downloaded or when the
@@ -107,11 +107,11 @@ class PermissionManager {
 
   ///The file name variable is initialised with suggested file name from the download request callback of the in app web view
   decode(request, type, context, fcController) async {
-    fileName = request.suggestedFilename.toString().split('.')[1];
+    fileExtension = request.suggestedFilename.toString().split('.')[1];
 
-    if (fileName == 'svg' || fileName == 'png' || fileName == 'jpg') {
+    if (fileExtension == 'svg' || fileExtension == 'png' || fileExtension == 'jpg') {
       base64decode = base64.decode(request.url.toString().split(';base64,')[1]);
-    } else if (fileName == 'pdf') {
+    } else if (fileExtension == 'pdf') {
       isPDFGen = true;
       fcController.executeScript("""globalFusionCharts.exportChart({
         "exportFormat": "jpg",
@@ -149,7 +149,6 @@ class PermissionManager {
           print('converted blob data');
 
 
-
       base64decode = base64.decode(request.url.toString().split('/')[1]);
     }
 
@@ -161,40 +160,54 @@ class PermissionManager {
     await saveFile(context, type);
   }
 
-  createFolder() async {
-    try {
-      ///This is the name of the folder that is created on the device when user exports charts
-      // String folderName = "fusionCharts";
+  // createFolder() async {
+  //   try {
+  //     ///This is the name of the folder that is created on the device when user exports charts
+  //     // String folderName = "fusionCharts";
+  //
+  //     ///Path of the folder name
+  //
+  //     Directory dir = await getApplicationDocumentsDirectory();
+  //
+  //
+  //     // final path = Directory("storage/emulated/0/$folderName");
+  //     final localPath = dir.path;
+  //
+  //     final savedDir = Directory(localPath);
+  //
+  //     bool hasExisted = await savedDir.exists();
+  //
+  //
+  //     print(hasExisted);
+  //
+  //     if (!hasExisted) {
+  //       savedDir.create();
+  //     }
+  //
+  //     print(localPath);
+  //     print('localPath');
+  //
+  //     return savedDir.path;
+  //
+  //     // if ((await path.exists())) {
+  //     // } else {
+  //     //   path.create();
+  //     // }
+  //     // return path.path;
+  //   } catch (e) {
+  //     // print(e.message);
+  //   }
+  // }
 
-      ///Path of the folder name
+  getLocalPath() async {
+    final directory = await getExternalStorageDirectory();
 
-      Directory dir = await getApplicationDocumentsDirectory();
+    return directory!.path;
+  }
 
-
-      // final path = Directory("storage/emulated/0/$folderName");
-      String localPath = '${dir.path}${Platform.pathSeparator}Download';
-
-      final savedDir = Directory(localPath);
-
-      bool hasExisted = await savedDir.exists();
-
-      if (!hasExisted) {
-        savedDir.create();
-      }
-
-      print(localPath);
-      print('localPath');
-
-      return localPath;
-
-      // if ((await path.exists())) {
-      // } else {
-      //   path.create();
-      // }
-      // return path.path;
-    } catch (e) {
-      // print(e.message);
-    }
+  localFile(type) async {
+    final path = await getLocalPath();
+    return File('$path/$type.$fileExtension');
   }
 
   /// saveFile saves the downloaded file into the external storage
@@ -204,18 +217,42 @@ class PermissionManager {
       /// to save the file the permission to write in external storage should be given
       if (PermissionManager().requestStatus == RequestStatus.denied) {
         showSnack('Permission denied for storage', context);
+
       } else {
+
         /// path of the folder where the imports will be saved
-        final path = await createFolder();
+        // final path = await createFolder();
 
-        exportFile = await File('$path/$type.$fileName')
-            .writeAsBytes(base64decode, flush: true);
+        final file = await localFile(type);
 
-        if (fileName == 'jpg' || fileName == 'jpeg') {
-          jpgFileName = '$path/$type.$fileName';
+        print(file);
+        print('ye h path');
+
+        print(base64decode);
+        print('base64decode');
+
+        exportFile = await file.writeAsBytes(base64decode, flush: true);
+
+        print(exportFile);
+        print('exportFile');
+
+        if (fileExtension == 'jpg' || fileExtension == 'jpeg') {
+          final path = await getLocalPath();
+
+          print(path);
+          print('ye bhi path h');
+
+          jpgFileName = '$path/$type.$fileExtension';
+          print(jpgFileName);
+          print('ye jpg file name h');
+          print(isPDFGen);
+
           if (isPDFGen) {
             final pdf = pw.Document();
             final image = pw.MemoryImage(File(jpgFileName).readAsBytesSync());
+
+            print(image.bytes);
+            print("image h bhaeee");
 
             pdf.addPage(
               pw.Page(
@@ -232,7 +269,8 @@ class PermissionManager {
         }
 
         /// Snackbar alert is shown once the file is created
-        showSnack('Downloaded $type', context);
+        showSnack('Downloaded $type.$fileExtension', context);
+
       }
     } catch (e) {
       // print(e.message);
