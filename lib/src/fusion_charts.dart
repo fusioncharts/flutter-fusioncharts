@@ -238,7 +238,7 @@ class _FusionChartsState extends State<FusionCharts> {
                 ),
                 android: AndroidInAppWebViewOptions(
                   defaultFixedFontSize: 10,
-                  useWideViewPort: true,
+                  useWideViewPort: false,
                   defaultFontSize: 10,
                   minimumLogicalFontSize: 50,
                   useHybridComposition: true,
@@ -269,7 +269,7 @@ class _FusionChartsState extends State<FusionCharts> {
                     handlerName: 'fusionChartEventHandler',
                     callback: (args) {
                       print('FC evenHandler cons: $args');
-                      if (widget.fusionChartEvent != null) {
+                      if (widget.fusionChartEvent != null){
                         widget.fusionChartEvent!(args[0], args[1]);
                       }
                     });

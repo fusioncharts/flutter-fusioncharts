@@ -118,6 +118,38 @@ class PermissionManager {
         });""");
       return;
     } else {
+      print(request.url.toString());
+      var blobUrl = request.url.toString().split('/')[1];
+
+      print(blobUrl);
+      print(request.url.toString().split('/')[1]);
+
+          var data = await fcController.executeScript("""
+              "javascript: var xhr = new XMLHttpRequest();" +
+              "xhr.open('GET', '"+ '$blobUrl' +"', true);" +
+              "xhr.setRequestHeader('Content-type','application/pdf');" +
+              "xhr.responseType = 'blob';" +
+              "xhr.onload = function(e) {" +
+              "    if (this.status == 200) {" +
+              "        var blobPdf = this.response;" +
+              "        var reader = new FileReader();" +
+              "        reader.readAsDataURL(blobPdf);" +
+              "        reader.onloadend = function() {" +
+              "            base64data = reader.result;" +
+              "            Android.getBase64FromBlobData(base64data);" +
+              "        }" +
+              "    }" +
+              "};" +
+              "xhr.send();"
+              """
+          );
+
+
+          print(data);
+          print('converted blob data');
+
+
+
       base64decode = base64.decode(request.url.toString().split('/')[1]);
     }
 
@@ -132,16 +164,34 @@ class PermissionManager {
   createFolder() async {
     try {
       ///This is the name of the folder that is created on the device when user exports charts
-      String folderName = "fusionCharts";
+      // String folderName = "fusionCharts";
 
       ///Path of the folder name
-      final path = Directory("storage/emulated/0/$folderName");
 
-      if ((await path.exists())) {
-      } else {
-        path.create();
+      Directory dir = await getApplicationDocumentsDirectory();
+
+
+      // final path = Directory("storage/emulated/0/$folderName");
+      String localPath = '${dir.path}${Platform.pathSeparator}Download';
+
+      final savedDir = Directory(localPath);
+
+      bool hasExisted = await savedDir.exists();
+
+      if (!hasExisted) {
+        savedDir.create();
       }
-      return path.path;
+
+      print(localPath);
+      print('localPath');
+
+      return localPath;
+
+      // if ((await path.exists())) {
+      // } else {
+      //   path.create();
+      // }
+      // return path.path;
     } catch (e) {
       // print(e.message);
     }
@@ -189,3 +239,4 @@ class PermissionManager {
     }
   }
 }
+

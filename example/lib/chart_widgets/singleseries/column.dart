@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
+import 'package:flutter_fusioncharts_example/button.dart';
 import '../../constants.dart';
 
 class ColumnChart extends StatefulWidget {
@@ -26,6 +27,7 @@ class _ColumnChartState extends State<ColumnChart> {
       "numberSuffix": "K",
       "theme": "candy",
       "exportEnabled": 1,
+
     };
 
     List<dynamic> chartData = [
@@ -69,9 +71,18 @@ class _ColumnChartState extends State<ColumnChart> {
             onPressed: () => Navigator.of(context).pop()),
         title: const Text('Fusion Charts - Column'),
       ),
-      body: SizedBox(
-          height: MediaQuery.of(context).size.height / 2,
-          child: _fusionChart2D),
+      body: Column(
+        children: [
+          SizedBox(
+              height: MediaQuery.of(context).size.height / 2,
+              child: _fusionChart2D),
+          PrimaryButton(onPressed: (){
+            fusionChartsController.executeScript("""globalFusionCharts.exportChart({
+        "exportFormat": "pdf",
+     });""");
+          }, title: 'Download')
+        ],
+      ),
     );
   }
 }
