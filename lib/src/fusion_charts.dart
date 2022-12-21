@@ -151,10 +151,7 @@ class _FusionChartsState extends State<FusionCharts> {
       """;
       }
     }
-    // Map<String, dynamic> x = {};
-    // x = widget.dataSource;
-    // x["data"] = "dataStore.createDataTable(data, schema)";
-    // String xt = jsonEncode(x);
+
     String renderChartString = '';
 
     if (widget.type == 'timeseries') {
@@ -194,10 +191,11 @@ class _FusionChartsState extends State<FusionCharts> {
         renderAt: "chart-container",
         dataFormat: "json",
         dataSource: $jsonDataSource   
-      });
+      })
       
       fusionChart.render();
       globalFusionCharts = fusionChart;
+    });
 
     """;
     }
@@ -259,7 +257,8 @@ class _FusionChartsState extends State<FusionCharts> {
               },
               onDownloadStartRequest: (InAppWebViewController controller,
                   DownloadStartRequest request) async {
-                PermissionManager().decode(request, widget.type, context);
+                PermissionManager().decode(
+                    request, widget.type, context, _fusionChartsController);
                 String url = (await controller.getUrl()).toString();
               },
               onWebViewCreated: (InAppWebViewController controller) {

@@ -14,6 +14,8 @@ class ColumnChartExport extends StatefulWidget {
 class _ColumnChartExportState extends State<ColumnChartExport> {
   late FusionCharts _fusionChart2D;
   late FusionCharts _fusionChart3D;
+  FusionChartsController fcController2d = FusionChartsController();
+  FusionChartsController fcController3d = FusionChartsController();
 
   @override
   void initState() {
@@ -26,12 +28,10 @@ class _ColumnChartExportState extends State<ColumnChartExport> {
       "xAxisName": "Country",
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
-      "theme": "carbon",
-      
+      "theme": "fusion",
       "exportEnabled": "1",
       "exportMode": "client"
     };
-    FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {
       "chart": chart,
       "data": ChartData.chartData
@@ -43,7 +43,7 @@ class _ColumnChartExportState extends State<ColumnChartExport> {
         width: "100%",
         height: "100%",
         fusionChartEvent: (a, b) => {},
-        fusionChartsController: fusionChartsController,
+        fusionChartsController: fcController2d,
         licenseKey: licenseKey);
     _fusionChart3D = FusionCharts(
         dataSource: dataSource,
@@ -51,7 +51,7 @@ class _ColumnChartExportState extends State<ColumnChartExport> {
         width: "100%",
         height: "100%",
         fusionChartEvent: (a, b) => callBackFromPlugin(a, b),
-        fusionChartsController: fusionChartsController,
+        fusionChartsController: fcController3d,
         licenseKey: licenseKey);
   }
 

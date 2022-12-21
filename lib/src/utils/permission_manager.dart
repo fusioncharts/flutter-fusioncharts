@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:pdf/widgets.dart' as pw;
 
 enum RequestStatus { init, granted, inProgress, denied }
 
@@ -19,6 +20,8 @@ class PermissionManager {
   PermissionManager._internal();
 
   bool requestGranted = false;
+  bool isPDFGen = false;
+  String jpgFileName = '';
   Directory? directory;
   RequestStatus requestStatus = RequestStatus.init;
 
@@ -86,7 +89,7 @@ class PermissionManager {
 
   late Uint8List base64decode;
   late String fileName;
-  var data;
+  late File exportFile;
 
   /// showSnack is the funtion that is invoked when the file is downloaded or when the
   /// download permission is not given and the user is trying to export the file
@@ -103,14 +106,17 @@ class PermissionManager {
   }
 
   ///The file name variable is initialised with suggested file name from the download request callback of the in app web view
-  decode(request, type, context) {
+  decode(request, type, context, fcController) async {
     fileName = request.suggestedFilename.toString().split('.')[1];
 
-    if (fileName == 'svg' ||
-        fileName == 'png' ||
-        fileName == 'jpg' ||
-        fileName == 'pdf') {
+    if (fileName == 'svg' || fileName == 'png' || fileName == 'jpg') {
       base64decode = base64.decode(request.url.toString().split(';base64,')[1]);
+    } else if (fileName == 'pdf') {
+      isPDFGen = true;
+      fcController.executeScript("""globalFusionCharts.exportChart({
+        "exportFormat": "jpg",
+        });""");
+      return;
     } else {
       base64decode = base64.decode(request.url.toString().split('/')[1]);
     }
@@ -120,7 +126,7 @@ class PermissionManager {
     log(request.toString());
 
     ///Save file is called to save the file after decoding the data
-    saveFile(context, type);
+    await saveFile(context, type);
   }
 
   createFolder() async {
@@ -152,8 +158,28 @@ class PermissionManager {
         /// path of the folder where the imports will be saved
         final path = await createFolder();
 
-        data = await File('$path/$type.$fileName')
+        exportFile = await File('$path/$type.$fileName')
             .writeAsBytes(base64decode, flush: true);
+
+        if (fileName == 'jpg' || fileName == 'jpeg') {
+          jpgFileName = '$path/$type.$fileName';
+          if (isPDFGen) {
+            final pdf = pw.Document();
+            final image = pw.MemoryImage(File(jpgFileName).readAsBytesSync());
+
+            pdf.addPage(
+              pw.Page(
+                build: (pw.Context context) => pw.Center(
+                  child: pw.Image(image),
+                ),
+              ),
+            );
+            final file = File('$path/$type.pdf');
+            await file.writeAsBytes(await pdf.save());
+            await exportFile.delete();
+            isPDFGen = false;
+          }
+        }
 
         /// Snackbar alert is shown once the file is created
         showSnack('Downloaded $type', context);
