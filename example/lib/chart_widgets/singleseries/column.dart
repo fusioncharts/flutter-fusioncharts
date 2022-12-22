@@ -26,8 +26,6 @@ class _ColumnChartState extends State<ColumnChart> {
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
       "theme": "candy",
-      "exportEnabled": "1",
-
     };
 
     List<dynamic> chartData = [
@@ -76,11 +74,6 @@ class _ColumnChartState extends State<ColumnChart> {
           SizedBox(
               height: MediaQuery.of(context).size.height / 2,
               child: _fusionChart2D),
-          PrimaryButton(onPressed: (){
-            fusionChartsController.executeScript("""globalFusionCharts.exportChart({
-        "exportFormat": "pdf",
-     });""");
-          }, title: 'Download')
         ],
       ),
     );

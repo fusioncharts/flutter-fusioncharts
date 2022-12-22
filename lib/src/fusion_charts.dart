@@ -226,7 +226,9 @@ class _FusionChartsState extends State<FusionCharts> {
     """;
 
     isLocal = widget.isLocal;
-    if (("${widget.type}0000.substring(0, 4)}") == 'maps') isLocal = false;
+    if ((('${widget.type}.0000')).trim().substring(0, 4) == 'maps') {
+      isLocal = false;
+    }
 
     setState(() {
       gotData = true;
