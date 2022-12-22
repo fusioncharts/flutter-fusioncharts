@@ -29,22 +29,21 @@ import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 ```
 
 ### Download Fusion Charts JavaScript package
-<!-- Script requirments:
-- accept parameter to identify download version.
-- Download the zip file from cdn
-- Unzip and move the downloaded folder to the app root folder
-- Update pubspec.yaml file to include all FC package file asset dependencies under the asset tag -->
+Download FusionCharts core library from the link below (based on the FusionChart version you plan to use)
+- [Version 3.19](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.19-fusioncharts-core.zip)
+- [Version 3.18](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.18-fusioncharts-core.zip)
+- [Version 3.17](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.17-fusioncharts-core.zip)
 
-Add the downloaded folder files as assets dependency within your pubspec.yaml file
+
+- Add the download & extracted folder `fusioncharts` at your app root folder
+- Add the dependencies for the files in you pubspec.yaml as asset dependencies
 
 ```yaml
   assets:
+    - .env       # .env file to store license key 
     - fusioncharts/integrate/index_local.html
+    - fusioncharts/integrate/index_cdn.html
     - fusioncharts/integrate/index.js
-    - fusioncharts/core/maps/fusioncharts.usa.js
-    - fusioncharts/core/maps/fusioncharts.india.js
-    - fusioncharts/core/maps/readme.txt
-    - fusioncharts/core/maps/fusioncharts.world.js
     - fusioncharts/core/fusioncharts.charts.js
     - fusioncharts/core/fusioncharts.overlappedbar2d.js
     - fusioncharts/core/fusioncharts.timeseries.js
@@ -59,14 +58,7 @@ Add the downloaded folder files as assets dependency within your pubspec.yaml fi
     - fusioncharts/core/fusioncharts.gantt.js
     - fusioncharts/core/fusioncharts.overlappedcolumn2d.js
     - fusioncharts/core/fusioncharts.vml.js
-    - fusioncharts/core/themes/fusioncharts.theme.fusion.js
-    - fusioncharts/core/themes/fusioncharts.theme.umber.js
-    - fusioncharts/core/themes/fusioncharts.theme.candy.js
-    - fusioncharts/core/themes/fusioncharts.theme.zune.js
-    - fusioncharts/core/themes/fusioncharts.theme.ocean.js
-    - fusioncharts/core/themes/fusioncharts.theme.gammel.js
-    - fusioncharts/core/themes/fusioncharts.theme.fint.js
-    - fusioncharts/core/themes/fusioncharts.theme.carbon.js
+    - fusioncharts/core/fusioncharts.accessibility.js  # Not applicable for V3.17
 ```
 
 
@@ -103,6 +95,15 @@ android:requestLegacyExternalStorage="true"
 
 > info.plist: Add below entry
 ``` 
+<key>NSAppTransportSecurity</key>
+<dict>
+  <key>NSAllowsArbitraryLoads</key>
+  <true/>
+  <key>NSAllowsArbitraryLoadsInWebContent</key>
+  <true/>
+  <key>NSAllowsLocalNetworking</key>
+  <true/>
+</dict>
 <key>NSPhotoLibraryUsageDescription</key>
     <string>Fusion Charts requires media storage permission to enable charts export feature.</string>
 
@@ -235,7 +236,7 @@ Continuing with above example, please note the instance of FusionChartController
 /// To register for new events, simply call method like so
   fusionChartsController.addEvents('chartClick,dataLabelRollClick');
 /// To unregister existing events, simply call method like so
-  fusionChartsController.addEvents('chartClick,dataLabelRollClick');
+  fusionChartsController.removeEvents('chartClick,dataLabelRollClick');
 /// To execute API calls, simply call method like so
 String js =
   String js= 'globalFusionCharts.chartType() == "doughnut3d" ? globalFusionCharts.chartType("doughnut2d") : globalFusionCharts.chartType("doughnut3d")';
@@ -267,4 +268,8 @@ _fusionChart2D = FusionCharts(
 - Visit FusionCharts site for chart configuration and usage [information ](https://www.fusioncharts.com/dev/fusioncharts)
 - Reach out to Fusion Chart [sales](https://www.fusioncharts.com/contact-sales) & [support](https://www.fusioncharts.com/contact-support)
 
---- 
+
+# Known Issues
+Chart export functionality is partially working for few mime-types. Fixing in progress.
+
+---

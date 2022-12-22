@@ -1,7 +1,7 @@
 name: flutter_fusioncharts
-description: A new Flutter plugin project.
+description: FusionCharts is a JavaScript charting library providing 100+ charts and 2,000+ maps for your web and mobile applications. This plugin provides Flutter interface which integrates with FC Core JavaScript library using webview.
 version: 0.0.1
-homepage:
+homepage: https://www.fusioncharts.com/
 
 environment:
   sdk: ">=2.18.4 <3.0.0"
@@ -19,4 +19,3 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-

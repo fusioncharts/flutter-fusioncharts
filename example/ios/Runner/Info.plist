@@ -36,7 +36,7 @@
 		<true/>
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Fusion Charts requires media storage permission to enable charts export feature.</string>
+	<string>FusionCharts requires media storage permission to enable charts export feature.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
