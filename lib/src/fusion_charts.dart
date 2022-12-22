@@ -11,18 +11,18 @@ import './fusion_charts_controller.dart';
 class FusionCharts extends StatefulWidget {
   const FusionCharts(
       {required this.dataSource,
-      required this.type,
-      this.height = "",
-      this.width = "",
-      this.events = const [],
-      this.fusionChartEvent,
-      this.fusionChartsController,
-      this.streamController,
-      this.timeSeriesSchema,
-      this.timeSeriesData,
-      this.isLocal = true,
-      this.licenseKey,
-      super.key});
+        required this.type,
+        this.height = "",
+        this.width = "",
+        this.events = const [],
+        this.fusionChartEvent,
+        this.fusionChartsController,
+        this.streamController,
+        this.timeSeriesSchema,
+        this.timeSeriesData,
+        this.isLocal = true,
+        this.licenseKey,
+        super.key});
 
   /// dataSource is used to supply the data to the FusionCharts JS library
   /// Typically the dousource comprises of 'chart' (Map) and 'dataSet' (List) which
@@ -117,16 +117,13 @@ class _FusionChartsState extends State<FusionCharts> {
 
     print('widget.dataSource');
 
-
     if (widget.dataSource["chart"] != null) {
-
       print(widget.dataSource["chart"]["exportEnabled"] == "1");
 
       if (widget.dataSource["chart"]["exportEnabled"] == "1") {
         ///when the export is set to 1, the user will get an export button on the top right corner of the chart
         ///The user will get the permission popup when the export is set to 1
         ///if the permission is granted the exported file will be saved in the fusion charts folder in the internal storage
-
 
         print(widget.dataSource["chart"]["exportEnabled"]);
 
@@ -242,57 +239,47 @@ class _FusionChartsState extends State<FusionCharts> {
   Widget build(BuildContext context) {
     return gotData
         ? Scaffold(
-            body: InAppWebView(
-              initialOptions: InAppWebViewGroupOptions(
-                crossPlatform: InAppWebViewOptions(
-                  useOnDownloadStart: true,
-                  javaScriptCanOpenWindowsAutomatically: true,
-                  javaScriptEnabled: true,
-                  useShouldOverrideUrlLoading: true,
-                ),
-                android: AndroidInAppWebViewOptions(
-                  defaultFixedFontSize: 10,
-                  useWideViewPort: false,
-                  defaultFontSize: 10,
-                  minimumLogicalFontSize: 50,
-                  useHybridComposition: true,
-                ),
-                ios: IOSInAppWebViewOptions(
-                  enableViewportScale: true,
-                  sharedCookiesEnabled: true,
-                ),
-              ),
-              initialFile: widget.isLocal
-                  ? '$fcHome/integrate/index_local.html'
-                  : '$fcHome/integrate/index_cdn.html',
-              onLoadStop: (controller, url) async {
-                await controller.evaluateJavascript(source: chartString);
-                await controller.evaluateJavascript(source: eventString);
-              },
-              onDownloadStartRequest: (InAppWebViewController controller,
-                  DownloadStartRequest request) async {
-                PermissionManager().decode(
-                    request, widget.type, context, _fusionChartsController);
-                String url = (await controller.getUrl()).toString();
-              },
-              onWebViewCreated: (InAppWebViewController controller) {
-                _webViewController = controller;
-                _fusionChartsController
-                    .setWebViewController(_webViewController);
-                controller.addJavaScriptHandler(
-                    handlerName: 'fusionChartEventHandler',
-                    callback: (args) {
-                      print('FC evenHandler cons: $args');
-                      if (widget.fusionChartEvent != null){
-                        widget.fusionChartEvent!(args[0], args[1]);
-                      }
-                    });
-              },
-              onConsoleMessage: (controller, message) {
-                print('Console Message: ' + message.toString());
-              },
-            ),
-          )
+      body: InAppWebView(
+        initialSettings: InAppWebViewSettings(
+          useOnDownloadStart: true,
+          javaScriptCanOpenWindowsAutomatically: true,
+          javaScriptEnabled: true,
+          useShouldOverrideUrlLoading: true,
+          useWideViewPort: false,
+          enableViewportScale: true,
+          useHybridComposition: true,
+          sharedCookiesEnabled: true,
+        ),
+        initialFile: widget.isLocal
+            ? '$fcHome/integrate/index_local.html'
+            : '$fcHome/integrate/index_cdn.html',
+        onLoadStop: (controller, url) async {
+          await controller.evaluateJavascript(source: chartString);
+        },
+        onDownloadStartRequest: (InAppWebViewController controller,
+            DownloadStartRequest request) async {
+          PermissionManager().decode(
+              request, widget.type, context, _fusionChartsController);
+          String url = (await controller.getUrl()).toString();
+        },
+        onWebViewCreated: (InAppWebViewController controller) {
+          _webViewController = controller;
+          _fusionChartsController
+              .setWebViewController(_webViewController);
+          controller.addJavaScriptHandler(
+              handlerName: 'fusionChartEventHandler',
+              callback: (args) {
+                print('FC evenHandler cons: $args');
+                if (widget.fusionChartEvent != null) {
+                  widget.fusionChartEvent!(args[0], args[1]);
+                }
+              });
+        },
+        onConsoleMessage: (controller, message) {
+          print('Console Message: ' + message.toString());
+        },
+      ),
+    )
         : const SizedBox();
   }
 }

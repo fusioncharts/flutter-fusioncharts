@@ -160,53 +160,58 @@ class PermissionManager {
     await saveFile(context, type);
   }
 
-  // createFolder() async {
-  //   try {
-  //     ///This is the name of the folder that is created on the device when user exports charts
-  //     // String folderName = "fusionCharts";
-  //
-  //     ///Path of the folder name
-  //
-  //     Directory dir = await getApplicationDocumentsDirectory();
-  //
-  //
-  //     // final path = Directory("storage/emulated/0/$folderName");
-  //     final localPath = dir.path;
-  //
-  //     final savedDir = Directory(localPath);
-  //
-  //     bool hasExisted = await savedDir.exists();
-  //
-  //
-  //     print(hasExisted);
-  //
-  //     if (!hasExisted) {
-  //       savedDir.create();
-  //     }
-  //
-  //     print(localPath);
-  //     print('localPath');
-  //
-  //     return savedDir.path;
-  //
-  //     // if ((await path.exists())) {
-  //     // } else {
-  //     //   path.create();
-  //     // }
-  //     // return path.path;
-  //   } catch (e) {
-  //     // print(e.message);
-  //   }
-  // }
+  createFolder() async {
+    try {
+      ///This is the name of the folder that is created on the device when user exports charts
+      String folderName = "fusionCharts";
+
+      ///Path of the folder name
+
+      // Directory dir = await getLocalPath();
+
+
+      // final path = Directory("storage/emulated/0/$folderName");
+      // final localPath = dir.path;
+
+      final savedDir = Platform.isAndroid?Directory("storage/emulated/0/$folderName"):getLocalPath();
+
+      // bool hasExisted = await savedDir.exists();
+      //
+      //
+      // print(hasExisted);
+      //
+      // if (!hasExisted) {
+      //   savedDir.create();
+      // }
+      //
+      // print(localPath);
+      // print('localPath');
+
+      // return savedDir.path;
+
+      if ((await savedDir.exists())) {
+
+        print('exits');
+
+      } else {
+        print('bn rhi h');
+        savedDir.create();
+      }
+      print(savedDir.path);
+      print('savedDir.path');
+      return savedDir.path;
+    } catch (e) {
+      // print(e.message);
+    }
+  }
 
   getLocalPath() async {
-    final directory = await getExternalStorageDirectory();
-
-    return directory!.path;
+    final directory = await getApplicationDocumentsDirectory();
+    return directory;
   }
 
   localFile(type) async {
-    final path = await getLocalPath();
+    final path = await createFolder();
     return File('$path/$type.$fileExtension');
   }
 
@@ -221,38 +226,40 @@ class PermissionManager {
       } else {
 
         /// path of the folder where the imports will be saved
-        // final path = await createFolder();
+        final file = await createFolder();
 
-        final file = await localFile(type);
+        // final file = await localFile(type);
 
         print(file);
-        print('ye h path');
+        print('this is path');
 
         print(base64decode);
         print('base64decode');
 
-        exportFile = await file.writeAsBytes(base64decode, flush: true);
+        exportFile = await File('$file/$type.$fileExtension').writeAsBytes(base64decode, flush: true);
 
         print(exportFile);
         print('exportFile');
 
         if (fileExtension == 'jpg' || fileExtension == 'jpeg') {
-          final path = await getLocalPath();
+          // final path = await getLocalPath();
+          final path = await createFolder();
 
           print(path);
-          print('ye bhi path h');
+          print('this is also a path');
 
           jpgFileName = '$path/$type.$fileExtension';
           print(jpgFileName);
-          print('ye jpg file name h');
+          print('this is jbp file name');
           print(isPDFGen);
 
           if (isPDFGen) {
             final pdf = pw.Document();
             final image = pw.MemoryImage(File(jpgFileName).readAsBytesSync());
+            fileExtension = "pdf";
 
             print(image.bytes);
-            print("image h bhaeee");
+            print("image h ");
 
             pdf.addPage(
               pw.Page(
@@ -261,7 +268,7 @@ class PermissionManager {
                 ),
               ),
             );
-            final file = File('$path/$type.pdf');
+            final file = File('$path/$type.$fileExtension');
             await file.writeAsBytes(await pdf.save());
             await exportFile.delete();
             isPDFGen = false;
@@ -269,6 +276,9 @@ class PermissionManager {
         }
 
         /// Snackbar alert is shown once the file is created
+
+
+
         showSnack('Downloaded $type.$fileExtension', context);
 
       }
