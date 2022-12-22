@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/src/utils/permission_manager.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'dart:convert';
-import './utils/constants.dart';
 import './fusion_charts_controller.dart';
+
+const String fcHome = 'fusioncharts';
 
 /// FusionCharts is the widget that renders FusionCharts. The user should
 /// instantiate this widget and include within the UI widget tree.
@@ -79,6 +80,7 @@ class _FusionChartsState extends State<FusionCharts> {
   String json = "";
   String eventString = "";
   StreamController<dynamic>? _streamController;
+  bool isLocal = true;
 
   /// _webViewController manages integration with JS library which uses webview plugin
   late InAppWebViewController _webViewController;
@@ -117,16 +119,13 @@ class _FusionChartsState extends State<FusionCharts> {
 
     print('widget.dataSource');
 
-
     if (widget.dataSource["chart"] != null) {
-
       print(widget.dataSource["chart"]["exportEnabled"] == "1");
 
       if (widget.dataSource["chart"]["exportEnabled"] == "1") {
         ///when the export is set to 1, the user will get an export button on the top right corner of the chart
         ///The user will get the permission popup when the export is set to 1
         ///if the permission is granted the exported file will be saved in the fusion charts folder in the internal storage
-
 
         print(widget.dataSource["chart"]["exportEnabled"]);
 
@@ -226,10 +225,11 @@ class _FusionChartsState extends State<FusionCharts> {
 
     """;
 
+    isLocal = widget.isLocal;
+    if (("${widget.type}0000.substring(0, 4)}") == 'maps') isLocal = false;
+
     setState(() {
       gotData = true;
-
-      /// got data is set to true after setting data into the chartString variable
     });
   }
 
@@ -262,7 +262,7 @@ class _FusionChartsState extends State<FusionCharts> {
                   sharedCookiesEnabled: true,
                 ),
               ),
-              initialFile: widget.isLocal
+              initialFile: isLocal
                   ? '$fcHome/integrate/index_local.html'
                   : '$fcHome/integrate/index_cdn.html',
               onLoadStop: (controller, url) async {

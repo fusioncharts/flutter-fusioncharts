@@ -58,7 +58,7 @@ class PermissionManager {
         directory = await getExternalStorageDirectory();
         if (directory == null) return RequestStatus.denied;
         String newPath = "";
-        print(directory);
+
         List<String> paths = directory!.path.split("/");
         for (int x = 1; x < paths.length; x++) {
           String folder = paths[x];
@@ -82,7 +82,7 @@ class PermissionManager {
         }
       }
     } catch (e) {
-      print(e);
+//      print(e);
     }
     return requestStatus;
   }
@@ -120,12 +120,7 @@ class PermissionManager {
         });""");
       return;
     } else {
-      print(request);
-      print(request.url.toString());
       var blobUrl = request.url.toString().split('/')[1];
-
-      print(blobUrl);
-      print(request.url.toString().split('/')[1]);
 
       String xhr = """
               "javascript: var xhr = new XMLHttpRequest();" +
@@ -146,18 +141,12 @@ class PermissionManager {
               "};" +
               "xhr.send();"
               """;
-      print(xhr);
+
+      ///The file name is checked accordingly and the data that comes with it is decoded accordingly
+
       var data = await fcController.executeScript(xhr);
-
-      print(data);
-      print('converted blob data');
-
       base64decode = base64.decode(request.url.toString().split('/')[1]);
     }
-
-    ///The file name is checked accordingly and the data that comes with it is decoded accordingly
-    log(request.url.toString());
-    log(request.toString());
 
     ///Save file is called to save the file after decoding the data
     await saveFile(context, type);
@@ -170,38 +159,14 @@ class PermissionManager {
 
       ///Path of the folder name
 
-      // Directory dir = await getLocalPath();
-
-
-      // final path = Directory("storage/emulated/0/$folderName");
-      // final localPath = dir.path;
-
-      final savedDir = Platform.isAndroid?Directory("storage/emulated/0/$folderName"):getLocalPath();
-
-      // bool hasExisted = await savedDir.exists();
-      //
-      //
-      // print(hasExisted);
-      //
-      // if (!hasExisted) {
-      //   savedDir.create();
-      // }
-      //
-      // print(localPath);
-      // print('localPath');
-
-      // return savedDir.path;
+      final savedDir = Platform.isAndroid
+          ? Directory("storage/emulated/0/$folderName")
+          : getLocalPath();
 
       if ((await savedDir.exists())) {
-
-        print('exits');
-
       } else {
-        print('bn rhi h');
         savedDir.create();
       }
-      print(savedDir.path);
-      print('savedDir.path');
       return savedDir.path;
     } catch (e) {
       // print(e.message);
@@ -229,38 +194,17 @@ class PermissionManager {
         /// path of the folder where the imports will be saved
         final file = await createFolder();
 
-        // final file = await localFile(type);
-
-        print(file);
-        print('this is path');
-
-        print(base64decode);
-        print('base64decode');
-
-        exportFile = await File('$file/$type.$fileExtension').writeAsBytes(base64decode, flush: true);
-
-        print(exportFile);
-        print('exportFile');
-
+        exportFile = await File('$file/$type.$fileExtension')
+            .writeAsBytes(base64decode, flush: true);
         if (fileExtension == 'jpg' || fileExtension == 'jpeg') {
-          // final path = await getLocalPath();
           final path = await createFolder();
 
-          print(path);
-          print('this is also a path');
-
           jpgFileName = '$path/$type.$fileExtension';
-          print(jpgFileName);
-          print('this is jbp file name');
-          print(isPDFGen);
 
           if (isPDFGen) {
             final pdf = pw.Document();
             final image = pw.MemoryImage(File(jpgFileName).readAsBytesSync());
             fileExtension = "pdf";
-
-            print(image.bytes);
-            print("image h ");
 
             pdf.addPage(
               pw.Page(
@@ -275,10 +219,6 @@ class PermissionManager {
             isPDFGen = false;
           }
         }
-
-        /// Snackbar alert is shown once the file is created
-
-
 
         showSnack('Downloaded $type.$fileExtension', context);
       }
