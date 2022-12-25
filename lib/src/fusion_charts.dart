@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/src/utils/permission_manager.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'dart:convert';
+import 'dart:collection';
 import './fusion_charts_controller.dart';
 
 const String fcHome = 'fusioncharts';
@@ -245,28 +246,34 @@ class _FusionChartsState extends State<FusionCharts> {
     return gotData
         ? Scaffold(
             body: InAppWebView(
-              initialOptions: InAppWebViewGroupOptions(
-                crossPlatform: InAppWebViewOptions(
-                  useOnDownloadStart: true,
-                  javaScriptCanOpenWindowsAutomatically: true,
-                  javaScriptEnabled: true,
-                  useShouldOverrideUrlLoading: true,
-                ),
-                android: AndroidInAppWebViewOptions(
-                  defaultFixedFontSize: 10,
-                  useWideViewPort: false,
-                  defaultFontSize: 10,
-                  minimumLogicalFontSize: 50,
-                  useHybridComposition: true,
-                ),
-                ios: IOSInAppWebViewOptions(
-                  enableViewportScale: true,
-                  sharedCookiesEnabled: true,
-                ),
+              initialSettings: InAppWebViewSettings(
+                useOnDownloadStart: true,
+                javaScriptCanOpenWindowsAutomatically: true,
+                javaScriptEnabled: true,
+                useShouldOverrideUrlLoading: true,
+                defaultFixedFontSize: 10,
+                useWideViewPort: false,
+                defaultFontSize: 10,
+                minimumLogicalFontSize: 50,
+                useHybridComposition: true,
+                enableViewportScale: true,
+                sharedCookiesEnabled: true,
               ),
               initialFile: isLocal
                   ? '$fcHome/integrate/index_local.html'
                   : '$fcHome/integrate/index_cdn.html',
+              initialUserScripts: UnmodifiableListView<UserScript>([
+                UserScript(
+                    source: chartString,
+                    injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START),
+                UserScript(
+                    source: chartString,
+                    injectionTime: UserScriptInjectionTime.AT_DOCUMENT_END),
+              ]),
+              onCreateWindow: (controller, createWindowAction) async {
+                await controller.evaluateJavascript(source: chartString);
+                return;
+              },
               onLoadStop: (controller, url) async {
                 await controller.evaluateJavascript(source: chartString);
               },
@@ -274,9 +281,9 @@ class _FusionChartsState extends State<FusionCharts> {
                   DownloadStartRequest request) async {
                 PermissionManager().decode(
                     request, widget.type, context, _fusionChartsController);
-                String url = (await controller.getUrl()).toString();
+                //String url = (await controller.getUrl()).toString();
               },
-              onWebViewCreated: (InAppWebViewController controller) {
+              onWebViewCreated: (InAppWebViewController controller) async {
                 _webViewController = controller;
                 _fusionChartsController
                     .setWebViewController(_webViewController);
