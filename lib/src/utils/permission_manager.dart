@@ -120,32 +120,41 @@ class PermissionManager {
         });""");
       return;
     } else {
-      var blobUrl = request.url.toString().split('/')[1];
+      // var blobUrl = request.url.toString().split('/')[1];
 
-      String xhr = """
-              "javascript: var xhr = new XMLHttpRequest();" +
-              "xhr.open('GET', '"+ '$blobUrl' +"', true);" +
-              "xhr.setRequestHeader('Content-type','application/pdf');" +
-              "xhr.responseType = 'blob';" +
-              "xhr.onload = function(e) {" +
-              "    if (this.status == 200) {" +
-              "        var blobPdf = this.response;" +
-              "        var reader = new FileReader();" +
-              "        reader.readAsDataURL(blobPdf);" +
-              "        reader.onloadend = function() {" +
-              "            base64data = reader.result;" +
-              "            Android.getBase64FromBlobData(base64data);" +
-              "           console.log(base64data)
-              "        }" +
-              "    }" +
-              "};" +
-              "xhr.send();"
+      String blobUrl = request.url.toString();
+      if (blobUrl.contains('blob')) {
+        //   base64decode = base64.decode(request.url.toString().split(';base64,')[1]);
+        String xhr = """
+            var xhr = new XMLHttpRequest(); 
+              xhr.responseType = 'blob';
+             xhr.onload = function() {
+                  var recoveredBlob = xhr.response;
+
+                  var reader = new FileReader;
+
+                  reader.onload = function() {
+                    var blobAsDataUrl = reader.result;
+                    window.location = blobAsDataUrl;
+                  };
+
+                  reader.readAsDataURL(recoveredBlob);
+                };
+
+                xhr.open('GET', '$blobUrl');
+                xhr.send();
               """;
 
-      ///The file name is checked accordingly and the data that comes with it is decoded accordingly
+        ///The file name is checked accordingly and the data that comes with it is decoded accordingly
 
-      var data = await fcController.executeScript(xhr);
-      base64decode = base64.decode(request.url.toString().split('/')[1]);
+        await fcController.executeScript(xhr);
+        return;
+        // base64decode = base64.decode(request.url.toString().split('/')[1]);
+      } else {
+        base64decode =
+            base64.decode(request.url.toString().split(';base64,')[1]);
+        print(base64decode);
+      }
     }
 
     ///Save file is called to save the file after decoding the data
@@ -160,14 +169,16 @@ class PermissionManager {
       ///Path of the folder name
 
       final savedDir = Platform.isAndroid
-          ? Directory("storage/emulated/0/$folderName")
-          : getLocalPath();
+          ? await getExternalStorageDirectory()
+          : await getApplicationDocumentsDirectory();
+      return savedDir?.path;
+      //final savedDir = getLocalPath();
 
-      if ((await savedDir.exists())) {
-      } else {
-        savedDir.create();
-      }
-      return savedDir.path;
+      //   if ((await savedDir.exists())) {
+      //   } else {
+      //     savedDir.create();
+      //   }
+      //   return savedDir.path;
     } catch (e) {
       // print(e.message);
     }

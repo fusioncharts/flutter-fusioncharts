@@ -274,7 +274,7 @@ class _FusionChartsState extends State<FusionCharts> {
                   DownloadStartRequest request) async {
                 PermissionManager().decode(
                     request, widget.type, context, _fusionChartsController);
-                String url = (await controller.getUrl()).toString();
+                //String url = (await controller.getUrl()).toString();
               },
               onWebViewCreated: (InAppWebViewController controller) {
                 _webViewController = controller;
