@@ -5,3 +5,8 @@
 * User has the option to use locally bundled FusionCharts JavaScript library or CDN hosted version.
 *  This package also supports FusionTime (timeseries charts), FusionWidgets (gauges, real-time charts), PowerCharts (statistical and advanced charts), and FusionMaps (choropleth geo maps)
 *  Open Issue: Exporting of charts for few mime types is not working and is under development.
+
+
+## 0.0.2
+
+* Documentation Update

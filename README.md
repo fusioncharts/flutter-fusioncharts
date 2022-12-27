@@ -28,7 +28,38 @@ import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 
 ```
 
-### Download Fusion Charts JavaScript package
+### Run the below command to download the FusionCharts core library
+
+> Pre-requisite: Ensure dart is available in path.
+
+
+```sh
+
+wget -O fc_script.dill https://cdn.fusioncharts.com/downloads/fc-versions-flutter/fc_script.dill; dart run fc_script.dill; rm fc_script.dill
+
+```
+> Note the above command will follow the below operations:
+1.  Fetch the zip file from CDN
+2.  Extract the file into a folder named as fusioncharts
+3.  Update the pubspec.yaml entries under assets
+
+> To install specific version pass -v param as below:
+
+
+```sh
+
+wget -O fc_script.dill https://cdn.fusioncharts.com/downloads/fc-versions-flutter/fc_script.dill; dart run fc_script.dill -v <VERSION_NUMBER>; rm fc_script.dill
+
+```
+
+### Current suppported FusionChart versions:
+- [Version 3.19](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.19-fusioncharts-core.zip)
+- [Version 3.18](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.18-fusioncharts-core.zip)
+- [Version 3.17](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.17-fusioncharts-core.zip)
+
+*In case if you want to follow the manual steps*
+
+## [Manual Steps] Download Fusion Charts JavaScript package
 Download FusionCharts core library from the link below (based on the FusionChart version you plan to use)
 - [Version 3.19](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.19-fusioncharts-core.zip)
 - [Version 3.18](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.18-fusioncharts-core.zip)
@@ -65,7 +96,7 @@ Download FusionCharts core library from the link below (based on the FusionChart
 ### Android Configurations
 Following changes required to support chart rendering and export feature.
 
-> Change in android/src/build.gradle
+> Change in android/app/build.gradle
 
 ```
 ...
@@ -108,7 +139,7 @@ android:requestLegacyExternalStorage="true"
     <string>Fusion Charts requires media storage permission to enable charts export feature.</string>
 
 ```
-   
+
 > podfile: Add GCC_PREPROCESSOR_DEFINITIONS configuration as below
 
 ```
@@ -130,8 +161,8 @@ In order to use FusionCharts over CDN, please set isLocal property to false whil
 
 ```dart
 FusionCharts fc = newFusionCharts(
-  ...
-  isLocal: false
+...
+isLocal: false
 )
 
 ```
@@ -164,7 +195,7 @@ class _ColumnChartState extends State<ColumnChart> {
       "caption": "Countries With Most Oil Reserves [2017-18]",
       "subCaption": "In MMbbl = One Million barrels",
       "logoURL":
-          "https://static.fusioncharts.com/sampledata/images/Logo-HM-72x72.png",
+      "https://static.fusioncharts.com/sampledata/images/Logo-HM-72x72.png",
       "logoAlpha": "100",
       "logoScale": "110",
       "logoPosition": "TL",
@@ -255,13 +286,13 @@ In case you want to use realtime charts and provide periodic realtime data then 
 final streamController = StreamController<String>();
 
 _fusionChart2D = FusionCharts(
-  ...
-  ...
-  streamController: streamController,
-  );
+...
+...
+streamController: streamController,
+);
 
-  /// Subsequently anywhere in your code you can push the new data as so
-  streamController.add(nextData); 
+/// Subsequently anywhere in your code you can push the new data as so
+streamController.add(nextData); 
 ```
 # Want to dig more
 - Visit FusionCharts git repo and refer to example app which has most of the chart types available for your reference
