@@ -301,6 +301,6 @@ streamController.add(nextData);
 
 
 # Known Issues
-Chart export functionality is partially working for few mime-types. Fixing in progress.
+Chart export functionality is currently supported in Android only.
 
 ---
