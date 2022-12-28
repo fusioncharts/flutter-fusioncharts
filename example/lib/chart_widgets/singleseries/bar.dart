@@ -24,11 +24,10 @@ class _BarState extends State<Bar> {
       "subCaption": "In MMbbl = One Million barrels",
       "xAxisName": "Country",
       "exportEnabled":"1",
-      "exportAtClientSide":"1",
+    "exportMode": "client",
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
       "theme": "carbon",
-      
     };
     FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {"chart": chart, "data": ChartData.chartData};

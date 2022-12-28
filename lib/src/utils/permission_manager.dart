@@ -109,10 +109,17 @@ class PermissionManager {
   decode(request, type, context, fcController) async {
     fileExtension = request.suggestedFilename.toString().split('.')[1];
 
+    print(fileExtension);
+    print('fileExtension');
+    print(request.url);
+
     if (fileExtension == 'svg' ||
         fileExtension == 'png' ||
         fileExtension == 'jpg') {
       base64decode = base64.decode(request.url.toString().split(';base64,')[1]);
+
+      print(base64decode);
+
     } else if (fileExtension == 'pdf') {
       isPDFGen = true;
       fcController.executeScript("""globalFusionCharts.exportChart({
@@ -203,17 +210,25 @@ class PermissionManager {
         /// path of the folder where the imports will be saved
         final file = await createFolder();
 
-        exportFile = await File('$file/$type${"_${DateTime.now().millisecondsSinceEpoch}"}.$fileExtension')
+        exportFile = isPDFGen?await File('$file/$type${"_${DateTime.now().minute}"}.$fileExtension')
+            .writeAsBytes(base64decode, flush: true):await File('$file/$type${"_${DateTime.now().millisecondsSinceEpoch}"}.$fileExtension')
             .writeAsBytes(base64decode, flush: true);
         if (fileExtension == 'jpg' || fileExtension == 'jpeg') {
           final path = await createFolder();
 
-          jpgFileName = '$path/$type.$fileExtension';
+          print(path);
+
+          jpgFileName = '$path/$type${"_${DateTime.now().minute}"}.$fileExtension';
+
+          print(jpgFileName);
 
           if (isPDFGen) {
             final pdf = pw.Document();
             final image = pw.MemoryImage(File(jpgFileName).readAsBytesSync());
             fileExtension = "pdf";
+
+            print(fileExtension);
+            print('fileExtension');
 
             pdf.addPage(
               pw.Page(
