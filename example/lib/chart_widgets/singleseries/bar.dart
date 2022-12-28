@@ -23,8 +23,6 @@ class _BarState extends State<Bar> {
       "caption": "Countries With Most Oil Reserves [2017-18]",
       "subCaption": "In MMbbl = One Million barrels",
       "xAxisName": "Country",
-      "exportEnabled":"1",
-    "exportMode": "client",
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
       "theme": "carbon",
