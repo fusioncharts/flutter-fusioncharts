@@ -10,3 +10,7 @@
 ## 0.0.2
 
 * Documentation Update
+
+## 1.0.0
+
+* Version 1 release with updated example
