@@ -53,6 +53,7 @@ wget -O fc_script.dill https://cdn.fusioncharts.com/downloads/fc-versions-flutte
 ```
 
 ### Current suppported FusionChart versions:
+- [Version 3.20](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.20-fusioncharts-core.zip)
 - [Version 3.19](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.19-fusioncharts-core.zip)
 - [Version 3.18](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.18-fusioncharts-core.zip)
 - [Version 3.17](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.17-fusioncharts-core.zip)
