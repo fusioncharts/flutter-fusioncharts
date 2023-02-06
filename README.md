@@ -62,6 +62,7 @@ wget -O fc_script.dill https://cdn.fusioncharts.com/downloads/fc-versions-flutte
 
 ## [Manual Steps] Download Fusion Charts JavaScript package
 Download FusionCharts core library from the link below (based on the FusionChart version you plan to use)
+- [Version 3.20](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.20-fusioncharts-core.zip)
 - [Version 3.19](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.19-fusioncharts-core.zip)
 - [Version 3.18](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.18-fusioncharts-core.zip)
 - [Version 3.17](https://cdn.fusioncharts.com/downloads/fc-versions-flutter/3.17-fusioncharts-core.zip)
