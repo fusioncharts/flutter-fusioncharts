@@ -19,7 +19,7 @@ This package also contains FusionTime (timeseries charts), FusionWidgets (gauges
 
 ```yaml
 dependencies:
-  flutter_fusioncharts: ^1.0.0
+  flutter_fusioncharts: ^1.0.2
 ```
 Now in your Dart code import the plugin file
 
