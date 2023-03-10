@@ -11,6 +11,6 @@
 
 * Documentation Update
 
-## 1.0.1
+## 1.0.2
 
 * Version 1 release with updated example
