@@ -36,7 +36,7 @@ class _AreaEventsState extends State<AreaEvents> {
           "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
       "theme": "fusion",
       "centerLabel": "# Users: \$value",
-      
+
       //    "exportEnabled": "1"
     };
 

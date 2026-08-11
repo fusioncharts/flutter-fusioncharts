@@ -60,7 +60,6 @@ class _MarimekkoState extends State<Marimekko> {
       "xAxisNameFontSize": "30px",
       "yAxisNameFontSize": "30px",
       "theme": "fusion",
-      
       "subCaptionFontSize": "30px",
     };
 
@@ -94,7 +93,6 @@ class _MarimekkoState extends State<Marimekko> {
         width: "100%",
         height: "100%",
         fusionChartsController: fusionChartsController,
-        isLocal: false,
         licenseKey: licenseKey);
   }
 
@@ -120,9 +118,9 @@ class _MarimekkoState extends State<Marimekko> {
               SizedBox(
                   height: MediaQuery.of(context).size.height * 3 / 4,
                   child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Marimekko'),
                 ],
               ),

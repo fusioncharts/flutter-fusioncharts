@@ -33,7 +33,6 @@ class _ScrollCombinationState extends State<ScrollCombination> {
       "flatScrollBars": "1",
       "scrollheight": "10",
       "theme": "candy",
-      
     };
 
     List<dynamic> categories = [
@@ -198,9 +197,9 @@ class _ScrollCombinationState extends State<ScrollCombination> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Scroll Combination'),
               ],
             ),

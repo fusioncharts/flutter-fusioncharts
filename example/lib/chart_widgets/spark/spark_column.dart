@@ -27,7 +27,6 @@ class _SparkColumnState extends State<SparkColumn> {
       "chartRightMargin": "10",
       "numberPrefix": "\$",
       "theme": "fusion",
-      
     };
 
     List<dynamic> dataset = [
@@ -85,9 +84,9 @@ class _SparkColumnState extends State<SparkColumn> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Spark Column'),
               ],
             ),

@@ -59,7 +59,6 @@ class _BarMultiSeriesState extends State<BarMultiSeries> {
       "yAxisName": "Sales",
       "xAxisNameFontSize": "30px",
       "yAxisNameFontSize": "30px",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -104,9 +103,9 @@ class _BarMultiSeriesState extends State<BarMultiSeries> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Bar 2D'),
                 ],
               ),
@@ -114,9 +113,9 @@ class _BarMultiSeriesState extends State<BarMultiSeries> {
                 height: 10,
               ),
               Expanded(child: _fusionChart3d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Bar 3D'),
                 ],
               ),

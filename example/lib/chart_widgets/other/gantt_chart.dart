@@ -84,7 +84,6 @@ class _GanttChartState extends State<GanttChart> {
       "slackFillColor": "#e44a00",
       "taskBarFillMix": "light+0",
       "theme": "fusion",
-      
     };
 
     Map<String, dynamic> legend = {
@@ -900,9 +899,9 @@ class _GanttChartState extends State<GanttChart> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Gantt Chart'),
                 ],
               ),

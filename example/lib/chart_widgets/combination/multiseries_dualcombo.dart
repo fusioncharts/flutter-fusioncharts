@@ -105,7 +105,6 @@ class _MultiSeriesDualComboState extends State<MultiSeriesDualCombo> {
       "sNumberSuffix": "%",
       "sYAxisMaxValue": "50",
       "theme": "fusion",
-
     };
 
     Map<String, dynamic> dataSource = {
@@ -154,7 +153,10 @@ class _MultiSeriesDualComboState extends State<MultiSeriesDualCombo> {
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
-          title: const Text('Fusion Charts - MultiSeries Dual Combination',overflow: TextOverflow.ellipsis,),
+          title: const Text(
+            'Fusion Charts - MultiSeries Dual Combination',
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         body: SizedBox(
           height: MediaQuery.of(context).size.height,
@@ -162,9 +164,9 @@ class _MultiSeriesDualComboState extends State<MultiSeriesDualCombo> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Combination 2D'),
                 ],
               ),
@@ -172,9 +174,9 @@ class _MultiSeriesDualComboState extends State<MultiSeriesDualCombo> {
                 height: 10,
               ),
               Expanded(child: _fusionChart3d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Combination 3D'),
                 ],
               ),

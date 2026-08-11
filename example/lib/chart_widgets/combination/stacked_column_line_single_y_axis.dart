@@ -71,7 +71,6 @@ class _StackedColumnLineSingleYAxisState
       "yAxisName": "Revenue (In USD)",
       "numberPrefix": "\$",
       "theme": "fusion",
-
     };
 
     Map<String, dynamic> dataSource = {
@@ -119,9 +118,9 @@ class _StackedColumnLineSingleYAxisState
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Combination 2D'),
                 ],
               ),
@@ -129,9 +128,9 @@ class _StackedColumnLineSingleYAxisState
                 height: 10,
               ),
               Expanded(child: _fusionChart3d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Combination 3D'),
                 ],
               ),

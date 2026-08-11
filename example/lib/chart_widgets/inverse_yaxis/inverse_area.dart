@@ -27,7 +27,6 @@ class _InverseAreaState extends State<InverseArea> {
       "numberSuffix": "%",
       "plotFillAlpha": "50",
       "theme": "fusion",
-      
     };
 
     List<dynamic> categories = [
@@ -73,7 +72,7 @@ class _InverseAreaState extends State<InverseArea> {
     Map<String, dynamic> dataSource = {
       "chart": chart,
       "categories": categories,
-      "dataset":dataset
+      "dataset": dataset
     };
 
     _fusionChart2D = FusionCharts(
@@ -108,9 +107,9 @@ class _InverseAreaState extends State<InverseArea> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Inverse Area'),
               ],
             ),

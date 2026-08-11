@@ -30,7 +30,6 @@ class _ScrollLine2DState extends State<ScrollLine2D> {
       "scrollheight": "10",
       "numVisiblePlot": "12",
       "theme": "ocean",
-      
     };
 
     List<dynamic> categories = [
@@ -139,9 +138,9 @@ class _ScrollLine2DState extends State<ScrollLine2D> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Scroll Line 2D'),
               ],
             ),

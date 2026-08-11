@@ -27,7 +27,6 @@ class _SparkWinLossState extends State<SparkWinLoss> {
       "chartBottomMargin": "10",
       "chartRightMargin": "10",
       "theme": "zune",
-      
     };
 
     List<dynamic> dataset = [
@@ -85,9 +84,9 @@ class _SparkWinLossState extends State<SparkWinLoss> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Spark Win/Loss'),
               ],
             ),

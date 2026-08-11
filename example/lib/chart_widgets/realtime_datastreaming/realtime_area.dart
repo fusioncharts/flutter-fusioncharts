@@ -38,7 +38,6 @@ class _RealTimeAreaState extends State<RealTimeArea> {
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-    Timer timer;
     Map<String, dynamic> chart = {
       "caption": "Real-time stock price monitor",
       "subCaption": "Harry's SuperMart",
@@ -124,9 +123,9 @@ class _RealTimeAreaState extends State<RealTimeArea> {
             SizedBox(
                 height: MediaQuery.of(context).size.width,
                 child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('RealTime Area'),
               ],
             ),

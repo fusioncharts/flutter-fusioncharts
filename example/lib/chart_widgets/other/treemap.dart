@@ -39,7 +39,6 @@ class _TreeMapState extends State<TreeMap> {
       "subcaption": "Year Till Date",
       "legendCaption": "Growth in sales - Compared to previous year",
       "theme": "fusion",
-      
     };
 
     List<dynamic> data = [
@@ -388,9 +387,9 @@ class _TreeMapState extends State<TreeMap> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('TreeMap Chart'),
               ],
             ),

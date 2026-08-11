@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <!--
+    Package-owned FusionCharts host page.
+
+    Loaded with `loadFlutterAsset`, so every src below resolves inside the
+    Flutter asset bundle. There is not one absolute URL on this page: offline
+    mode must issue zero network requests, and WKWebView will not fetch remote
+    subresources for a loadHTMLString page anyway.
+
+    FusionCharts 4.2.2 and all eight themes ship inside this package; see
+    doc/provenance/fusioncharts-4.2.2-manifest.json in the package source for
+    versions, upstream sources, local font substitutions and SHA-256 hashes.
+
+    A restrictive CSP is declared here rather than relying on the host: 'self'
+    plus inline/eval, because the charting core evaluates generated code, but no
+    remote origin of any kind.
+  -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: blob:;
+                 script-src 'self' 'unsafe-inline' 'unsafe-eval';
+                 style-src 'self' 'unsafe-inline';
+                 img-src 'self' data: blob:;
+                 font-src 'self' data:;
+                 connect-src 'self' data: blob:;
+                 form-action 'none';
+                 base-uri 'none';
+                 frame-src 'none';
+                 object-src 'none'">
+  <style>
+    html, body {
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      overflow: hidden; background: transparent;
+      -webkit-text-size-adjust: 100%;
+    }
+    #chart-container { width: 100%; height: 100%; }
+  </style>
+
+  <!-- Core, then modules. Order matters: modules register against the core. -->
+  <script src="fusioncharts/fusioncharts.js"></script>
+  <script src="fusioncharts/fusioncharts.charts.js"></script>
+  <script src="fusioncharts/fusioncharts.widgets.js"></script>
+  <script src="fusioncharts/fusioncharts.powercharts.js"></script>
+  <script src="fusioncharts/fusioncharts.timeseries.js"></script>
+  <script src="fusioncharts/fusioncharts.treemap.js"></script>
+  <script src="fusioncharts/fusioncharts.zoomline.js"></script>
+  <script src="fusioncharts/fusioncharts.zoomscatter.js"></script>
+  <script src="fusioncharts/fusioncharts.gantt.js"></script>
+  <script src="fusioncharts/fusioncharts.overlappedbar2d.js"></script>
+  <script src="fusioncharts/fusioncharts.overlappedcolumn2d.js"></script>
+  <script src="fusioncharts/fusioncharts.maps.js"></script>
+  <script src="fusioncharts/fusioncharts.excelexport.js"></script>
+
+  <!-- All eight themes. `umber` and `gammel` are included deliberately: 1.x
+       requested them from `/latest/core/themes/`, a path that 404s, so they
+       never loaded in any released version. -->
+  <script src="fusioncharts/themes/fusioncharts.theme.fusion.js"></script>
+  <script src="fusioncharts/themes/fusioncharts.theme.candy.js"></script>
+  <script src="fusioncharts/themes/fusioncharts.theme.gammel.js"></script>
+  <script src="fusioncharts/themes/fusioncharts.theme.zune.js"></script>
+  <script src="fusioncharts/themes/fusioncharts.theme.ocean.js"></script>
+  <script src="fusioncharts/themes/fusioncharts.theme.carbon.js"></script>
+  <script src="fusioncharts/themes/fusioncharts.theme.umber.js"></script>
+  <script src="fusioncharts/themes/fusioncharts.theme.fint.js"></script>
+
+  <!-- Representative map definition. Additional maps are an application concern. -->
+  <script src="fusioncharts/maps/fusioncharts.world.js"></script>
+</head>
+<body>
+  <div id="chart-container"></div>
+</body>
+</html>

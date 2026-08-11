@@ -11,9 +11,9 @@ class MultiSeries extends StatefulWidget {
 
 class _MultiSeriesState extends State<MultiSeries> {
   late FusionCharts _fusionChart;
-  late FusionChartsController _fusionChartsController =
+  late final FusionChartsController _fusionChartsController =
       FusionChartsController();
-  bool _2d = true;
+  bool _is2D = true;
   @override
   void initState() {
     super.initState();
@@ -79,14 +79,14 @@ class _MultiSeriesState extends State<MultiSeries> {
 
   changeType() {
     print('Change type msColumn3D');
-    if (_2d) {
+    if (_is2D) {
       _fusionChartsController
           .executeScript("globalFusionCharts.chartType('msColumn3D')");
     } else {
       _fusionChartsController
           .executeScript("globalFusionCharts.chartType('msColumn2D')");
     }
-    _2d = !_2d;
+    _is2D = !_is2D;
   }
 
   @override
@@ -115,7 +115,7 @@ class _MultiSeriesState extends State<MultiSeries> {
                         width: 100,
                         height: 40,
                         color: Colors.blue,
-                        child: Center(child: Text('Change Type'))))
+                        child: const Center(child: Text('Change Type'))))
               ],
             )),
       ),

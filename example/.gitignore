@@ -32,6 +32,9 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Never commit a real FusionCharts license key.
+.env
+
 # Symbolication related
 app.*.symbols
 

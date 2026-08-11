@@ -26,7 +26,6 @@ class _LogLineState extends State<LogLine> {
       "yAxisName": "No of visitors",
       "base": "10",
       "theme": "zune",
-      
     };
 
     List<dynamic> dataset = [
@@ -78,7 +77,7 @@ class _LogLineState extends State<LogLine> {
         fusionChartEvent: (eventType, eventDetail) =>
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content:
-                Text("Event Raised: $eventType + Details: $eventDetail"))),
+                    Text("Event Raised: $eventType + Details: $eventDetail"))),
         fusionChartsController: fc);
   }
 
@@ -101,9 +100,9 @@ class _LogLineState extends State<LogLine> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Logarithmic Line'),
               ],
             ),

@@ -12,7 +12,6 @@ class MSColumn3DLineSingleYAxis extends StatefulWidget {
 
 class _MSColumn3DLineSingleYAxisState extends State<MSColumn3DLineSingleYAxis> {
   late FusionCharts _fusionChart2d;
-  late FusionCharts _fusionChart3d;
   FusionChartsController fusionChartsController = FusionChartsController();
 
   @override
@@ -20,7 +19,16 @@ class _MSColumn3DLineSingleYAxisState extends State<MSColumn3DLineSingleYAxis> {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
 
-    List<dynamic> categories = [{"category": [{"label": "Quarter 1"},{"label": "Quarter 2"},{"label": "Quarter 3"},{"label": "Quarter 4"}]}];
+    List<dynamic> categories = [
+      {
+        "category": [
+          {"label": "Quarter 1"},
+          {"label": "Quarter 2"},
+          {"label": "Quarter 3"},
+          {"label": "Quarter 4"}
+        ]
+      }
+    ];
     // Construct the dataset comprising multiple series
     List<dynamic> dataset = [
       {
@@ -60,7 +68,6 @@ class _MSColumn3DLineSingleYAxisState extends State<MSColumn3DLineSingleYAxis> {
       "xaxisname": "Quarters",
       "yaxisname": "Cost",
       "theme": "umber",
-
     };
 
     Map<String, dynamic> dataSource = {
@@ -72,13 +79,6 @@ class _MSColumn3DLineSingleYAxisState extends State<MSColumn3DLineSingleYAxis> {
     _fusionChart2d = FusionCharts(
         dataSource: dataSource,
         type: "mscolumnline3d",
-        width: "100%",
-        height: "100%",
-        fusionChartsController: fusionChartsController,
-        licenseKey: licenseKey);
-    _fusionChart3d = FusionCharts(
-        dataSource: dataSource,
-        type: "mscombidy3d",
         width: "100%",
         height: "100%",
         fusionChartsController: fusionChartsController,
@@ -120,9 +120,9 @@ class _MSColumn3DLineSingleYAxisState extends State<MSColumn3DLineSingleYAxis> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Combination Column3d-line-y-axis'),
                 ],
               ),

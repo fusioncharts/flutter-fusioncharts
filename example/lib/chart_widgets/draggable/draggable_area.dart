@@ -25,7 +25,6 @@ class _DraggableAreaState extends State<DraggableArea> {
       "xAxisName": "Quarter",
       "yAxisName": "No. of Units",
       "theme": "fint",
-      
     };
 
     List<dynamic> dataset = [
@@ -108,9 +107,9 @@ class _DraggableAreaState extends State<DraggableArea> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Draggable Area'),
               ],
             ),

@@ -19,33 +19,6 @@ class _SingleSeriesSplineState extends State<SingleSeriesSpline> {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
 
-    Map<String, dynamic> chart = {
-      "caption": "Total footfall in Bakersfield Central",
-      "subCaption": "Last week",
-      "xAxisName": "Day",
-      "yAxisName": "No. of Footfalls",
-      "lineThickness": "2",
-      "theme": "fusion",
-      
-    };
-
-    List<dynamic> dataset = [
-      {"label": "Mon", "value": "15123"},
-      {"label": "Tue", "value": "14233"},
-      {"label": "Wed", "value": "25507"},
-      {
-        "vline": "true",
-        "lineposition": "0",
-        "color": "#6baa01",
-        "labelHAlign": "left",
-        "label": "National holiday"
-      },
-      {"label": "Thu", "value": "9110"},
-      {"label": "Fri", "value": "15529"},
-      {"label": "Sat", "value": "20803"},
-      {"label": "Sun", "value": "19202"}
-    ];
-
     Map<String, dynamic> dataSource = {
       "chart": {
         "theme": "fusion",
@@ -106,9 +79,9 @@ class _SingleSeriesSplineState extends State<SingleSeriesSpline> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Single Series Spline'),
               ],
             ),

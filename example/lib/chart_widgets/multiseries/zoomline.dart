@@ -56,7 +56,6 @@ class _ZoomlineState extends State<Zoomline> {
       "scrollShowButtons": "0",
       "scrollColor": "#cccccc",
       "theme": "carbon",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -112,9 +111,9 @@ class _ZoomlineState extends State<Zoomline> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Zoomline'),
                 ],
               ),

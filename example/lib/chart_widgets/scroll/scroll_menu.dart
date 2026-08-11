@@ -7,7 +7,6 @@ import 'package:flutter_fusioncharts_example/chart_widgets/scroll/scroll_line.da
 import 'package:flutter_fusioncharts_example/chart_widgets/scroll/scroll_multiseries.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/scroll/scroll_stackedcolumn.dart';
 
-
 class ScrollMenu extends StatefulWidget {
   const ScrollMenu({Key? key}) : super(key: key);
 
@@ -19,18 +18,23 @@ class _ScrollMenuState extends State<ScrollMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text('Choose Example')),
+        appBar: AppBar(title: const Text('Choose Example')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children:[
+            children: [
               InkWell(
-                  child: SizedBox(height: 40,
-                    child: InkWell(child: const Text("Scroll Column ", style: TextStyle(fontSize: 16)),
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  const ScrollColumn2D()))),
-                  )),
+                  child: SizedBox(
+                height: 40,
+                child: InkWell(
+                    child: const Text("Scroll Column ",
+                        style: TextStyle(fontSize: 16)),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ScrollColumn2D()))),
+              )),
               InkWell(
                 child: SizedBox(
                   height: 40,
@@ -83,7 +87,8 @@ class _ScrollMenuState extends State<ScrollMenu> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ScrollStackedColumn2D()));
+                                builder: (context) =>
+                                    const ScrollStackedColumn2D()));
                       }),
                 ),
               ),
@@ -97,7 +102,8 @@ class _ScrollMenuState extends State<ScrollMenu> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ScrollCombination()));
+                                builder: (context) =>
+                                    const ScrollCombination()));
                       }),
                 ),
               ),
@@ -111,7 +117,8 @@ class _ScrollMenuState extends State<ScrollMenu> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ScrollMultiseries()));
+                                builder: (context) =>
+                                    const ScrollMultiseries()));
                       }),
                 ),
               ),

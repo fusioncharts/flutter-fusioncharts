@@ -72,7 +72,7 @@ class _RealTimeLineState extends State<RealTimeLine> {
       fusionChartEvent: callBackFromPlugin,
       streamController: streamController,
       fusionChartsController: fc,
-      events: [],
+      events: const [],
     );
 
     updateDataset();
@@ -117,9 +117,9 @@ class _RealTimeLineState extends State<RealTimeLine> {
             SizedBox(
                 height: MediaQuery.of(context).size.width,
                 child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('RealTime Line'),
               ],
             ),

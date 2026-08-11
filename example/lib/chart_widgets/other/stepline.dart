@@ -26,7 +26,6 @@ class _StepLineState extends State<StepLine> {
       "numberprefix": "\$",
       "useforwardsteps": "0",
       "theme": "fusion",
-      
     };
 
     List<dynamic> categories = [
@@ -121,9 +120,9 @@ class _StepLineState extends State<StepLine> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('StepLine Chart'),
               ],
             ),

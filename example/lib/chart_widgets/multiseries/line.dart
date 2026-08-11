@@ -73,10 +73,9 @@ class _LineMultiSeriesState extends State<LineMultiSeries> {
     Map<String, dynamic> chart = {
       "caption": "Number of visitors last week",
       "subCaption": "Bakersfield Central vs Los Angeles Topanga",
-      "exportEnabled":"1",
+      "exportEnabled": "1",
       "xAxisName": "Day",
       "theme": "fusion",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -138,9 +137,9 @@ class _LineMultiSeriesState extends State<LineMultiSeries> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Line2D'),
                 ],
               ),

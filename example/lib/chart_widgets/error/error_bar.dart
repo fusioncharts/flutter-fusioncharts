@@ -27,7 +27,6 @@ class _ErrorBarState extends State<ErrorBar> {
       "numberSuffix": " Years",
       "halfErrorBar": "0",
       "theme": "carbon",
-      
     };
 
     List<dynamic> categories = [
@@ -78,7 +77,6 @@ class _ErrorBarState extends State<ErrorBar> {
       "chart": chart,
       "categories": categories,
       "dataset": dataset
-
     };
 
     _fusionChart2D = FusionCharts(
@@ -113,9 +111,9 @@ class _ErrorBarState extends State<ErrorBar> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Error Bar'),
               ],
             ),

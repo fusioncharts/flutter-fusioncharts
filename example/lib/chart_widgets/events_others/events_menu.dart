@@ -3,9 +3,6 @@ import 'package:flutter_fusioncharts_example/chart_widgets/events_others/annotat
 import 'package:flutter_fusioncharts_example/chart_widgets/events_others/check_global.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/events_others/area_events_example.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/events_others/events_example2.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/maps/trial_map.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/maps/usa.dart';
-import 'package:flutter_fusioncharts_example/chart_widgets/maps/worldmap.dart';
 import './export.dart';
 
 class EventsMenu extends StatefulWidget {

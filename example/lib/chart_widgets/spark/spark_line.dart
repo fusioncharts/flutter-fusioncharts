@@ -27,7 +27,6 @@ class _SparkLineState extends State<SparkLine> {
       "chartTopMargin": "10",
       "chartRightMargin": "10",
       "theme": "candy",
-      
     };
 
     List<dynamic> dataset = [
@@ -103,9 +102,9 @@ class _SparkLineState extends State<SparkLine> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Spark Line'),
               ],
             ),

@@ -189,7 +189,6 @@ class _ZoomScatteredState extends State<ZoomScattered> {
       "xaxisminvalue": "20",
       "yaxismaxvalue": "7",
       "theme": "carbon",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -232,9 +231,9 @@ class _ZoomScatteredState extends State<ZoomScattered> {
           child: Column(
             children: [
               Expanded(child: _fusionChart),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Zoom Scattered'),
                 ],
               ),
