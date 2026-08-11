@@ -29,7 +29,6 @@ class _ErrorLineState extends State<ErrorLine> {
       "plotTooltext":
           "<div id='nameDiv' style='font-size: 14px; border-bottom: 1px dashed #999999; font-weight:bold; padding-bottom: 3px; margin-bottom: 5px; display: inline-block;'>\$label :</div>{br}\$seriesName : <b>\$dataValue</b>{br}Deviation : <b>± \$errorDataValue</b>",
       "theme": "umber",
-      
     };
 
     List<dynamic> categories = [
@@ -131,9 +130,9 @@ class _ErrorLineState extends State<ErrorLine> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Error Line'),
               ],
             ),

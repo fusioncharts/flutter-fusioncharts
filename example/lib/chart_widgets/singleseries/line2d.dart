@@ -34,7 +34,6 @@ class _Line2DState extends State<Line2D> {
       "yAxisName": "Reserves (MMbbl)",
       "numberSuffix": "K",
       "theme": "fusion",
-      
     };
     FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {"chart": chart, "data": chartData};
@@ -60,7 +59,7 @@ class _Line2DState extends State<Line2D> {
       home: Scaffold(
           appBar: AppBar(
             leading: IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () => Navigator.of(context).pop()),
             title: const Text('Fusion Charts - Line'),
           ),

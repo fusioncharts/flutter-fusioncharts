@@ -35,7 +35,6 @@ class _DoughnutEventState extends State<DoughnutEvent> {
           "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
       "theme": "fusion",
       "centerLabel": "# Users: \$value",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -90,9 +89,9 @@ class _DoughnutEventState extends State<DoughnutEvent> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Doughnut3D'),
               ],
             ),

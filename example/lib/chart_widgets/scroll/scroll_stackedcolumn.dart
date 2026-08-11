@@ -29,7 +29,6 @@ class _ScrollStackedColumn2DState extends State<ScrollStackedColumn2D> {
       "flatScrollBars": "1",
       "scrollheight": "10",
       "theme": "fusion",
-      
     };
 
     List<dynamic> categories = [
@@ -162,9 +161,9 @@ class _ScrollStackedColumn2DState extends State<ScrollStackedColumn2D> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Scroll Stacked Column 2D'),
               ],
             ),

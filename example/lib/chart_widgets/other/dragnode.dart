@@ -26,7 +26,6 @@ class _DragNodeState extends State<DragNode> {
       "viewMode": "1",
       "connectorToolText": "\$label Weeks",
       "theme": "umber",
-      
     };
 
     Map<String, dynamic> annotations = {
@@ -527,7 +526,7 @@ class _DragNodeState extends State<DragNode> {
     Map<String, dynamic> dataSource = {
       "chart": chart,
       "annotations": annotations,
-      "connectors":connectors,
+      "connectors": connectors,
       "dataset": dataset
     };
 
@@ -558,9 +557,9 @@ class _DragNodeState extends State<DragNode> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('DragNode Chart'),
               ],
             ),

@@ -29,7 +29,6 @@ class _MultilevelPieState extends State<MultilevelPie> {
       "numberPrefix": "\$",
       "plotTooltext": "\$label, \$\$valueK, \$percentValue",
       "theme": "umber",
-      
     };
 
     List<dynamic> category = [
@@ -115,9 +114,9 @@ class _MultilevelPieState extends State<MultilevelPie> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Multilevel Pie Chart'),
               ],
             ),

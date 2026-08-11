@@ -25,7 +25,6 @@ class _DraggableLineState extends State<DraggableLine> {
       "xAxisName": "Quarter",
       "yAxisName": "No. of Units",
       "theme": "gammel",
-      
     };
 
     List<dynamic> dataset = [
@@ -108,9 +107,9 @@ class _DraggableLineState extends State<DraggableLine> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Drag Line'),
               ],
             ),

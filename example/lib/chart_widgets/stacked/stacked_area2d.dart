@@ -13,7 +13,6 @@ class StackedArea2D extends StatefulWidget {
 
 class _StackedArea2DState extends State<StackedArea2D> {
   late FusionCharts _fusionChart2D;
-  late FusionCharts _fusionChart3D;
 
   @override
   void initState() {
@@ -27,7 +26,6 @@ class _StackedArea2DState extends State<StackedArea2D> {
       "yAxisName": "Amount",
       "numberPrefix": "\$",
       "theme": "zune",
-      
     };
 
     FusionChartsController fusionChartsController = FusionChartsController();
@@ -75,9 +73,9 @@ class _StackedArea2DState extends State<StackedArea2D> {
       body: Column(
         children: [
           Expanded(child: _fusionChart2D),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text('Stacked Area'),
             ],
           ),

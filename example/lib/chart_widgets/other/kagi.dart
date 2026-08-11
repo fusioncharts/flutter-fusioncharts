@@ -27,7 +27,6 @@ class _KagiChartState extends State<KagiChart> {
       "rallythickness": "3",
       "declinethickness": "3",
       "theme": "ocean",
-      
     };
 
     List<dynamic> data = [
@@ -97,9 +96,9 @@ class _KagiChartState extends State<KagiChart> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Kagi Chart'),
               ],
             ),

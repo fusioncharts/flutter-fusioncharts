@@ -27,7 +27,6 @@ class _StackedBarState extends State<StackedBar> {
       "yAxisName": "Revenue (In USD)",
       "numberPrefix": "\$",
       "theme": "umber",
-      
     };
 
     FusionChartsController fusionChartsController = FusionChartsController();
@@ -83,9 +82,9 @@ class _StackedBarState extends State<StackedBar> {
       body: Column(
         children: [
           Expanded(child: _fusionChart2D),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text('Stacked Bar2D'),
             ],
           ),
@@ -93,9 +92,9 @@ class _StackedBarState extends State<StackedBar> {
             height: 10,
           ),
           Expanded(child: _fusionChart3D),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text('Stacked Bar3D'),
             ],
           ),

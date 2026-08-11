@@ -25,7 +25,6 @@ class _MultiSeriesSplineState extends State<MultiSeriesSpline> {
       "xAxisName": "Day",
       "yAxisName": "No. of Visitor",
       "theme": "fusion",
-      
     };
 
     List<dynamic> categories = [
@@ -115,9 +114,9 @@ class _MultiSeriesSplineState extends State<MultiSeriesSpline> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Multi Series Spline'),
               ],
             ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import 'package:flutter_fusioncharts_example/button.dart';
 import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
@@ -40,7 +39,6 @@ class _CheckGlobalState extends State<CheckGlobal> {
           "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
       "theme": "fusion",
       "centerLabel": "# Users: \$value",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -90,7 +88,6 @@ class _CheckGlobalState extends State<CheckGlobal> {
     fc.executeScript(js.toString());
   }
 
-  final TextEditingController _controller = TextEditingController();
   List<String> result = [];
 
   @override
@@ -110,11 +107,11 @@ class _CheckGlobalState extends State<CheckGlobal> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                     width: MediaQuery.of(context).size.width / 2,
                     height: MediaQuery.of(context).size.height / 2,
                     child: _fusionChart2D),
-                Container(
+                SizedBox(
                     width: MediaQuery.of(context).size.width / 2,
                     height: MediaQuery.of(context).size.height / 2,
                     child: _fusionChart2D1),

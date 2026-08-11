@@ -4,7 +4,8 @@ import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 import './examples_menu.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: "license.env.example");
   runApp(const MyApp());
 }
 
@@ -17,12 +18,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String chartDataHardCoded = '';
-  @override
-  void initState() {
-    super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
-  }
-
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -76,7 +71,6 @@ class _Column2DState extends State<Column2D> {
       events: const ['chartClick'],
       fusionChartEvent: callBackFromPlugin,
       fusionChartsController: fusionChartsController,
-      isLocal: false,
     );
   }
 

@@ -26,7 +26,6 @@ class _SingleSeriesAreaState extends State<SingleSeriesArea> {
       "yAxisName": "Units sold",
       "xAxisLineThickness": "1",
       "theme": "gammel",
-      
     };
 
     List<dynamic> dataset = [
@@ -36,7 +35,6 @@ class _SingleSeriesAreaState extends State<SingleSeriesArea> {
       {"label": "Week 4", "value": "580"},
       {"label": "Week 5", "value": "560"}
     ];
-
 
     Map<String, dynamic> dataSource = {
       "chart": chart,
@@ -75,9 +73,9 @@ class _SingleSeriesAreaState extends State<SingleSeriesArea> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Single Series Spline Area'),
               ],
             ),

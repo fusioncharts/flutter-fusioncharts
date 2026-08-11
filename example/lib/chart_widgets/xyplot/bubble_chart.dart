@@ -33,10 +33,55 @@ class _BubbleState extends State<Bubble> {
       }
     ];
 
-    List<dynamic> dataset = [{"color": "#00aee4","data": [{"x": "80","y": "15000","z": "24","name": "Nike"},{"x": "60","y": "18500","z": "26","name": "Adidas"},{"x": "50","y": "19450","z": "19","name": "Puma"},{"x": "65","y": "10500","z": "8","name": "Fila"},{"x": "43","y": "8750","z": "5","name": "Lotto"},{"x": "32","y": "22000","z": "10","name": "Reebok"},{"x": "44","y": "13000","z": "9","name": "Woodland"}]}];
+    List<dynamic> dataset = [
+      {
+        "color": "#00aee4",
+        "data": [
+          {"x": "80", "y": "15000", "z": "24", "name": "Nike"},
+          {"x": "60", "y": "18500", "z": "26", "name": "Adidas"},
+          {"x": "50", "y": "19450", "z": "19", "name": "Puma"},
+          {"x": "65", "y": "10500", "z": "8", "name": "Fila"},
+          {"x": "43", "y": "8750", "z": "5", "name": "Lotto"},
+          {"x": "32", "y": "22000", "z": "10", "name": "Reebok"},
+          {"x": "44", "y": "13000", "z": "9", "name": "Woodland"}
+        ]
+      }
+    ];
 
-    List<dynamic> vtrendlines = [{"line": [{"startValue": "44","isTrendZone": "0","color": "#0066cc","thickness": "1","dashed": "1","displayValue": "Gross Avg."}]}];
-    List<dynamic> trendlines = [{"line": [{"startValue": "20000","endValue": "30000","isTrendZone": "1","color": "#aaaaaa","alpha": "14"},{"startValue": "10000","endValue": "20000","isTrendZone": "1","color": "#aaaaaa","alpha": "7"}]}];
+    List<dynamic> vtrendlines = [
+      {
+        "line": [
+          {
+            "startValue": "44",
+            "isTrendZone": "0",
+            "color": "#0066cc",
+            "thickness": "1",
+            "dashed": "1",
+            "displayValue": "Gross Avg."
+          }
+        ]
+      }
+    ];
+    List<dynamic> trendlines = [
+      {
+        "line": [
+          {
+            "startValue": "20000",
+            "endValue": "30000",
+            "isTrendZone": "1",
+            "color": "#aaaaaa",
+            "alpha": "14"
+          },
+          {
+            "startValue": "10000",
+            "endValue": "20000",
+            "isTrendZone": "1",
+            "color": "#aaaaaa",
+            "alpha": "7"
+          }
+        ]
+      }
+    ];
 
     Map<String, dynamic> chart = {
       "caption": "Sales Analysis of Shoe Brands",
@@ -65,7 +110,6 @@ class _BubbleState extends State<Bubble> {
       "showAlternateHGridColor": "0",
       "showAlternateVGridColor": "0",
       "theme": "zune",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -102,20 +146,14 @@ class _BubbleState extends State<Bubble> {
           title: const Text('Fusion Charts - Bubble'),
         ),
         body: SizedBox(
-          height: MediaQuery
-              .of(context)
-              .size
-              .height,
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
               Expanded(child: _fusionChart),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Bubble'),
                 ],
               ),

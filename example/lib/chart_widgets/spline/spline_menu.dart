@@ -3,7 +3,6 @@ import 'package:flutter_fusioncharts_example/chart_widgets/spline/multiseries_sp
 import 'package:flutter_fusioncharts_example/chart_widgets/spline/single_series_area.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/spline/single_series_spline.dart';
 
-
 class SplineMenu extends StatefulWidget {
   const SplineMenu({Key? key}) : super(key: key);
 
@@ -15,18 +14,23 @@ class _SplineMenuState extends State<SplineMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text('Choose Example')),
+        appBar: AppBar(title: const Text('Choose Example')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children:[
+            children: [
               InkWell(
-                  child: SizedBox(height: 40,
-                    child: InkWell(child: const Text("Single Series Area", style: TextStyle(fontSize: 16)),
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>  const SingleSeriesArea()))),
-                  )),
+                  child: SizedBox(
+                height: 40,
+                child: InkWell(
+                    child: const Text("Single Series Area",
+                        style: TextStyle(fontSize: 16)),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SingleSeriesArea()))),
+              )),
               InkWell(
                 child: SizedBox(
                   height: 40,
@@ -37,7 +41,8 @@ class _SplineMenuState extends State<SplineMenu> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SingleSeriesSpline()));
+                                builder: (context) =>
+                                    const SingleSeriesSpline()));
                       }),
                 ),
               ),
@@ -51,7 +56,8 @@ class _SplineMenuState extends State<SplineMenu> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const MultiSeriesSpline()));
+                                builder: (context) =>
+                                    const MultiSeriesSpline()));
                       }),
                 ),
               ),

@@ -12,10 +12,7 @@ class ScrollColumn2D extends StatefulWidget {
 
 class _ScrollColumn2DState extends State<ScrollColumn2D> {
   late FusionCharts _fusionChart2D;
-  late FusionCharts _fusionChart3D;
   FusionChartsController fc = FusionChartsController();
-
-  // late FusionCharts _fusionChart3D;
 
   @override
   void initState() {
@@ -37,7 +34,6 @@ class _ScrollColumn2DState extends State<ScrollColumn2D> {
       "scrollShowButtons": "0",
       "scrollColor": "#cccccc",
       "theme": "fusion",
-      
     };
 
     List<dynamic> categories = [
@@ -117,17 +113,6 @@ class _ScrollColumn2DState extends State<ScrollColumn2D> {
                 content:
                     Text("Event Raised: $eventType + Details: $eventDetail"))),
         fusionChartsController: fc);
-    _fusionChart3D = FusionCharts(
-        dataSource: dataSource,
-        type: "scrollcolumn2d",
-        width: "100%",
-        height: "100%",
-        licenseKey: licenseKey,
-        fusionChartEvent: (eventType, eventDetail) =>
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content:
-                    Text("Event Raised: $eventType + Details: $eventDetail"))),
-        fusionChartsController: fc);
   }
 
   void callBackFromPlugin(arg1, arg2) {
@@ -149,9 +134,9 @@ class _ScrollColumn2DState extends State<ScrollColumn2D> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Scroll Column 2D'),
               ],
             ),

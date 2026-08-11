@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
 class PyramidChart extends StatefulWidget {
@@ -34,16 +33,16 @@ class _PyramidChartState extends State<PyramidChart> {
       "showPercentValues": "1",
       "chartLeftMargin": "40",
       "theme": "fusion",
-      
     };
 
-    List<dynamic> data = [{"label": "Top 32 mn (0.7%)","value": "98.7"},{"label": "Next 361 mn (7.7%)","value": "101.8"},{"label": "Next 1.1 bn (22.9%)","value": "33"},{"label": "Last 3.2 bn (68.7%)","value": "7.3"}];
+    List<dynamic> data = [
+      {"label": "Top 32 mn (0.7%)", "value": "98.7"},
+      {"label": "Next 361 mn (7.7%)", "value": "101.8"},
+      {"label": "Next 1.1 bn (22.9%)", "value": "33"},
+      {"label": "Last 3.2 bn (68.7%)", "value": "7.3"}
+    ];
 
-
-    Map<String, dynamic> dataSource = {
-      "chart": chart,
-      "data": data
-    };
+    Map<String, dynamic> dataSource = {"chart": chart, "data": data};
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
@@ -65,15 +64,14 @@ class _PyramidChartState extends State<PyramidChart> {
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
-          title: const Text(
-            'Fusion Charts - Pyramid'),
+          title: const Text('Fusion Charts - Pyramid'),
         ),
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Pyramid Chart'),
               ],
             ),

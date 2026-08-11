@@ -142,7 +142,10 @@ class _MultiSeriesSingleComboState extends State<MultiSeriesSingleCombo> {
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
-          title: const Text('Fusion Charts - MultiSeries Single Combination',overflow: TextOverflow.ellipsis,),
+          title: const Text(
+            'Fusion Charts - MultiSeries Single Combination',
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         body: SizedBox(
           height: MediaQuery.of(context).size.height,
@@ -150,9 +153,9 @@ class _MultiSeriesSingleComboState extends State<MultiSeriesSingleCombo> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Combination 2D'),
                 ],
               ),
@@ -160,9 +163,9 @@ class _MultiSeriesSingleComboState extends State<MultiSeriesSingleCombo> {
                 height: 10,
               ),
               Expanded(child: _fusionChart3d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Combination 3D'),
                 ],
               ),

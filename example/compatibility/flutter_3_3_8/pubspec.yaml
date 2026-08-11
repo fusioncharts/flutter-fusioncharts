@@ -1,0 +1,22 @@
+name: flutter_fusioncharts_floor_example
+description: Minimal Flutter 3.3.8 compatibility harness for flutter_fusioncharts.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.18.4 <3.0.0"
+  flutter: ">=3.3.8"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_fusioncharts:
+    path: ../../..
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true

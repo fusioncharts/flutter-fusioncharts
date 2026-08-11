@@ -34,7 +34,6 @@ class _DoughnutState extends State<Doughnut> {
           "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
       "theme": "fusion",
       "centerLabel": "# Users: \$value",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -60,7 +59,6 @@ class _DoughnutState extends State<Doughnut> {
     print('Back to consumer: $arg1 , $arg2');
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -74,9 +72,9 @@ class _DoughnutState extends State<Doughnut> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Doughnut 2D'),
               ],
             ),
@@ -84,9 +82,9 @@ class _DoughnutState extends State<Doughnut> {
               height: 10,
             ),
             Expanded(child: _fusionChart3D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Doughnut 3D'),
               ],
             ),

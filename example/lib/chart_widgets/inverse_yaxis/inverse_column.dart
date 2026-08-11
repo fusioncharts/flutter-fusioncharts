@@ -26,7 +26,6 @@ class _InverseColumnState extends State<InverseColumn> {
       "numberSuffix": "s",
       "xAxisLineThickness": "1",
       "theme": "umber",
-      
     };
 
     List<dynamic> categories = [
@@ -96,9 +95,9 @@ class _InverseColumnState extends State<InverseColumn> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Inverse Column'),
               ],
             ),
