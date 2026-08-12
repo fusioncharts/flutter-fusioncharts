@@ -1,0 +1,30 @@
+# Local/generated state
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.git/
+.github/
+.idea/
+.packages
+.pub/
+build/
+pubspec.lock
+
+# Generated state in the example application
+example/.dart_tool/
+example/.env
+example/.flutter-plugins
+example/.flutter-plugins-dependencies
+example/build/
+example/pubspec.lock
+example/compatibility/**/.dart_tool/
+example/compatibility/**/.flutter-plugins
+example/compatibility/**/.flutter-plugins-dependencies
+example/compatibility/**/build/
+example/compatibility/**/pubspec.lock
+
+# Retired 1.x platform/plugin and app-owned asset trees. These paths remain in
+# the current base commit but are deleted by the 2.0 upgrade.
+/android/
+/ios/
+/example/fusioncharts/

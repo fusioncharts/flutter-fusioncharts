@@ -24,50 +24,23 @@ class _HeatMapState extends State<HeatMap> {
       "subcaption": "Source: Q1 Customer Satisfaction Survey",
       "showvalues": "1",
       "plottooltext":
-      "<div><b>\$rowLabel</b><br/>\$columnLabel Rating: <b>\$datavalue</b>/10</div>"
+          "<div><b>\$rowLabel</b><br/>\$columnLabel Rating: <b>\$datavalue</b>/10</div>"
     };
     Map<String, dynamic> rows = {
       "row": [
-        {
-          "id": "SGS9",
-          "label": "Samsung Galaxy S9"
-        },
-        {
-          "id": "iphonex",
-          "label": "Iphone X"
-        },
-        {
-          "id": "op6",
-          "label": "One Plus 6"
-        },
-        {
-          "id": "motoz2",
-          "label": "Moto Z2 Force"
-        }
+        {"id": "SGS9", "label": "Samsung Galaxy S9"},
+        {"id": "iphonex", "label": "Iphone X"},
+        {"id": "op6", "label": "One Plus 6"},
+        {"id": "motoz2", "label": "Moto Z2 Force"}
       ]
     };
     Map<String, dynamic> columns = {
       "column": [
-        {
-          "id": "processor",
-          "label": "Processor"
-        },
-        {
-          "id": "screen",
-          "label": "Screen Size"
-        },
-        {
-          "id": "price",
-          "label": "Price"
-        },
-        {
-          "id": "backup",
-          "label": "Battery Capacity"
-        },
-        {
-          "id": "cam",
-          "label": "Camera"
-        }
+        {"id": "processor", "label": "Processor"},
+        {"id": "screen", "label": "Screen Size"},
+        {"id": "price", "label": "Price"},
+        {"id": "backup", "label": "Battery Capacity"},
+        {"id": "cam", "label": "Camera"}
       ]
     };
     Map<String, dynamic> colorrange = {
@@ -80,7 +53,7 @@ class _HeatMapState extends State<HeatMap> {
       "endlabel": "Outstanding"
     };
 
-    List<dynamic> dataset =  [
+    List<dynamic> dataset = [
       {
         "data": [
           {
@@ -107,12 +80,7 @@ class _HeatMapState extends State<HeatMap> {
             "value": "9.7",
             "brlabel": "3000 MAH"
           },
-          {
-            "rowid": "SGS9",
-            "columnid": "cam",
-            "value": "8",
-            "trlabel": "8 MP"
-          },
+          {"rowid": "SGS9", "columnid": "cam", "value": "8", "trlabel": "8 MP"},
           {
             "rowid": "iphonex",
             "columnid": "processor",
@@ -242,9 +210,9 @@ class _HeatMapState extends State<HeatMap> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('HeatMap Chart'),
               ],
             ),

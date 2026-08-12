@@ -24,7 +24,7 @@ class _AreaState extends State<Area> {
       "caption": "Android Distribution",
       "subCaption": "subCaption",
       "showlegend": "1",
-      "exportEnabled":"1",
+      "exportEnabled": "1",
       "showpercentvalues": "1",
       "legendPosition": "right",
       "plothovereffect": "1",
@@ -80,19 +80,20 @@ class _AreaState extends State<Area> {
         ),
         body: Column(
           children: [
-            Container(
-              child: _fusionChart2D,
+            SizedBox(
               height: 400,
               width: 400,
+              child: _fusionChart2D,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Area 2D'),
-                SizedBox(width: 30),
-                InkWell(child: Text('Add Events'), onTap: addEvents),
-                SizedBox(width: 30),
-                InkWell(child: Text('Remove Events'), onTap: removeEvents),
+                const Text('Area 2D'),
+                const SizedBox(width: 30),
+                InkWell(onTap: addEvents, child: const Text('Add Events')),
+                const SizedBox(width: 30),
+                InkWell(
+                    onTap: removeEvents, child: const Text('Remove Events')),
               ],
             ),
           ],

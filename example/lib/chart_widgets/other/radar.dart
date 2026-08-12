@@ -23,7 +23,6 @@ class _RadarState extends State<Radar> {
       "subCaption": "Current month",
       "numberPrefix": "\$",
       "theme": "umber",
-      
     };
     List<dynamic> dataset = [
       {
@@ -93,9 +92,9 @@ class _RadarState extends State<Radar> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Radar Chart'),
               ],
             ),

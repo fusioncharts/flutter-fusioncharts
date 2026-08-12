@@ -123,9 +123,9 @@ class _ColumnMultiSeriesState extends State<ColumnMultiSeries> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Column2D'),
                 ],
               ),
@@ -133,9 +133,9 @@ class _ColumnMultiSeriesState extends State<ColumnMultiSeries> {
                 height: 10,
               ),
               Expanded(child: _fusionChart3d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Column3D'),
                 ],
               ),

@@ -66,9 +66,9 @@ class _TimeSeriesState extends State<TimeSeries> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Timeseries'),
               ],
             ),

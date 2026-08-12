@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
 class AnnotatedBar extends StatefulWidget {
@@ -12,7 +11,7 @@ class AnnotatedBar extends StatefulWidget {
 
 class _AnnotatedBarState extends State<AnnotatedBar> {
   late FusionCharts _fusionChart2D;
-  late FusionCharts _fusionChart3D;
+  @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +22,6 @@ class _AnnotatedBarState extends State<AnnotatedBar> {
       "xAxisName": "Day",
       "yAxisName": "No. of Visitors",
       "theme": "fusion",
-      
     };
 
     Map<String, dynamic> annotations = {
@@ -127,14 +125,6 @@ class _AnnotatedBarState extends State<AnnotatedBar> {
         fusionChartEvent: (a, b) => {},
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
-    _fusionChart3D = FusionCharts(
-        dataSource: dataSource,
-        type: "bar3d",
-        width: "100%",
-        height: "100%",
-        fusionChartEvent: (a, b) => {},
-        fusionChartsController: fusionChartsController,
-        licenseKey: licenseKey);
   }
 
   void callBackFromPlugin(arg1, arg2) {
@@ -158,9 +148,9 @@ class _AnnotatedBarState extends State<AnnotatedBar> {
               padding: const EdgeInsets.all(10.0),
               child: _fusionChart2D,
             )),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('AnnotatedBar 2D'),
               ],
             ),

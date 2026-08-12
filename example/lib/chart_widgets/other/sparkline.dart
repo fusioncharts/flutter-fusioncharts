@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
 class Sparkline extends StatefulWidget {
@@ -39,7 +38,6 @@ class _SparklineState extends State<Sparkline> {
       "subcaption": "Year Till Date",
       "legendCaption": "Growth in sales - Compared to previous year",
       "theme": "fusion",
-      
     };
     Map<String, dynamic> colorrange = {
       "mapbypercent": "1",
@@ -388,9 +386,9 @@ class _SparklineState extends State<Sparkline> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Sparkline'),
               ],
             ),

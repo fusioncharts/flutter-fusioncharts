@@ -13,7 +13,6 @@ class StackedBarMultiSeries extends StatefulWidget {
 
 class _StackedBarMultiSeriesState extends State<StackedBarMultiSeries> {
   late FusionCharts _fusionChart2D;
-  late FusionCharts _fusionChart3D;
 
   @override
   void initState() {
@@ -28,7 +27,6 @@ class _StackedBarMultiSeriesState extends State<StackedBarMultiSeries> {
       "numberPrefix": "\$",
       "numbersuffix": "M",
       "theme": "carbon",
-      
     };
 
     FusionChartsController fusionChartsController = FusionChartsController();
@@ -76,9 +74,9 @@ class _StackedBarMultiSeriesState extends State<StackedBarMultiSeries> {
       body: Column(
         children: [
           Expanded(child: _fusionChart2D),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text('Multi Series Stacked Bar2D'),
             ],
           ),

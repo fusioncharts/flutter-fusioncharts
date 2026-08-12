@@ -34,7 +34,6 @@ class _ScrollBar2DState extends State<ScrollBar2D> {
       "scrollShowButtons": "0",
       "scrollColor": "#cccccc",
       "theme": "umber",
-      
     };
 
     List<dynamic> categories = [
@@ -112,7 +111,7 @@ class _ScrollBar2DState extends State<ScrollBar2D> {
         fusionChartEvent: (eventType, eventDetail) =>
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content:
-                Text("Event Raised: $eventType + Details: $eventDetail"))),
+                    Text("Event Raised: $eventType + Details: $eventDetail"))),
         fusionChartsController: fc);
   }
 
@@ -135,9 +134,9 @@ class _ScrollBar2DState extends State<ScrollBar2D> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Scroll Bar 2D'),
               ],
             ),

@@ -28,9 +28,7 @@ class _WaterfallOrCascadeState extends State<WaterfallOrCascade> {
       "positiveColor": "#6baa01",
       "negativeColor": "#e44a00",
       "theme": "candy",
-      
     };
-
 
     Map<String, dynamic> dataSource = {
       "chart": chart,
@@ -57,16 +55,17 @@ class _WaterfallOrCascadeState extends State<WaterfallOrCascade> {
           leading: IconButton(
               onPressed: () => Navigator.of(context).pop(),
               icon: const Icon(Icons.arrow_back)),
-          title: const Text('Fusion Charts - Waterfall/Cascade',style: TextStyle(
-            fontSize: 12
-          ),),
+          title: const Text(
+            'Fusion Charts - Waterfall/Cascade',
+            style: TextStyle(fontSize: 12),
+          ),
         ),
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Waterfall/Cascade chart'),
               ],
             ),

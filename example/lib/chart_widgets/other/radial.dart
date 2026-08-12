@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
-import 'package:flutter_fusioncharts_example/chartdata.dart';
 import '../../constants.dart';
 
 class RadialBar extends StatefulWidget {
@@ -72,9 +71,9 @@ class _RadialBarState extends State<RadialBar> {
             SizedBox(
                 height: MediaQuery.of(context).size.height * 3 / 4,
                 child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Radial Bar'),
               ],
             ),

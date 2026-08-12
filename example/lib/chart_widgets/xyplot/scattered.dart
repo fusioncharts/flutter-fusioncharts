@@ -219,7 +219,6 @@ class _ScatteredState extends State<Scattered> {
       "yNumberPrefix": "\$",
       "xNumberSuffix": "&deg; F",
       "theme": "gammel",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -261,9 +260,9 @@ class _ScatteredState extends State<Scattered> {
           child: Column(
             children: [
               Expanded(child: _fusionChart),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Scattered'),
                 ],
               ),

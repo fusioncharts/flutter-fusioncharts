@@ -52,7 +52,6 @@ class _RealTimeAngularState extends State<RealTimeAngular> {
       "gaugeoriginx": "160",
       "gaugeoriginy": "160",
       "theme": "zune",
-      
     };
     Map<String, dynamic> dials = {
       "dial": [
@@ -153,9 +152,9 @@ class _RealTimeAngularState extends State<RealTimeAngular> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Realtime Angular Chart'),
               ],
             ),

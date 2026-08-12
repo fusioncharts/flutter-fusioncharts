@@ -54,7 +54,6 @@ class _OverlappedColumnState extends State<OverlappedColumn> {
       "caption": "Comparison of Quarterly Sales",
       "xAxisname": "Quarter",
       "yAxisName": "Sales",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -76,7 +75,6 @@ class _OverlappedColumnState extends State<OverlappedColumn> {
     print('Back to consumer: $arg1 , $arg2');
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -93,9 +91,9 @@ class _OverlappedColumnState extends State<OverlappedColumn> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Overlapped Column'),
                 ],
               ),

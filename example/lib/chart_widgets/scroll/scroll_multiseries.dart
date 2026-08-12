@@ -30,7 +30,6 @@ class _ScrollMultiseriesState extends State<ScrollMultiseries> {
       "showvalues": "0",
       "drawcrossline": "1",
       "divlinealpha": "20",
-      
     };
 
     List<dynamic> categories = [
@@ -173,7 +172,7 @@ class _ScrollMultiseriesState extends State<ScrollMultiseries> {
       "chart": chart,
       "dataset": dataset,
       "categories": categories,
-      "lineset":lineset
+      "lineset": lineset
     };
 
     _fusionChart2D = FusionCharts(
@@ -208,9 +207,9 @@ class _ScrollMultiseriesState extends State<ScrollMultiseries> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Scroll Multiseries'),
               ],
             ),

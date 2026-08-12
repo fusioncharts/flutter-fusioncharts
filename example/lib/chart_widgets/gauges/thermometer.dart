@@ -26,14 +26,9 @@ class _ThermometerState extends State<Thermometer> {
       "upperLimit": "100",
       "numberSuffix": "°C",
       "theme": "fusion",
-      
     };
 
-
-    Map<String, dynamic> dataSource = {
-      "chart": chart,
-      "value":"56"
-    };
+    Map<String, dynamic> dataSource = {"chart": chart, "value": "56"};
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
@@ -44,7 +39,7 @@ class _ThermometerState extends State<Thermometer> {
         fusionChartEvent: (eventType, eventDetail) =>
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content:
-                Text("Event Raised: $eventType + Details: $eventDetail"))),
+                    Text("Event Raised: $eventType + Details: $eventDetail"))),
         fusionChartsController: fc);
   }
 
@@ -67,9 +62,9 @@ class _ThermometerState extends State<Thermometer> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Thermometer'),
               ],
             ),
