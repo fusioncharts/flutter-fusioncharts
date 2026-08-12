@@ -238,13 +238,19 @@ jobs:
           flutter-version: "3.44.9"
           channel: stable
           cache: true
-      - name: Validate pub.dev package archive
+      - name: Generate pub.dev package dry-run
         run: |
           set -o pipefail
-          flutter --no-color pub publish --dry-run 2>&1 | tee /tmp/pub-dry-run.txt
+          flutter pub publish --dry-run 2>&1 | tee /tmp/pub-dry-run.txt
+
+      - name: Validate required package files
+        run: |
           grep -Eq "LICENSE$" /tmp/pub-dry-run.txt
           grep -Eq "THIRD_PARTY_NOTICES\\.md$" /tmp/pub-dry-run.txt
           grep -Eq "fusioncharts-4\\.2\\.2-manifest\\.json$" /tmp/pub-dry-run.txt
+
+      - name: Validate package warnings and exclusions
+        run: |
           grep -F "Package has 0 warnings." /tmp/pub-dry-run.txt
           if grep -Eq -- "-- \\.env$" /tmp/pub-dry-run.txt; then
             echo "The package archive must not contain an .env file."
