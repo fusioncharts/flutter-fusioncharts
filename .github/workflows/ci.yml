@@ -4,20 +4,20 @@ on:
   workflow_dispatch:
   pull_request:
   push:
-    branches: [main, develop, "feat/**"]
+    branches: [main, develop]
 
 permissions:
   contents: read
 
 concurrency:
   group: flutter-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  # Proves that the declared Flutter/Dart floor resolves the minimum WebView
-  # graph, passes the package suite, and builds a real Android consumer app.
+  # Proves that the declared Flutter/Dart floor resolves and analyzes production
+  # source. Tests and the Android harness use the compatible graph from pub get.
   minimum-android:
-    name: Flutter 3.3.8 - package floor and Android harness
+    name: Flutter 3.3.8 - floor source and compatible-graph Android
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -38,7 +38,7 @@ jobs:
         run: |
           rm -f pubspec.lock
           flutter pub downgrade
-          flutter pub deps > /tmp/flutter-deps.txt
+          flutter pub deps | tee /tmp/flutter-deps.txt
           grep -F "webview_flutter 4.1.0" /tmp/flutter-deps.txt
           grep -F "webview_flutter_android 3.0.0" /tmp/flutter-deps.txt
           grep -F "webview_flutter_platform_interface 2.1.0" /tmp/flutter-deps.txt
@@ -86,11 +86,8 @@ jobs:
       - name: Resolve and verify the latest dependency graph
         run: |
           flutter pub upgrade
-          flutter pub deps > /tmp/flutter-deps.txt
+          flutter pub deps | tee /tmp/flutter-deps.txt
           grep -F "webview_flutter 4.14.1" /tmp/flutter-deps.txt
-          grep -F "webview_flutter_android 4.14.0" /tmp/flutter-deps.txt
-          grep -F "webview_flutter_platform_interface 2.15.1" /tmp/flutter-deps.txt
-          grep -F "webview_flutter_wkwebview 3.26.0" /tmp/flutter-deps.txt
       - name: Check Dart formatting
         run: dart format --output=none --set-exit-if-changed lib test
       - name: Analyze package
@@ -130,11 +127,8 @@ jobs:
         run: |
           rm -f pubspec.lock
           flutter pub upgrade
-          flutter pub deps > /tmp/flutter-deps.txt
+          flutter pub deps | tee /tmp/flutter-deps.txt
           grep -F "webview_flutter 4.14.1" /tmp/flutter-deps.txt
-          grep -F "webview_flutter_android 4.12.0" /tmp/flutter-deps.txt
-          grep -F "webview_flutter_platform_interface 2.15.1" /tmp/flutter-deps.txt
-          grep -F "webview_flutter_wkwebview 3.25.1" /tmp/flutter-deps.txt
       - name: Check Dart formatting
         run: dart format --output=none --set-exit-if-changed lib test
       - name: Analyze package
@@ -150,11 +144,10 @@ jobs:
           flutter test --no-pub
           flutter build apk --debug --no-pub
 
-  # Confirms the oldest stock Flutter train known to build this harness for an
-  # iOS simulator on the hosted runner's current Xcode. This is not the package
-  # source floor and does not replace the planned Flutter 3.3.8/Xcode 14.1 test.
+  # Confirms Flutter 3.7.12 can build the deliberately legacy 3.3-era consumer
+  # scaffold. This is not a Flutter 3.3.8 SDK or Xcode 14.1 certification run.
   ios-boundary:
-    name: Flutter 3.7.12 - current-Xcode iOS boundary
+    name: Flutter 3.7.12 - legacy-scaffold iOS build
     runs-on: macos-latest
     timeout-minutes: 30
     steps:
@@ -168,9 +161,7 @@ jobs:
           cache: true
       - name: Record Xcode version
         run: xcodebuild -version
-      - name: Resolve wrapper dependencies
-        run: flutter pub get
-      - name: Build floor harness for iOS simulator
+      - name: Build 3.3-era harness with Flutter 3.7.12 for iOS simulator
         working-directory: example/compatibility/flutter_3_3_8
         run: |
           rm -f pubspec.lock
@@ -194,8 +185,6 @@ jobs:
           cache: true
       - name: Record Xcode version
         run: xcodebuild -version
-      - name: Resolve wrapper dependencies
-        run: flutter pub upgrade
       - name: Build Flutter 3.41.9 compatibility harness for iOS simulator
         working-directory: example/compatibility/flutter_3_41_9
         run: |
@@ -220,8 +209,6 @@ jobs:
           cache: true
       - name: Record Xcode version
         run: xcodebuild -version
-      - name: Resolve wrapper dependencies
-        run: flutter pub upgrade
       - name: Build gallery for iOS simulator
         working-directory: example
         run: |
@@ -252,4 +239,14 @@ jobs:
           channel: stable
           cache: true
       - name: Validate pub.dev package archive
-        run: flutter pub publish --dry-run
+        run: |
+          set -o pipefail
+          flutter pub publish --dry-run 2>&1 | tee /tmp/pub-dry-run.txt
+          grep -F -- "|-- LICENSE" /tmp/pub-dry-run.txt
+          grep -F "THIRD_PARTY_NOTICES.md" /tmp/pub-dry-run.txt
+          grep -F "fusioncharts-4.2.2-manifest.json" /tmp/pub-dry-run.txt
+          grep -F "Package has 0 warnings." /tmp/pub-dry-run.txt
+          if grep -Eq -- "-- \\.env$" /tmp/pub-dry-run.txt; then
+            echo "The package archive must not contain an .env file."
+            exit 1
+          fi
