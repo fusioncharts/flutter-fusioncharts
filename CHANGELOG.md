@@ -1,13 +1,31 @@
 ## 2.0.0-rc.0
 
-* Support Flutter 3.3.8+, Dart 2.18.4+, and Dart 3.
-* Move to the official `webview_flutter` package with a safer JSON bridge and
-  lifecycle fixes.
-* Bundle FusionCharts 4.2.2 for offline use; no separate download, asset setup,
-  or CDN runtime is required.
-* Return export bytes to the application without storage permissions. Android
-  supports all six formats; iOS supports SVG, CSV, and XLSX.
-* See the [migration guide](doc/migration/1.x-to-2.0.md) for breaking changes.
+### Added
+
+* Add structured source, error, data-update, readiness, and byte-based export
+  APIs.
+
+### Changed
+
+* Move to `webview_flutter` and bundle FusionCharts 4.2.2 with the World and USA
+  maps.
+* Return export bytes to the application. Android supports all formats; iOS
+  supports SVG, CSV, and XLSX.
+
+### Breaking changes
+
+* Require Flutter 3.3.8+ and Dart 2.18.4+.
+* Remove `setWebViewController`; `isLocal: false` no longer loads from the CDN.
+* Remove `flutter_inappwebview`, `permission_handler`, `path_provider`, and
+  `pdf`.
+* See the [migration guide](doc/migration/1.x-to-2.0.md) for upgrade steps.
+
+### Security
+
+* Add a validated, versioned JSON bridge and remove wrapper-owned file writes
+  and storage-permission requirements.
+* OSV scans moved from two High findings to zero across 58 packages after
+  resolving fixed dependencies; removing `pdf` also eliminates that path.
 
 ## 1.0.2
 

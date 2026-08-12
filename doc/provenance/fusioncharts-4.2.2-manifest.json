@@ -6,8 +6,8 @@
   "font_urls_rewritten_to_local_assets": 7,
   "remote_font_urls_remaining": 0,
   "redistribution": "Commercial FusionCharts JavaScript is bundled in this package with FusionCharts approval.",
-  "file_count": 32,
-  "total_bytes": 4924451,
+  "file_count": 33,
+  "total_bytes": 5061290,
   "files": [
     {
       "path": "fonts/fira-sans-light-300-latin.woff2",
@@ -192,6 +192,14 @@
       "sha256_upstream": "550a2daafb48e51488e36ac6c2af09510ac9a793ac2a40aa014f41c316c1e76e",
       "font_urls_rewritten_to_local_assets": 0,
       "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.zoomscatter.js"
+    },
+    {
+      "path": "maps/fusioncharts.usa.js",
+      "bytes": 136839,
+      "sha256": "b2d93b481ec53d5f2e67d332ce4688272ced152d3d71a7dc1e717a1b9d966f0d",
+      "sha256_upstream": "b2d93b481ec53d5f2e67d332ce4688272ced152d3d71a7dc1e717a1b9d966f0d",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/maps/fusioncharts.usa.js"
     },
     {
       "path": "maps/fusioncharts.world.js",

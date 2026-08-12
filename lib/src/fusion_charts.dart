@@ -220,14 +220,12 @@ class _FusionChartsState extends State<FusionCharts> {
 
   /// Resolves which page to load, or `null` when the request cannot be served.
   ///
-  /// Offline Flutter assets are the only supported runtime mode, so a
-  /// request for the removed CDN mode is reported through [onError] and no
-  /// load is attempted. It must never fall back to the network.
+  /// A request for the removed CDN mode is reported through [onError], and no
+  /// load is attempted.
   ///
   /// The 1.x `maps` prefix override, which silently forced map chart types to
-  /// CDN, is deliberately gone: there is no CDN to fall back to, and the
-  /// caller's configured source must be honoured. Map definitions must be
-  /// bundled with the other assets.
+  /// CDN, is deliberately gone. The caller's configured source must be
+  /// honoured, and map definitions must be bundled with the other assets.
   FusionChartsSource? _resolveSource() {
     final FusionChartsSource? explicit = widget.source;
     if (explicit != null) {

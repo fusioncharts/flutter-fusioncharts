@@ -41,8 +41,7 @@ abstract class FusionChartsWebViewHost {
   /// Loads a page from the Flutter asset bundle.
   ///
   /// Asset loading is the only supported route for the package-owned bridge.
-  /// It keeps the rendering page versioned with the wrapper and available
-  /// without a network connection.
+  /// It keeps the rendering page versioned with the wrapper.
   Future<void> loadFlutterAsset(String assetKey);
 
   /// Runs JavaScript in the hosted page without awaiting a result.

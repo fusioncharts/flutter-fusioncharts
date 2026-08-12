@@ -278,6 +278,7 @@ jobs:
           grep -Eq -- ' LICENSE \(' /tmp/pub-dry-run.txt
           grep -Eq -- ' THIRD_PARTY_NOTICES\.md \(' /tmp/pub-dry-run.txt
           grep -Eq -- ' fusioncharts-4\.2\.2-manifest\.json \(' /tmp/pub-dry-run.txt
+          grep -Eq -- ' fusioncharts\.usa\.js \(' /tmp/pub-dry-run.txt
 
       - name: Validate package warnings and exclusions
         run: |

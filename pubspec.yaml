@@ -1,5 +1,5 @@
 name: flutter_fusioncharts
-description: Flutter integration for FusionCharts with 100+ chart types, the world map, and offline assets for Android and iOS using webview_flutter.
+description: The official Flutter component for the FusionCharts JavaScript charting library.
 repository: https://github.com/fusioncharts/flutter-fusioncharts
 issue_tracker: https://github.com/fusioncharts/flutter-fusioncharts/issues
 version: 2.0.0-rc.0
@@ -37,6 +37,7 @@ dependencies:
   # application over the bridge, so the package owns no storage.
 
 dev_dependencies:
+  crypto: ^3.0.2
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0

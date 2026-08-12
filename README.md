@@ -5,9 +5,7 @@ The official Flutter integration for
 FusionWidgets, PowerCharts, and FusionMaps.
 
 Version 2 renders charts through Flutter's official `webview_flutter` package.
-FusionCharts 4.2.2 is bundled with the wrapper, so consuming applications do
-not need a JavaScript download step, application-side FusionCharts assets, or a
-runtime CDN connection.
+FusionCharts 4.2.2 and the included assets are bundled with the wrapper.
 
 ## Table of contents
 
@@ -21,6 +19,7 @@ runtime CDN connection.
 - [Export](#export)
 - [Offline delivery](#offline-delivery)
 - [Custom assets](#custom-assets)
+  - [Additional maps](#additional-maps)
 - [Migrating from 1.x](#migrating-from-1x)
 - [Troubleshooting](#troubleshooting)
 - [Support and licensing](#support-and-licensing)
@@ -28,8 +27,8 @@ runtime CDN connection.
 ## Features
 
 - Android and iOS support.
-- FusionCharts 4.2.2 core, chart modules, eight themes, and the world map
-  bundled as Flutter assets.
+- FusionCharts 4.2.2 core, chart modules, eight themes, and the World and USA
+  maps bundled as Flutter assets.
 - Dynamic data updates, chart events, real-time feeds, and multiple independent
   charts on one screen.
 - FusionTime, FusionWidgets, PowerCharts, and FusionMaps integration.
@@ -216,16 +215,77 @@ and initiates no load.
 
 ## Custom assets
 
-The package includes the world map definition. Applications that need other
-map definitions or a customized host page can supply an application-owned
-Flutter asset:
+### Additional maps
+
+The package-owned page bundles the World map (`maps/world`) and USA map
+(`maps/usa`). Both work with the default package source and require no extra
+asset setup. Other FusionMaps definitions are not included.
+
+To use another map:
+
+1. Find its chart alias in the
+   [FusionCharts map catalog](https://www.fusioncharts.com/dev/map-guide/list-of-maps).
+2. Obtain the corresponding definition from your licensed FusionCharts or
+   FusionMaps distribution, or from the
+   [official map-definition package](https://cdn.fusioncharts.com/downloads/addons/fusionmaps-xt-definition.zip).
+   Definition files use the `fusioncharts.<map-alias>.js` convention; for
+   example, `maps/europe` requires `fusioncharts.europe.js`.
+3. Copy `fusioncharts.js`, `fusioncharts.maps.js`, the required map definition,
+   and any themes used by the chart into one application-owned Flutter asset
+   directory. Keep the JavaScript files on a compatible, exact FusionCharts
+   version.
+4. Create an application-owned HTML page that loads those files using local,
+   relative paths. The wrapper injects its bridge after the page loads.
+5. Declare the page and its files in the application's `pubspec.yaml`, then
+   select the page with `FusionChartsSource.asset`.
+
+For example, a Europe map can use this asset layout:
+
+```text
+assets/
+  fusioncharts_page.html
+  fusioncharts/
+    fusioncharts.js
+    fusioncharts.maps.js
+    maps/
+      fusioncharts.europe.js
+    themes/
+      fusioncharts.theme.fusion.js
+```
+
+The corresponding `assets/fusioncharts_page.html` can contain:
+
+```html
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body, #chart-container {
+      width: 100%; height: 100%; margin: 0; overflow: hidden;
+    }
+  </style>
+  <script src="fusioncharts/fusioncharts.js"></script>
+  <script src="fusioncharts/fusioncharts.maps.js"></script>
+  <script src="fusioncharts/maps/fusioncharts.europe.js"></script>
+  <script src="fusioncharts/themes/fusioncharts.theme.fusion.js"></script>
+</head>
+<body>
+  <div id="chart-container"></div>
+</body>
+</html>
+```
+
+Load it from the widget using the map alias:
 
 ```dart
 FusionCharts(
-  type: 'maps/usa',
+  type: 'maps/europe',
   dataSource: data,
   source: FusionChartsSource.asset(
     assetKey: 'assets/fusioncharts_page.html',
+    version: '4.2.2',
   ),
 );
 ```
@@ -243,9 +303,14 @@ flutter:
     - assets/fusioncharts/
 ```
 
-The application owns the custom page's files, security, licensing, versioning,
-and availability. The wrapper does not validate or maintain custom page
-contents.
+Set `version` to the exact FusionCharts version loaded by the custom page. A
+different runtime version reports `runtime-version-mismatch`.
+
+Additional map definitions and other application-supplied FusionCharts files
+remain subject to the applicable FusionCharts license. The application owns
+their security, licensing, versioning, redistribution, and availability. The
+wrapper does not validate or maintain custom page contents. Bundle these files
+with the application.
 
 ## Migrating from 1.x
 
@@ -261,9 +326,9 @@ upgrading.
 | Symptom | What to check |
 |---|---|
 | Blank or zero-height chart | Give the chart a bounded parent such as `SizedBox(height: 320)` |
-| `unsupported-source` | Remove `isLocal: false`; the supported source is the offline package bundle |
+| `unsupported-source` | Remove `isLocal: false` to use the package-bundled FusionCharts assets |
 | Android or iOS minimum-version build error | Check the `webview_flutter` versions selected by `flutter pub deps` and adopt their platform minimums |
-| `export-unsupported` on iOS | Use SVG, CSV, or XLSX until the raster/PDF patch is available |
+| `export-unsupported` on iOS | Use SVG, CSV, or XLSX |
 | Trial watermark | Supply a valid FusionCharts license key |
 
 ## Support and licensing

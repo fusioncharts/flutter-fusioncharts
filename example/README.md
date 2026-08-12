@@ -1,8 +1,8 @@
 # Flutter FusionCharts example
 
 This app demonstrates the chart gallery included with `flutter_fusioncharts`.
-FusionCharts JavaScript, maps, themes, and fonts are bundled with the package and
-run offline; no separate download or CDN setup is required.
+FusionCharts JavaScript, World and USA map definitions, themes, and fonts are
+bundled with the package; no separate asset setup is required.
 
 ## Run the example
 

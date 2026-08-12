@@ -3,9 +3,7 @@ const String kFusionChartsVersion = '4.2.2';
 
 /// Where the hosting page loads the FusionCharts JavaScript from.
 ///
-/// Offline Flutter assets are the only supported runtime mode. The wrapper has
-/// no CDN runtime mode, no network fallback, and no NPM or Node requirement for
-/// consumers.
+/// The wrapper loads FusionCharts from Flutter assets.
 enum FusionChartsSourceMode {
   /// FusionCharts is loaded from the consuming application's Flutter assets.
   asset,
@@ -27,9 +25,8 @@ class FusionChartsSourceError implements Exception {
 /// Declares which page the WebView host loads and which FusionCharts build it
 /// is expected to contain.
 ///
-/// Always a Flutter asset. This keeps the package-owned rendering environment
-/// reproducible and available offline; network-fetched runtimes are outside the
-/// wrapper's supported delivery model.
+/// Always a Flutter asset so the rendering environment stays versioned with
+/// the application.
 class FusionChartsSource {
   const FusionChartsSource._({
     required this.mode,
@@ -40,8 +37,7 @@ class FusionChartsSource {
   /// The package-owned host page. **This is the default.**
   ///
   /// FusionCharts 4.2.2 and all eight themes ship inside this package, so a
-  /// consuming application needs no FusionCharts assets of its own and makes no
-  /// network request. See
+  /// consuming application needs no FusionCharts assets of its own. See
   /// `doc/provenance/fusioncharts-4.2.2-manifest.json` in the package source for
   /// versions and SHA-256 hashes.
   static const String packageAsset =
@@ -49,8 +45,8 @@ class FusionChartsSource {
 
   /// The legacy asset layout shipped with the 1.x example application.
   ///
-  /// **Not offline-clean**: that page pulls eight theme scripts from the network
-  /// and two of its URLs 404. Kept only so an application that already ships
+  /// **Legacy only**: that page references eight remote theme scripts, and two
+  /// of its URLs return 404. Kept only so an application that already ships
   /// this layout can opt into it explicitly. Prefer [packageAsset].
   static const String legacyLocalAsset =
       'fusioncharts/integrate/index_local.html';
@@ -95,11 +91,11 @@ class FusionChartsSource {
   /// Migration guidance surfaced to the application developer.
   static const String unsupportedIsLocalFalseMessage =
       'isLocal: false selected the CDN runtime mode, which is not supported in '
-      '2.0. Offline Flutter assets are the only certified delivery model. '
-      'Remove isLocal: false to use the FusionCharts $kFusionChartsVersion '
-      'assets bundled with this package. To use an application-owned page, pass '
-      'FusionChartsSource.asset(assetKey: ...); the application then owns that '
-      "page's files, availability, security, licensing and versioning.";
+      '2.0. Remove isLocal: false to use the FusionCharts '
+      '$kFusionChartsVersion assets bundled with this package. To use an '
+      'application-owned page, pass FusionChartsSource.asset(assetKey: ...); '
+      "the application then owns that page's files, availability, security, "
+      'licensing and versioning.';
 
   /// A floating version silently becomes a different build later, turning a
   /// working release into a non-reproducible one with no code change.

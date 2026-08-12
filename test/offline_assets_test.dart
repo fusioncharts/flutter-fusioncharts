@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:crypto/crypto.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -17,19 +18,55 @@ void main() {
     }
     expect(html, contains("connect-src 'self' data: blob:"));
     expect(html, contains("form-action 'none'"));
+    expect(
+      html,
+      contains('fusioncharts/maps/fusioncharts.world.js'),
+    );
+    expect(
+      html,
+      contains('fusioncharts/maps/fusioncharts.usa.js'),
+    );
   });
 
-  test('vendored manifest pins 4.2.2 and records local theme fonts', () {
+  test('vendored manifest pins and verifies every 4.2.2 asset', () {
     final Map<String, dynamic> manifest = jsonDecode(File(
       'doc/provenance/fusioncharts-4.2.2-manifest.json',
     ).readAsStringSync()) as Map<String, dynamic>;
+    final List<dynamic> files = manifest['files'] as List<dynamic>;
 
     expect(manifest['fusioncharts_version'], '4.2.2');
     expect(manifest['asset_root'], 'assets/bridge/fusioncharts');
     expect(manifest['font_urls_rewritten_to_local_assets'], 7);
     expect(manifest['remote_font_urls_remaining'], 0);
-    expect(manifest['file_count'], 32);
-    expect((manifest['files'] as List<dynamic>), hasLength(32));
+    expect(manifest['file_count'], 33);
+    expect(files, hasLength(33));
+
+    final Set<String> paths = files.map((dynamic value) {
+      return (value as Map<String, dynamic>)['path'] as String;
+    }).toSet();
+    expect(
+      paths,
+      containsAll(<String>{
+        'maps/fusioncharts.world.js',
+        'maps/fusioncharts.usa.js',
+      }),
+    );
+
+    final String assetRoot = manifest['asset_root'] as String;
+    int totalBytes = 0;
+    for (final dynamic value in files) {
+      final Map<String, dynamic> record = value as Map<String, dynamic>;
+      final File asset = File('$assetRoot/${record['path']}');
+      expect(asset.existsSync(), isTrue, reason: asset.path);
+      expect(asset.lengthSync(), record['bytes'], reason: asset.path);
+      expect(
+        sha256.convert(asset.readAsBytesSync()).toString(),
+        record['sha256'],
+        reason: asset.path,
+      );
+      totalBytes += asset.lengthSync();
+    }
+    expect(totalBytes, manifest['total_bytes']);
   });
 
   test('theme font URLs resolve to bundled WOFF2 files', () {
