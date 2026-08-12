@@ -241,10 +241,10 @@ jobs:
       - name: Validate pub.dev package archive
         run: |
           set -o pipefail
-          flutter pub publish --dry-run 2>&1 | tee /tmp/pub-dry-run.txt
-          grep -F -- "|-- LICENSE" /tmp/pub-dry-run.txt
-          grep -F "THIRD_PARTY_NOTICES.md" /tmp/pub-dry-run.txt
-          grep -F "fusioncharts-4.2.2-manifest.json" /tmp/pub-dry-run.txt
+          flutter --no-color pub publish --dry-run 2>&1 | tee /tmp/pub-dry-run.txt
+          grep -Eq "LICENSE$" /tmp/pub-dry-run.txt
+          grep -Eq "THIRD_PARTY_NOTICES\\.md$" /tmp/pub-dry-run.txt
+          grep -Eq "fusioncharts-4\\.2\\.2-manifest\\.json$" /tmp/pub-dry-run.txt
           grep -F "Package has 0 warnings." /tmp/pub-dry-run.txt
           if grep -Eq -- "-- \\.env$" /tmp/pub-dry-run.txt; then
             echo "The package archive must not contain an .env file."
