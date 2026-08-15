@@ -1,6 +1,6 @@
-The MIT License below applies to the Flutter wrapper source and examples. It
-does not apply to the commercial FusionCharts JavaScript files under
-assets/bridge/fusioncharts/. See THIRD_PARTY_NOTICES.md.
+This MIT License applies to the Flutter wrapper source and examples only.
+The bundled FusionCharts JavaScript library is commercial software licensed
+separately; see THIRD_PARTY_NOTICES.md.
 
 MIT License
 
