@@ -62,6 +62,14 @@ class FusionChartsBridge {
 
   int _exportSeq = 0;
 
+  /// Requested export format, keyed by request id, so the inbound payload's
+  /// page-supplied format cannot decide the file extension.
+  final Map<String, String> _requestedFormats = <String, String>{};
+
+  /// Bound on the map above. An export that never returns would otherwise
+  /// leak one small entry per request for the life of the chart.
+  static const int _maxTrackedExports = 16;
+
   /// Asks the page to export the chart. The result arrives on [onExport], or a
   /// failure on [onError]; requesting a format the platform cannot produce
   /// reports `export-unsupported` rather than hanging.
@@ -72,10 +80,17 @@ class FusionChartsBridge {
       return;
     }
     _exportSeq += 1;
+    final String requestId = 'x$_exportSeq';
+    // Remember what we asked for. The inbound payload's own `format` and
+    // `fileName` come from the page and are not authoritative.
+    _requestedFormats[requestId] = fmt;
+    if (_requestedFormats.length > _maxTrackedExports) {
+      _requestedFormats.remove(_requestedFormats.keys.first);
+    }
     await send(FusionChartsMessage(
       type: FusionChartsOutbound.export,
       chartId: chartId,
-      requestId: 'x$_exportSeq',
+      requestId: requestId,
       payload: <String, dynamic>{'format': fmt},
     ));
   }
@@ -216,9 +231,12 @@ class FusionChartsBridge {
         );
         break;
       case FusionChartsInbound.export:
+        final String? requestId = message.requestId;
         final FusionChartsExport? export = FusionChartsExport.fromPayload(
           message.payload,
           fallbackFormat: 'bin',
+          requestedFormat:
+              requestId == null ? null : _requestedFormats.remove(requestId),
         );
         if (export == null) {
           onError?.call('export-empty',

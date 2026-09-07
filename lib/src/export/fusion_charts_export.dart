@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import '../security/fusion_charts_sanitizer.dart';
+
 /// An export payload handed to the application.
 ///
 /// The wrapper does not write files, request storage permissions, or choose a
@@ -22,7 +24,13 @@ class FusionChartsExport {
   /// MIME type reported by the page, for example `image/png`.
   final String mimeType;
 
-  /// A filename the application may use. It is a suggestion, not a path.
+  /// A file name the application may use.
+  ///
+  /// Sanitised by this package before it reaches the application: it is always
+  /// a bare name with the requested extension, contains no path separator, and
+  /// cannot escape a directory it is joined to. The raw value originates in
+  /// the page, driven by the chart's `exportFileName` configuration, so it is
+  /// treated as untrusted input rather than as a trusted hint.
   final String suggestedFileName;
 
   /// The payload. Always populated, including for text formats.
@@ -38,15 +46,30 @@ class FusionChartsExport {
   ///
   /// Returns `null` if the payload carries neither `base64` nor `text`, so a
   /// malformed message can never surface as an empty but apparently valid file.
+  /// [requestedFormat] is the format the application asked for. When it is a
+  /// supported format it wins over the one reported by the payload, so the
+  /// file-name extension allowlist is never fed by the same untrusted source
+  /// it is meant to constrain.
   static FusionChartsExport? fromPayload(
     Map<String, dynamic> payload, {
     required String fallbackFormat,
+    String? requestedFormat,
   }) {
-    final String format =
+    final String reported =
         (payload['format'] as String?)?.toLowerCase() ?? fallbackFormat;
+    final String format = requestedFormat != null &&
+            FusionChartsExportFormat.isValid(requestedFormat)
+        ? requestedFormat.toLowerCase()
+        : reported;
     final String mime =
         (payload['mime'] as String?) ?? 'application/octet-stream';
-    final String name = (payload['fileName'] as String?) ?? 'chart.$format';
+
+    // The page controls this value. Reduce it to a safe bare name before it
+    // reaches the application, which may join it straight to a directory.
+    final String name = sanitizeExportFileName(
+      (payload['fileName'] as String?) ?? 'chart',
+      format: FusionChartsExportFormat.isValid(format) ? format : 'bin',
+    );
 
     final Object? text = payload['text'];
     if (text is String) {

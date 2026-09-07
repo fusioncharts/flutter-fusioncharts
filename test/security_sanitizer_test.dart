@@ -1,4 +1,5 @@
 import 'package:flutter_fusioncharts/src/bridge/fusion_charts_protocol.dart';
+import 'package:flutter_fusioncharts/src/export/fusion_charts_export.dart';
 import 'package:flutter_fusioncharts/src/security/fusion_charts_sanitizer.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -173,6 +174,121 @@ void main() {
         payload: <String, dynamic>{'format': 'svg'},
       ).encode();
       expect(encoded.contains('"format":"svg"'), isTrue);
+    });
+  });
+
+  group('sanitizeExportFileName', () {
+    test('reduces traversal and separators to a bare name', () {
+      expect(
+        sanitizeExportFileName('../../../databases/app.db', format: 'csv'),
+        'app.csv',
+      );
+      expect(
+        sanitizeExportFileName(r'..\..\Windows\System32\evil.exe',
+            format: 'png'),
+        'evil.png',
+      );
+      expect(
+          sanitizeExportFileName('/etc/passwd', format: 'csv'), 'passwd.csv');
+      expect(
+          sanitizeExportFileName('....//....//x.svg', format: 'svg'), 'x.svg');
+    });
+
+    test('strips the query before splitting the path, not after', () {
+      // Splitting first would resolve this to "y", which is the bug this
+      // ordering prevents.
+      expect(sanitizeExportFileName('x.svg?../../y', format: 'svg'), 'x.svg');
+      expect(sanitizeExportFileName('x.svg#../../y', format: 'svg'), 'x.svg');
+    });
+
+    test('collapses a second extension', () {
+      expect(sanitizeExportFileName('chart.svg.exe', format: 'svg'),
+          'chart_svg.svg');
+    });
+
+    test('does not percent-decode its way back into a traversal', () {
+      expect(
+        sanitizeExportFileName('%2e%2e%2fetc%2fpasswd', format: 'csv'),
+        '_2e_2e_2fetc_2fpasswd.csv',
+      );
+    });
+
+    test('strips control characters including NUL', () {
+      expect(
+        sanitizeExportFileName('chart\x00.png', format: 'png'),
+        'chart.png',
+      );
+      expect(
+        sanitizeExportFileName('chart\x0a\x1f.png', format: 'png'),
+        'chart.png',
+      );
+    });
+
+    test('replaces other unsafe characters rather than dropping them', () {
+      expect(sanitizeExportFileName('my chart.png', format: 'png'),
+          'my_chart.png');
+      expect(
+          sanitizeExportFileName('a"b<c>d.png', format: 'png'), 'a_b_c_d.png');
+    });
+
+    test('handles reserved Windows names and empty input', () {
+      expect(sanitizeExportFileName('CON', format: 'png'), 'CON_file.png');
+      expect(sanitizeExportFileName('', format: 'svg'), 'chart.svg');
+      expect(sanitizeExportFileName('...', format: 'svg'), 'chart.svg');
+    });
+
+    test('never returns a path separator, whatever the input', () {
+      for (final String input in <String>[
+        '../x',
+        r'..\x',
+        '/a/b/c',
+        'a/../../b',
+        'a%2fb',
+        'x?y/z',
+      ]) {
+        final String out = sanitizeExportFileName(input, format: 'svg');
+        expect(out.contains('/'), isFalse, reason: input);
+        expect(out.contains(r'\'), isFalse, reason: input);
+        expect(out.startsWith('.'), isFalse, reason: input);
+      }
+    });
+
+    test('caps the length', () {
+      final String out = sanitizeExportFileName('a' * 500, format: 'svg');
+      expect(out.length, lessThanOrEqualTo(kMaxExportFileNameLength));
+      expect(out.endsWith('.svg'), isTrue);
+    });
+  });
+
+  group('FusionChartsExport sanitises the page-supplied file name', () {
+    test('a traversing fileName cannot reach the application', () {
+      final FusionChartsExport? export = FusionChartsExport.fromPayload(
+        <String, dynamic>{
+          'format': 'svg',
+          'fileName': '../../../../data/data/other.app/databases/x.db',
+          'text': '<svg/>',
+        },
+        fallbackFormat: 'bin',
+        requestedFormat: 'svg',
+      );
+
+      expect(export, isNotNull);
+      expect(export!.suggestedFileName, 'x.svg');
+    });
+
+    test('the requested format decides the extension, not the payload', () {
+      final FusionChartsExport? export = FusionChartsExport.fromPayload(
+        <String, dynamic>{
+          'format': 'exe',
+          'fileName': 'chart',
+          'text': 'a,b',
+        },
+        fallbackFormat: 'bin',
+        requestedFormat: 'csv',
+      );
+
+      expect(export!.format, 'csv');
+      expect(export.suggestedFileName, 'chart.csv');
     });
   });
 }

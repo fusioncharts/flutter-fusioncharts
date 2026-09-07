@@ -129,3 +129,105 @@ Object? _scrub(
   // Strings, numbers, booleans and null are copied by value.
   return node;
 }
+
+/// Characters permitted in a sanitised export file name.
+final RegExp _unsafeFileNameChars = RegExp(r'[^A-Za-z0-9._-]');
+final RegExp _controlChars = RegExp(r'[\x00-\x1f\x7f]');
+final RegExp _leadingDots = RegExp(r'^\.+');
+final RegExp _extensionTail = RegExp(r'^[A-Za-z0-9]{1,8}$');
+
+/// Names Windows reserves regardless of extension. A file named `CON` cannot
+/// be created on Windows, and Flutter desktop targets are a supported host for
+/// an application that consumes this package.
+const Set<String> _reservedBaseNames = <String>{
+  'con',
+  'prn',
+  'aux',
+  'nul',
+  'com1',
+  'com2',
+  'com3',
+  'com4',
+  'com5',
+  'com6',
+  'com7',
+  'com8',
+  'com9',
+  'lpt1',
+  'lpt2',
+  'lpt3',
+  'lpt4',
+  'lpt5',
+  'lpt6',
+  'lpt7',
+  'lpt8',
+  'lpt9',
+};
+
+/// Longest sanitised name returned, extension included.
+const int kMaxExportFileNameLength = 128;
+
+/// Reduces [suggested] to a single safe file name ending in `.[format]`.
+///
+/// The value reaching this function comes from the hosted page, driven by the
+/// chart's `exportFileName` configuration, so it may contain path separators,
+/// traversal sequences, a query string, control characters or a second
+/// extension. The result is always a bare name: it contains no separator and
+/// cannot escape a directory it is later joined to.
+///
+/// [format] must be one of the package's supported formats. The caller passes
+/// the format **it requested**, never one read back from the payload, so the
+/// extension allowlist is not fed by the same untrusted source it constrains.
+String sanitizeExportFileName(String suggested, {required String format}) {
+  final String extension = format.toLowerCase();
+  String name = suggested;
+
+  // Strip the query and fragment first. Doing this after the separator split
+  // would resolve `x.svg?../../y` to `y`, which is the opposite of the intent.
+  final int queryAt = name.indexOf('?');
+  if (queryAt >= 0) {
+    name = name.substring(0, queryAt);
+  }
+  final int fragmentAt = name.indexOf('#');
+  if (fragmentAt >= 0) {
+    name = name.substring(0, fragmentAt);
+  }
+
+  // Keep only the last path segment, for both separator styles.
+  final int lastSlash = name.lastIndexOf('/');
+  if (lastSlash >= 0) {
+    name = name.substring(lastSlash + 1);
+  }
+  final int lastBackslash = name.lastIndexOf('\\');
+  if (lastBackslash >= 0) {
+    name = name.substring(lastBackslash + 1);
+  }
+
+  name = name.replaceAll(_controlChars, '');
+  name = name.replaceAll(_unsafeFileNameChars, '_');
+  name = name.replaceAll(_leadingDots, '');
+
+  // Drop a trailing extension, whatever it is, then flatten any remaining dots
+  // so `chart.svg.exe` cannot present a second extension. The requested
+  // extension is appended at the end, so the incoming one is never load
+  // bearing. Only a short alphanumeric tail is treated as an extension, which
+  // keeps a name such as `Q1.2026-report` from losing its last segment.
+  final int lastDot = name.lastIndexOf('.');
+  if (lastDot > 0 && _extensionTail.hasMatch(name.substring(lastDot + 1))) {
+    name = name.substring(0, lastDot);
+  }
+  name = name.replaceAll('.', '_');
+
+  if (_reservedBaseNames.contains(name.toLowerCase())) {
+    name = '${name}_file';
+  }
+  if (name.isEmpty) {
+    name = 'chart';
+  }
+
+  final int room = kMaxExportFileNameLength - extension.length - 1;
+  if (room > 0 && name.length > room) {
+    name = name.substring(0, room);
+  }
+  return '$name.$extension';
+}
