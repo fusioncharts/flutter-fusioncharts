@@ -107,6 +107,38 @@
     };
   }
 
+  /* Network-capable export keys, lower-cased. Dart removes these before the
+     envelope is sent; this is the second copy of that rule, so a stale cached
+     bridge or a page-side caller cannot reintroduce them. The keys are legal
+     inside chart, dataset, data, annotations and trendlines, hence recursion. */
+  var BLOCKED_EXPORT_KEYS = {
+    exportaction: true,
+    exporthandler: true,
+    html5exporthandler: true,   /* alias, and it wins over exporthandler */
+    exportmode: true,           /* the key that actually selects the route */
+    exportparameters: true,
+    exporttargetwindow: true,
+    exportatclientside: true    /* inert alias, kept for defence in depth */
+  };
+
+  function scrubExportKeys(node) {
+    if (node === null || typeof node !== 'object') { return node; }
+    if (Object.prototype.toString.call(node) === '[object Array]') {
+      var list = [];
+      for (var i = 0; i < node.length; i++) {
+        list.push(scrubExportKeys(node[i]));
+      }
+      return list;
+    }
+    var out = {};
+    for (var key in node) {
+      if (!Object.prototype.hasOwnProperty.call(node, key)) { continue; }
+      if (BLOCKED_EXPORT_KEYS[String(key).toLowerCase()]) { continue; }
+      out[key] = scrubExportKeys(node[key]);
+    }
+    return out;
+  }
+
   function render(chartId, payload, requestId) {
     if (typeof FusionCharts === 'undefined') {
       postError(chartId, 'fusioncharts-missing',
@@ -132,7 +164,9 @@
       height: payload.height || '100%',
       renderAt: containerId,
       dataFormat: 'json',
-      dataSource: payload.dataSource || {}
+      /* Scrubbed BEFORE the timeseries DataTable is attached below. A deep
+         copy applied after that would destroy the live FusionCharts object. */
+      dataSource: scrubExportKeys(payload.dataSource || {})
     };
 
     try {
@@ -169,7 +203,7 @@
     }
     try {
       if (payload.dataSource) {
-        chart.setJSONData(payload.dataSource);
+        chart.setJSONData(scrubExportKeys(payload.dataSource));
       }
       if (payload.type) {
         chart.chartType(payload.type);
@@ -362,22 +396,66 @@
 
   /* Offline-only delivery (D12): FusionCharts posts csv/xlsx to its export
      server over cleartext HTTP. Refuse it and say so, rather than leaking data
-     to the network or failing silently. */
+     to the network or failing silently.
+
+     Allowlist, not blocklist. This page is loaded from a bundled asset, so the
+     only legitimate form target is the page itself; a host blocklist is
+     bypassed by any other host, and exportHandler is settable from dataSource.
+
+     Three submission paths exist and only one of them calls .submit():
+
+       form.submit()          calls .submit(), fires no submit event
+       submit-button click    fires a submit event, never calls .submit()
+       form.requestSubmit()   fires a submit event, never calls .submit()
+
+     All three are covered below. Dart strips the network-capable export keys
+     before the config ever reaches this page; these hooks are the backstop for
+     anything that sets them from inside the page. */
+  function isLocalTarget(url) {
+    if (!url) { return true; }                 /* empty action = this document */
+    try {
+      var resolved = new URL(url, document.baseURI);
+      return resolved.protocol === 'file:' || resolved.protocol === 'about:';
+    } catch (e) {
+      return false;                            /* unparseable, refuse */
+    }
+  }
+
+  function refuseSubmission(form) {
+    var action = String((form && form.getAttribute('action')) || '');
+    if (isLocalTarget(action)) { return false; }
+    /* Suppress the network round trip, but do NOT abandon the export.
+       FusionCharts builds the csv/xlsx bytes as a Blob immediately before
+       submitting, and the createObjectURL hook above reads that Blob through
+       FileReader, which is asynchronous. Clearing pendingExport here would
+       discard a payload we already hold by the time the read completes. The
+       watchdog still reports if nothing arrives. */
+    if (pendingExport) { pendingExport.serverBlocked = true; }
+    return true;
+  }
+
   var _submit = HTMLFormElement.prototype.submit;
   HTMLFormElement.prototype.submit = function () {
-    var action = String(this.getAttribute('action') || '');
-    if (action.indexOf('export.api3.fusioncharts.com') >= 0 ||
-        action.indexOf('//export.') >= 0) {
-      /* Suppress the network round trip, but do NOT abandon the export.
-         FusionCharts builds the csv/xlsx bytes as a Blob immediately before
-         submitting, and the createObjectURL hook above reads that Blob through
-         FileReader, which is asynchronous. Clearing pendingExport here would
-         discard a payload we already hold by the time the read completes. The
-         watchdog still reports if nothing arrives. */
-      if (pendingExport) { pendingExport.serverBlocked = true; }
-      return;
-    }
+    if (refuseSubmission(this)) { return; }
     return _submit.apply(this, arguments);
+  };
+
+  /* Capture phase, so no page handler can stopPropagation() past this. */
+  document.addEventListener('submit', function (event) {
+    if (refuseSubmission(event.target)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }
+  }, true);
+
+  /* exportTargetWindow and _blank routes leave through window.open. */
+  var _open = window.open;
+  window.open = function (url) {
+    if (!isLocalTarget(String(url || ''))) {
+      if (pendingExport) { pendingExport.serverBlocked = true; }
+      return null;
+    }
+    return _open.apply(window, arguments);
   };
 
   function exportChart(chartId, payload, requestId) {

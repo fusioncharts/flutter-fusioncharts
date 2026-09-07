@@ -1,5 +1,9 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
+import '../security/fusion_charts_sanitizer.dart';
+
 /// Version of the Dart to JavaScript envelope understood by this package.
 ///
 /// The bridge JavaScript refuses envelopes carrying any other value, so a
@@ -91,12 +95,42 @@ class FusionChartsMessage {
   static bool isValidEventName(String value) =>
       _eventNamePattern.hasMatch(value);
 
+  /// The payload with every network-capable export key removed.
+  ///
+  /// Sanitising here rather than at each call site makes this the single
+  /// chokepoint for outbound chart configuration: `render`, `update` and
+  /// `FusionChartsController.setData` all serialise through it, and a future
+  /// entry point cannot forget to sanitise.
+  Map<String, dynamic> sanitizedPayload() {
+    final Object? source = payload['dataSource'];
+    if (source is! Map) {
+      return payload;
+    }
+    final List<String> stripped = <String>[];
+    final Map<String, dynamic> safe = sanitizeDataSource(
+      Map<String, dynamic>.from(source),
+      onStripped: stripped.add,
+    );
+    if (stripped.isNotEmpty) {
+      assert(() {
+        // Key paths only. A value here could be a credential planted in a
+        // hostile configuration, and this reaches the application's log.
+        debugPrint('[fusioncharts] removed network-capable export keys from '
+            'dataSource: ${stripped.join(', ')}');
+        return true;
+      }());
+    }
+    final Map<String, dynamic> out = Map<String, dynamic>.from(payload);
+    out['dataSource'] = safe;
+    return out;
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = <String, dynamic>{
       'protocolVersion': protocolVersion,
       'chartId': chartId,
       'type': type,
-      'payload': payload,
+      'payload': sanitizedPayload(),
     };
     if (requestId != null) {
       json['requestId'] = requestId;
