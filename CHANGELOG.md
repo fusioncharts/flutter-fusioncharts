@@ -24,8 +24,13 @@
 
 * Add a validated, versioned JSON bridge and remove wrapper-owned file writes
   and storage-permission requirements.
-* OSV scans moved from two High findings to zero across 58 packages after
-  resolving fixed dependencies; removing `pdf` also eliminates that path.
+* Restrict WebView navigation to the asset actually loaded, rather than to any
+  `file:` URL.
+* Strip network-capable export keys from the chart configuration, including the
+  `html5exporthandler` and `exportmode` aliases that select the export endpoint.
+* Sanitise the page-supplied export file name so it cannot escape a directory it
+  is joined to.
+* Address the known OSV advisories in the dependency graph.
 
 ## 1.0.2
 
