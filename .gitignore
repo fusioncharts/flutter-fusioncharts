@@ -31,3 +31,12 @@ migrate_working_dir/
 .dart_tool/
 .packages
 build/
+
+# Retired 1.x plugin scaffolding at the package root. Since 2.0 this is a pure
+# Dart package with no native code of its own: there is no `flutter: plugin:`
+# block in pubspec.yaml, and webview_flutter supplies the platform side. Builds
+# still regenerate these paths locally with machine-specific files such as
+# android/local.properties, so keep them out of git. `.pubignore` already keeps
+# them out of the published archive.
+/android/
+/ios/

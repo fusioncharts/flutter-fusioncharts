@@ -28,3 +28,10 @@ example/compatibility/**/pubspec.lock
 /android/
 /ios/
 /example/fusioncharts/
+
+# pub.dev package-ownership verification file. It is an empty marker that has to
+# stay in the repository, where pub.dev reads it, but it has no meaning inside a
+# published archive. `.pubignore` governs only the tarball, never the repository,
+# so excluding it here does not affect verification. Retire the file itself in a
+# release after 2.0.0, not during one.
+/8C28G7G2JX

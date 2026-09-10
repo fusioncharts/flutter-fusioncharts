@@ -40,7 +40,8 @@ FusionCharts 4.2.2 and the included assets are bundled with the wrapper.
 | Requirement | Version or platform |
 |---|---|
 | Dart | `>=2.18.4 <4.0.0` |
-| Flutter | `>=3.3.8` |
+| Flutter | `>=3.3.8`, the floor for Android and for source resolution |
+| Flutter for iOS development | `>=3.7.12` with Dart `>=2.19.6`. On current Xcode the 3.3 train cannot complete an iOS debug or simulator link. |
 | Platforms | Android and iOS |
 | Android with Flutter 3.3.8 | API 19 or newer, compile SDK 33 or newer, JDK 17 |
 
@@ -49,11 +50,11 @@ Follow the platform requirements reported by your Flutter SDK during the build.
 
 ## Installation
 
-Add the release candidate to your application's `pubspec.yaml`:
+Add the package to your application's `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_fusioncharts: ^2.0.0-rc.0
+  flutter_fusioncharts: ^2.0.0
 ```
 
 Install it:

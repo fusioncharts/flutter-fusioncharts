@@ -1,4 +1,4 @@
-## 2.0.0-rc.0
+## 2.0.0
 
 ### Added
 
@@ -14,7 +14,8 @@
 
 ### Breaking changes
 
-* Require Flutter 3.3.8+ and Dart 2.18.4+.
+* Require Flutter 3.3.8+ and Dart 2.18.4+. iOS development needs Flutter
+  3.7.12+ with Dart 2.19.6+.
 * Remove `setWebViewController`; `isLocal: false` no longer loads from the CDN.
 * Remove `flutter_inappwebview`, `permission_handler`, `path_provider`, and
   `pdf`.
@@ -30,7 +31,7 @@
   `html5exporthandler` and `exportmode` aliases that select the export endpoint.
 * Sanitise the page-supplied export file name so it cannot escape a directory it
   is joined to.
-* Address the known OSV advisories in the dependency graph.
+* Addressed known OSV advisories in the dependency graph.
 
 ## 1.0.2
 
