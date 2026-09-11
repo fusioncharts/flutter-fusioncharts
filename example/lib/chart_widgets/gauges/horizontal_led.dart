@@ -29,7 +29,6 @@ class _HorizontalLEDState extends State<HorizontalLED> {
       "numberSuffix": "%",
       "tickMarkDistance": "5",
       "theme": "candy",
-      
     };
     Map<String, dynamic> colorrange = {
       "color": [
@@ -41,7 +40,7 @@ class _HorizontalLEDState extends State<HorizontalLED> {
 
     Map<String, dynamic> dataSource = {
       "chart": chart,
-      "colorRange":colorrange,
+      "colorRange": colorrange,
       "value": "92"
     };
 
@@ -77,9 +76,9 @@ class _HorizontalLEDState extends State<HorizontalLED> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('LED'),
               ],
             ),

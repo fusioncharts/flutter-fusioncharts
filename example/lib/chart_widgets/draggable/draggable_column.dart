@@ -25,7 +25,6 @@ class _DraggableColumnState extends State<DraggableColumn> {
       "xAxisName": "Food Item",
       "yAxisName": "No. of Units",
       "theme": "carbon",
-      
     };
 
     List<dynamic> dataset = [
@@ -71,17 +70,17 @@ class _DraggableColumnState extends State<DraggableColumn> {
     };
 
     _fusionChart2D = FusionCharts(
-        dataSource: dataSource,
-        type: "dragcolumn2d",
-        width: "100%",
-        height: "100%",
-        licenseKey: licenseKey,
-        fusionChartEvent: (eventType, eventDetail) =>
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content:
-                    Text("Event Raised: $eventType + Details: $eventDetail"))),
-        fusionChartsController: fc,
-      events: [],
+      dataSource: dataSource,
+      type: "dragcolumn2d",
+      width: "100%",
+      height: "100%",
+      licenseKey: licenseKey,
+      fusionChartEvent: (eventType, eventDetail) =>
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content:
+                  Text("Event Raised: $eventType + Details: $eventDetail"))),
+      fusionChartsController: fc,
+      events: const [],
     );
   }
 
@@ -104,9 +103,9 @@ class _DraggableColumnState extends State<DraggableColumn> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Drag Column'),
               ],
             ),

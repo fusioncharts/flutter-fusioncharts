@@ -14,8 +14,6 @@ class _ParetoState extends State<Pareto> {
   late FusionCharts _fusionChart2D;
   late FusionCharts _fusionChart3D;
 
-
-
   @override
   void initState() {
     super.initState();
@@ -30,12 +28,13 @@ class _ParetoState extends State<Pareto> {
       "theme": "fusion",
       "exportEnabled": "1",
       "plottooltext":
-      "<b>\$value</b> of our Android users are on <b>\$label</b>",
+          "<b>\$value</b> of our Android users are on <b>\$label</b>",
     };
 
-
-
-    Map<String, dynamic> dataSource = {"chart": chart, "data": ChartData.chartData2};
+    Map<String, dynamic> dataSource = {
+      "chart": chart,
+      "data": ChartData.chartData2
+    };
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
@@ -68,9 +67,9 @@ class _ParetoState extends State<Pareto> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Pareto2D'),
               ],
             ),
@@ -78,9 +77,9 @@ class _ParetoState extends State<Pareto> {
               height: 10,
             ),
             Expanded(child: _fusionChart3D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Pareto3D'),
               ],
             ),

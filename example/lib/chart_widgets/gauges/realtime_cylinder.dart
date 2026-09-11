@@ -30,14 +30,9 @@ class _RealTimeCylinderState extends State<RealTimeCylinder> {
       "numberSuffix": " ltrs",
       "showhovereffect": "1",
       "theme": "fusion",
-      
     };
 
-
-    Map<String, dynamic> dataSource = {
-      "chart": chart,
-      "value":"110"
-    };
+    Map<String, dynamic> dataSource = {"chart": chart, "value": "110"};
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
@@ -48,7 +43,7 @@ class _RealTimeCylinderState extends State<RealTimeCylinder> {
         fusionChartEvent: (eventType, eventDetail) =>
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content:
-                Text("Event Raised: $eventType + Details: $eventDetail"))),
+                    Text("Event Raised: $eventType + Details: $eventDetail"))),
         fusionChartsController: fc);
   }
 
@@ -71,9 +66,9 @@ class _RealTimeCylinderState extends State<RealTimeCylinder> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Cylinder'),
               ],
             ),

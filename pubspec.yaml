@@ -1,23 +1,52 @@
 name: flutter_fusioncharts
-description: FusionCharts is a JavaScript charting library providing 100+ charts and 2,000+ maps for your web and mobile applications. This plugin provides Flutter interface which integrates with FC Core JavaScript library using webview.
+description: The official Flutter component for the FusionCharts JavaScript charting library.
 repository: https://github.com/fusioncharts/flutter-fusioncharts
 issue_tracker: https://github.com/fusioncharts/flutter-fusioncharts/issues
-version: 1.0.2
+version: 2.0.0
 homepage: https://www.fusioncharts.com/
 
+platforms:
+  android:
+  ios:
+
+# Package/source floor: Flutter 3.3.8 bundles Dart 2.18.4, which is the oldest
+# combination on which this dependency graph resolves, analyzes and builds for
+# Android. The previous `flutter: ">=1.17.0"` was never a tested claim: the
+# source calls ScaffoldMessenger, added in Flutter 1.23.
+#
+# On the project's Xcode 26.3 toolchain, stock Flutter 3.3.8 builds for an iOS
+# device/release target but its debug/simulator link fails because flutter_tools
+# passes the obsolete -fembed-bitcode-marker flag. That is a Flutter/Xcode
+# toolchain limitation, not a package one, and is recorded in the compatibility
+# matrix rather than encoded in this package constraint.
 environment:
-  sdk: ">=2.18.4 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=2.18.4 <4.0.0"
+  flutter: ">=3.3.8"
 
 dependencies:
   flutter:
     sdk: flutter
-  flutter_inappwebview: ^5.7.2+3
-  path_provider: ^2.0.11
-  pdf: ^3.8.4
-  permission_handler: ^10.2.0
+
+  # Official WebView host (BSD-3-Clause, publisher flutter.dev). Bounded to the
+  # 4.x line; production code uses only the 4.1.0 API surface so the package
+  # keeps resolving at the declared floor.
+  webview_flutter: ">=4.1.0 <5.0.0"
+
+  # The previous export stack (flutter_inappwebview, permission_handler,
+  # path_provider, pdf) was removed because export now returns bytes to the
+  # application over the bridge, so the package owns no storage.
 
 dev_dependencies:
+  crypto: ^3.0.2
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
+flutter:
+  assets:
+    - assets/bridge/
+    - assets/bridge/fusioncharts/
+    - assets/bridge/fusioncharts/themes/
+    - assets/bridge/fusioncharts/maps/
+    - assets/bridge/fusioncharts/fonts/
+    - assets/bridge/fusioncharts/fonts/licenses/

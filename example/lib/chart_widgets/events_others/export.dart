@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fusioncharts/flutter_fusioncharts.dart';
 import 'package:flutter_fusioncharts_example/chartdata.dart';
@@ -12,85 +11,92 @@ class ColumnChartExport extends StatefulWidget {
 }
 
 class _ColumnChartExportState extends State<ColumnChartExport> {
-  late FusionCharts _fusionChart2D;
-  late FusionCharts _fusionChart3D;
-  FusionChartsController fcController2d = FusionChartsController();
-  FusionChartsController fcController3d = FusionChartsController();
+  final FusionChartsController _controller = FusionChartsController();
+  late final FusionCharts _chart;
 
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
 
-    Map<String, dynamic> chart = {
-      "caption": "Countries With Most Oil Reserves [2017-18]",
-      "subCaption": "In MMbbl = One Million barrels",
-      "xAxisName": "Country",
-      "yAxisName": "Reserves (MMbbl)",
-      "numberSuffix": "K",
-      "theme": "fusion",
-      "exportEnabled": "1",
-      "exportMode": "client"
-    };
-    Map<String, dynamic> dataSource = {
-      "chart": chart,
-      "data": ChartData.chartData
-    };
-
-    _fusionChart2D = FusionCharts(
-        dataSource: dataSource,
-        type: "column2d",
-        width: "100%",
-        height: "100%",
-        fusionChartEvent: (a, b) => {},
-        fusionChartsController: fcController2d,
-        licenseKey: licenseKey);
-    _fusionChart3D = FusionCharts(
-        dataSource: dataSource,
-        type: "column3d",
-        width: "100%",
-        height: "100%",
-        fusionChartEvent: (a, b) => callBackFromPlugin(a, b),
-        fusionChartsController: fcController3d,
-        licenseKey: licenseKey);
+    _chart = FusionCharts(
+      dataSource: <String, dynamic>{
+        'chart': const <String, dynamic>{
+          'caption': 'Countries With Most Oil Reserves [2017-18]',
+          'subCaption': 'In MMbbl = One Million barrels',
+          'xAxisName': 'Country',
+          'yAxisName': 'Reserves (MMbbl)',
+          'numberSuffix': 'K',
+          'theme': 'fusion',
+        },
+        'data': ChartData.chartData,
+      },
+      type: 'column2d',
+      width: '100%',
+      height: '100%',
+      fusionChartsController: _controller,
+      licenseKey: licenseKey,
+      onExport: _handleExport,
+      onError: _handleError,
+    );
   }
 
-  void callBackFromPlugin(arg1, arg2) {
-    if (kDebugMode) {
-      print('Back to consumer: $arg1 , $arg2');
+  void _handleExport(FusionChartsExport result) {
+    if (!mounted) {
+      return;
     }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          '${result.suggestedFileName}: ${result.bytes.length} bytes',
+        ),
+      ),
+    );
+  }
+
+  void _handleError(FusionChartsError error) {
+    if (!mounted) {
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('${error.code}: ${error.message}')),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () => Navigator.of(context).pop()),
-        title: const Text('Fusion Charts - Column'),
-      ),
+      appBar: AppBar(title: const Text('FusionCharts export')),
       body: Column(
-        children: [
-          Expanded(child: _fusionChart2D),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Column2D'),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Expanded(child: _fusionChart3D),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Column3D'),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
+        children: <Widget>[
+          Expanded(child: _chart),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Wrap(
+              spacing: 8,
+              children: <Widget>[
+                ElevatedButton(
+                  onPressed: () =>
+                      _controller.exportChart(FusionChartsExportFormat.svg),
+                  child: const Text('Export SVG'),
+                ),
+                ElevatedButton(
+                  onPressed: () =>
+                      _controller.exportChart(FusionChartsExportFormat.csv),
+                  child: const Text('Export CSV'),
+                ),
+                ElevatedButton(
+                  onPressed: () =>
+                      _controller.exportChart(FusionChartsExportFormat.xlsx),
+                  child: const Text('Export XLSX'),
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -1,16 +1,55 @@
-## 0.0.1
+## 2.0.0
 
-* This version of the library enables rendering of all types of charts as available on the [www.fusioncharts.com website](https://www.fusioncharts.com/).
-* The plugin supports FusionCharts versions 3.17, 3.18, 3.19
-* User has the option to use locally bundled FusionCharts JavaScript library or CDN hosted version.
-*  This package also supports FusionTime (timeseries charts), FusionWidgets (gauges, real-time charts), PowerCharts (statistical and advanced charts), and FusionMaps (choropleth geo maps)
-*  Open Issue: Exporting of charts for few mime types is not working and is under development.
+### Added
 
+* Add structured source, error, data-update, readiness, and byte-based export
+  APIs.
 
-## 0.0.2
+### Changed
 
-* Documentation Update
+* Move to `webview_flutter` and bundle FusionCharts 4.2.2 with the World and USA
+  maps.
+* Return export bytes to the application. Android supports all formats; iOS
+  supports SVG, CSV, and XLSX.
+
+### Breaking changes
+
+* Require Flutter 3.3.8+ and Dart 2.18.4+. iOS development needs Flutter
+  3.7.12+ with Dart 2.19.6+.
+* Remove `setWebViewController`; `isLocal: false` no longer loads from the CDN.
+* Remove `flutter_inappwebview`, `permission_handler`, `path_provider`, and
+  `pdf`.
+* See the [migration guide](doc/migration/1.x-to-2.0.md) for upgrade steps.
+
+### Security
+
+* Add a validated, versioned JSON bridge and remove wrapper-owned file writes
+  and storage-permission requirements.
+* Restrict WebView navigation to the asset actually loaded, rather than to any
+  `file:` URL.
+* Strip network-capable export keys from the chart configuration, including the
+  `html5exporthandler` and `exportmode` aliases that select the export endpoint.
+* Sanitise the page-supplied export file name so it cannot escape a directory it
+  is joined to.
+* Addressed known OSV advisories in the dependency graph.
 
 ## 1.0.2
 
-* Version 1 release with updated example
+* Updated the Version 1 example.
+
+## 1.0.1
+
+* Updated the Version 1 example.
+
+## 1.0.0
+
+* Released Version 1 with an updated example.
+
+## 0.0.2
+
+* Updated documentation.
+
+## 0.0.1
+
+* Initial release with FusionCharts, FusionTime, FusionWidgets, PowerCharts,
+  and FusionMaps support.

@@ -1,12 +1,14 @@
 name: flutter_fusioncharts_example
 description: Demonstrates how to use the flutter_fusioncharts plugin.
+version: 2.0.0+1
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: ">=2.18.4 <3.0.0"
+  sdk: ">=2.18.4 <4.0.0"
+  flutter: ">=3.3.8"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -18,12 +20,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # This bundled gallery exercises the current wrapper source. Applications
+  # testing the published RC should instead use: flutter_fusioncharts: 2.0.0-rc.0
   flutter_fusioncharts:
     path: ../
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
   flutter_dotenv: ^5.0.2
 
 dev_dependencies:
@@ -45,21 +46,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - .env
-    - fusioncharts/integrate/index_local.html
-    - fusioncharts/integrate/index_cdn.html
-    - fusioncharts/integrate/index.js
-    - fusioncharts/core/fusioncharts.charts.js
-    - fusioncharts/core/fusioncharts.overlappedbar2d.js
-    - fusioncharts/core/fusioncharts.timeseries.js
-    - fusioncharts/core/fusioncharts.treemap.js
-    - fusioncharts/core/fusioncharts.powercharts.js
-    - fusioncharts/core/fusioncharts.maps.js
-    - fusioncharts/core/fusioncharts.zoomscatter.js
-    - fusioncharts/core/fusioncharts.js
-    - fusioncharts/core/fusioncharts.excelexport.js
-    - fusioncharts/core/fusioncharts.widgets.js
-    - fusioncharts/core/fusioncharts.zoomline.js
-    - fusioncharts/core/fusioncharts.gantt.js
-    - fusioncharts/core/fusioncharts.overlappedcolumn2d.js
-    - fusioncharts/core/fusioncharts.vml.js
+    - license.env.example

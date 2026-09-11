@@ -14,8 +14,6 @@ class _PieState extends State<Pie> {
   late FusionCharts _fusionChart2D;
   late FusionCharts _fusionChart3D;
 
-
-
   @override
   void initState() {
     super.initState();
@@ -26,25 +24,25 @@ class _PieState extends State<Pie> {
       "subCaption": "subCaption",
       "showlegend": "1",
       "showpercentvalues": "1",
-      "pieRadius":"40",
+      "pieRadius": "40",
       "legendPosition": "bottom",
       "plothovereffect": "1",
       "defaultcenterlabel": "Android Deristibution",
       "aligncaptionwithcanvas": "0",
       "captionpadding": "0",
       "decimals": "1",
-      "legendNumRows":"3",
-      "legendNumColumns":"1",
+      "legendNumRows": "3",
+      "legendNumColumns": "1",
       "plottooltext":
-      "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
+          "<b>\$percentValue</b> of our Android users are on <b>\$label</b>",
       "theme": "fusion",
       "centerLabel": "# Users: \$value",
-      
     };
 
-
-
-    Map<String, dynamic> dataSource = {"chart": chart, "data": ChartData.chartData2};
+    Map<String, dynamic> dataSource = {
+      "chart": chart,
+      "data": ChartData.chartData2
+    };
 
     _fusionChart2D = FusionCharts(
         dataSource: dataSource,
@@ -77,9 +75,9 @@ class _PieState extends State<Pie> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Pie 2D'),
               ],
             ),
@@ -87,9 +85,9 @@ class _PieState extends State<Pie> {
               height: 10,
             ),
             Expanded(child: _fusionChart3D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Pie 3D'),
               ],
             ),

@@ -1,299 +1,409 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
-import 'package:flutter_fusioncharts/src/utils/permission_manager.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'dart:convert';
-import './fusion_charts_controller.dart';
+
+import 'package:flutter/widgets.dart';
+
+import 'bridge/fusion_charts_bridge.dart';
+import 'export/fusion_charts_export.dart';
+import 'bridge/fusion_charts_protocol.dart';
+import 'fusion_charts_controller.dart';
+import 'host/fusion_charts_webview_host.dart';
+import 'host/webview_flutter_host.dart';
+import 'source/fusion_charts_source.dart';
 
 const String fcHome = 'fusioncharts';
 
-/// FusionCharts is the widget that renders FusionCharts. The user should
-/// instantiate this widget and include within the UI widget tree.
-class FusionCharts extends StatefulWidget {
-  const FusionCharts(
-      {required this.dataSource,
-      required this.type,
-      this.height = "",
-      this.width = "",
-      this.events = const [],
-      this.fusionChartEvent,
-      this.fusionChartsController,
-      this.streamController,
-      this.timeSeriesSchema,
-      this.timeSeriesData,
-      this.isLocal = true,
-      this.licenseKey,
-      super.key});
+/// A chart error surfaced to the application.
+class FusionChartsError {
+  const FusionChartsError({required this.code, required this.message});
 
-  /// dataSource is used to supply the data to the FusionCharts JS library
-  /// Typically the dousource comprises of 'chart' (Map) and 'dataSet' (List) which
-  ///  is used by FusionCharts to render the chart. However dataSource may also have
-  /// other objects such as 'annotation'
+  final String code;
+  final String message;
+
+  @override
+  String toString() => 'FusionChartsError($code): $message';
+}
+
+/// Renders a FusionCharts chart inside a platform WebView.
+///
+/// Instantiate this widget and include it in the widget tree. Give it a
+/// definite size: it fills its parent, so an unbounded parent collapses it.
+class FusionCharts extends StatefulWidget {
+  const FusionCharts({
+    required this.dataSource,
+    required this.type,
+    this.height = "",
+    this.width = "",
+    this.events = const [],
+    this.fusionChartEvent,
+    this.fusionChartsController,
+    this.streamController,
+    this.timeSeriesSchema,
+    this.timeSeriesData,
+    this.isLocal = true,
+    this.licenseKey,
+    this.source,
+    this.onError,
+    this.onExport,
+    super.key,
+  });
+
+  /// Supplies the data to the FusionCharts JS library. Typically comprises
+  /// 'chart' (Map) and 'dataSet' (List), and may carry other objects such as
+  /// 'annotation'.
   final Map<String, dynamic> dataSource;
 
-  /// type of chart that the user want's to render. Example: 'column2d'
+  /// Type of chart to render. Example: 'column2d'.
   final String type;
 
-  /// The width parameter specifies the width of the rendered chart in % or pixels or rem
-  /// It is advisable to keep at 100% and manage the chart size by wrapping within a Container or a SizedBox
+  /// Width of the rendered chart in %, pixels or rem.
   final String width;
 
-  /// The height parameter specifies the height of the rendered chart in % or pixels or rem
-  /// It is advisable to keep at 100% and manage the size by wrapping within a Container or a SizedBox
+  /// Height of the rendered chart in %, pixels or rem.
   final String height;
 
-  /// User can use events to specify the list of events that should be subscribed to,
-  /// at the chart load event
+  /// Event names subscribed to at chart load.
   final List<String> events;
 
-  /// Callback method on trigger of any subscribed event from the FusionCharts
+  /// Called as `fusionChartEvent(senderId, eventName)` when a subscribed event
+  /// fires. The 1.x argument order is preserved.
   final Function? fusionChartEvent;
 
-  /// fusionChartsController enables the user to add/remove events and calls FusionCharts APIs
+  /// Enables adding/removing events and calling FusionCharts APIs.
+  ///
+  /// The controller may be replaced during a widget rebuild. The old controller
+  /// is detached and the replacement is attached to the existing chart bridge.
   final FusionChartsController? fusionChartsController;
 
-  /// User can pass refernce to a streamController which emits periodic updates to real time
-  /// data charts. The plugin will listen to events on the streamController and update the chart
+  /// Emits periodic updates for real-time charts.
   final StreamController? streamController;
 
-  /// User can specifiy if the charts should be renderd from local JS library or the CDN version
-  /// By default the value is true implying local version
+  /// Whether to render from the local JS library rather than the CDN.
+  ///
+  /// Superseded by [source] when both are supplied.
   final bool isLocal;
 
-  /// User can pass a valid license key to avoid Trial watermark on the chart
+  /// A valid license key, to remove the trial watermark.
   final String? licenseKey;
 
-  /// User can pass a valid schema which describes the time series data to be used
+  /// Schema describing the time-series data.
   final List<dynamic>? timeSeriesSchema;
 
-  /// User can pass dataset for the chart which should be compliant with the schema provided
+  /// Time-series dataset, which must comply with [timeSeriesSchema].
   final List<dynamic>? timeSeriesData;
+
+  /// Explicit source selection. Wins over [isLocal] when both are given.
+  ///
+  /// Changing the effective source reloads its Flutter asset page and renders
+  /// the chart again after the new page's bridge is ready.
+  final FusionChartsSource? source;
+
+  /// Reports page, bridge and chart errors as structured values.
+  final ValueChanged<FusionChartsError>? onError;
+
+  /// Receives export payloads as bytes plus MIME type and a suggested filename.
+  ///
+  /// The wrapper never writes files or asks for storage permissions; the
+  /// application decides what to do with the bytes.
+  final ValueChanged<FusionChartsExport>? onExport;
+
+  /// Test seam: supplies a fake WebView host so widget tests can exercise the
+  /// full lifecycle without a platform view. Never set in production.
+  @visibleForTesting
+  static FusionChartsWebViewHost Function()? debugHostFactory;
+
+  /// Test seam: supplies the bridge script without touching the asset bundle.
+  @visibleForTesting
+  static Future<String> Function()? debugScriptLoader;
+
   @override
   State<FusionCharts> createState() => _FusionChartsState();
 }
 
 class _FusionChartsState extends State<FusionCharts> {
-  String? version;
-  String? licenseKey;
-  String chartString = "";
-  bool gotData = false;
-  String json = "";
-  String eventString = "";
-  StreamController<dynamic>? _streamController;
-  bool isLocal = true;
+  static int _instanceCounter = 0;
 
-  /// _webViewController manages integration with JS library which uses webview plugin
-  late InAppWebViewController _webViewController;
+  late final String _chartId;
+  late final FusionChartsWebViewHost _host;
+  late final FusionChartsBridge _bridge;
+  late FusionChartsController _controller;
 
-  late FusionChartsController _fusionChartsController;
+  /// Retained so it can be cancelled in [dispose]. The 1.x implementation
+  /// discarded this, leaving the subscription alive after the widget was gone.
+  StreamSubscription<dynamic>? _streamSubscription;
+
+  bool _ownsController = false;
+  bool _initialised = false;
 
   @override
   void initState() {
     super.initState();
-    WidgetsFlutterBinding.ensureInitialized();
 
-    _fusionChartsController =
-        widget.fusionChartsController ?? FusionChartsController();
+    _instanceCounter += 1;
+    _chartId = 'fc-${_instanceCounter.toRadixString(36)}';
 
-    if (widget.streamController != null) {
-      _streamController = widget.streamController;
+    _controller = widget.fusionChartsController ?? FusionChartsController();
+    _ownsController = widget.fusionChartsController == null;
 
-      _streamController?.stream.listen((data) {
-        _fusionChartsController
-            .executeScript("globalFusionCharts.feedData('$data')");
-      }, onDone: () {
-        //print("Fusion Chart Done);
-      }, onError: (error) {
-        //print("Fusion Chart Error: " + error.message);
-      });
+    _host = FusionCharts.debugHostFactory?.call() ?? WebViewFlutterHost();
+    _bridge = FusionChartsBridge(
+      chartId: _chartId,
+      host: _host,
+      scriptLoader: FusionCharts.debugScriptLoader,
+    )
+      ..onEvent = _handleEvent
+      ..onError = _handleError
+      ..onExport = _handleExport;
+
+    _controller.attachBridge(_bridge);
+
+    _subscribeToStream();
+    _startup();
+  }
+
+  Future<void> _startup() async {
+    final FusionChartsSource? source = _resolveSource();
+    if (source == null) {
+      // Unsupported source already reported; do not touch the network.
+      return;
     }
-
-    String jsonDataSource = jsonEncode(widget.dataSource);
-
-    /// Encoding the data source coming from the user end to pass it into the chart string
-    /// This will eventually provide all the chart data necessary to render the chart
-
-    String licenseString = "";
-
-    print(widget.dataSource["chart"] != null);
-
-    print('widget.dataSource');
-
-    if (widget.dataSource["chart"] != null) {
-      print(widget.dataSource["chart"]["exportEnabled"] == "1");
-
-      if (widget.dataSource["chart"]["exportEnabled"] == "1") {
-        ///when the export is set to 1, the user will get an export button on the top right corner of the chart
-        ///The user will get the permission popup when the export is set to 1
-        ///if the permission is granted the exported file will be saved in the fusion charts folder in the internal storage
-
-        print(widget.dataSource["chart"]["exportEnabled"]);
-
-        print("permisssion");
-
-        PermissionManager().requestPermission();
-
-        ///Permission is asked if not already given
-
-      }
+    await _bridge.attach();
+    if (!mounted) {
+      return;
     }
-
-    if (widget.licenseKey != null) {
-      licenseString = """
-
-      FusionCharts.options.license({
-        key: '${widget.licenseKey}',
-        creditLabel: false
-      });
-
-    """;
+    await _bridge.load(source);
+    if (!mounted) {
+      return;
     }
-
-    ///The licensed string is checked whether provided or not
-    ///If not provided the unlicensed trial is run
-
-    if (widget.events.isNotEmpty) {
-      /// Events data is checked if it is coming as empty from the FusionChart object from the user side.
-
-      for (int i = 0; i < widget.events.length; i++) {
-        eventString = """
-        $eventString
-
-        globalFusionCharts.addEventListener('${widget.events[i]}', chartAddEventsListener)
-      
-      """;
-      }
-    }
-
-    String renderChartString = '';
-
-    if (widget.type == 'timeseries') {
-      if (widget.timeSeriesData != null && widget.timeSeriesSchema != null) {
-        String jsonTimeSeriesData = '';
-        String jsonTimeSeriesSchema = '';
-
-        jsonTimeSeriesData = jsonEncode(widget.timeSeriesData);
-        jsonTimeSeriesSchema = jsonEncode(widget.timeSeriesSchema);
-        renderChartString = """
-
-        let data = $jsonTimeSeriesData;
-        let schema = $jsonTimeSeriesSchema;
-        let dataStore = new FusionCharts.DataStore();
-      
-        let chartConfig  = {
-              type: "${widget.type}",
-              width: "${widget.width}",
-              height: "${widget.height}",
-              id: "binning-API-methods1",
-              renderAt: "chart-container",
-              dataFormat: "json",
-              dataSource: $jsonDataSource};
-        chartConfig.dataSource.data = dataStore.createDataTable(data, schema);
-        globalFusionCharts =  new FusionCharts(chartConfig).render();
-
-    """;
-      }
-    } else {
-      renderChartString = """
-
-      FusionCharts.ready(function() {
-        var fusionChart = new FusionCharts({
-        type: "${widget.type}",
-        width: "${widget.width}",
-        height: "${widget.height}",
-        renderAt: "chart-container",
-        dataFormat: "json",
-        dataSource: $jsonDataSource   
-      })
-      
-      fusionChart.render();
-      globalFusionCharts = fusionChart;
-    });
-
-    """;
-    }
-
-    /// This multiline string is having the data coming from the user end as well as a js function wrapped inside which will
-    /// eventually render the chart for the user
-    chartString = """
-
-      $licenseString
-
-      $renderChartString
-
-      $eventString
-
-    """;
-
-    isLocal = widget.isLocal;
-    if ((('${widget.type}.0000')).trim().substring(0, 4) == 'maps') {
-      isLocal = false;
-    }
-
     setState(() {
-      gotData = true;
+      _initialised = true;
     });
+    await _bridge.send(_renderMessage());
+  }
+
+  Future<void> _reloadSource(FusionChartsSource source) async {
+    // load() invalidates bridge readiness synchronously. Queue the render before
+    // awaiting navigation so it is always the first envelope delivered to the
+    // replacement page.
+    final Future<void> pageLoad = _bridge.load(source);
+    await _bridge.send(_renderMessage());
+    await pageLoad;
+    if (!mounted) {
+      return;
+    }
+    if (!_initialised) {
+      setState(() {
+        _initialised = true;
+      });
+    }
+  }
+
+  void _subscribeToStream() {
+    final StreamController? source = widget.streamController;
+    if (source == null) {
+      return;
+    }
+    _streamSubscription = source.stream.listen(
+      (dynamic data) {
+        // Travels as a JSON payload rather than being interpolated into a
+        // feedData(...) call, as 1.x did.
+        _bridge.send(FusionChartsMessage(
+          type: FusionChartsOutbound.feedData,
+          chartId: _chartId,
+          payload: <String, dynamic>{'data': data},
+        ));
+      },
+      onError: (Object error) {
+        _handleError('stream-error', error.toString());
+      },
+    );
+  }
+
+  /// Resolves which page to load, or `null` when the request cannot be served.
+  ///
+  /// A request for the removed CDN mode is reported through [onError], and no
+  /// load is attempted.
+  ///
+  /// The 1.x `maps` prefix override, which silently forced map chart types to
+  /// CDN, is deliberately gone. The caller's configured source must be
+  /// honoured, and map definitions must be bundled with the other assets.
+  FusionChartsSource? _resolveSource() {
+    final FusionChartsSource? explicit = widget.source;
+    if (explicit != null) {
+      assert(() {
+        if (!widget.isLocal) {
+          debugPrint('FusionCharts: both `source` and `isLocal` were supplied; '
+              '`source` wins. `isLocal` is deprecated in 2.0.');
+        }
+        return true;
+      }());
+      return explicit;
+    }
+    try {
+      return FusionChartsSource.fromIsLocal(widget.isLocal);
+    } on FusionChartsSourceError catch (e) {
+      _handleError(FusionChartsSource.unsupportedSourceCode, e.message);
+      return null;
+    }
+  }
+
+  FusionChartsMessage _renderMessage() {
+    final Map<String, dynamic> payload = <String, dynamic>{
+      'type': widget.type,
+      'width': widget.width.isEmpty ? '100%' : widget.width,
+      'height': widget.height.isEmpty ? '100%' : widget.height,
+      'dataSource': widget.dataSource,
+      'events': widget.events
+          .where(FusionChartsMessage.isValidEventName)
+          .toList(growable: false),
+    };
+    if (widget.licenseKey != null) {
+      payload['licenseKey'] = widget.licenseKey;
+    }
+    if (widget.type == 'timeseries' &&
+        widget.timeSeriesData != null &&
+        widget.timeSeriesSchema != null) {
+      payload['timeSeriesData'] = widget.timeSeriesData;
+      payload['timeSeriesSchema'] = widget.timeSeriesSchema;
+    }
+    return FusionChartsMessage(
+      type: FusionChartsOutbound.render,
+      chartId: _chartId,
+      payload: payload,
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant FusionCharts oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (!identical(
+        oldWidget.fusionChartsController, widget.fusionChartsController)) {
+      final FusionChartsController oldController = _controller;
+      final bool disposedOwnedController = _ownsController;
+
+      oldController.detachBridge();
+      _controller = widget.fusionChartsController ?? FusionChartsController();
+      _ownsController = widget.fusionChartsController == null;
+      _controller.attachBridge(_bridge);
+
+      if (disposedOwnedController) {
+        oldController.dispose();
+      }
+    }
+
+    if (!identical(oldWidget.streamController, widget.streamController)) {
+      _streamSubscription?.cancel();
+      _streamSubscription = null;
+      _subscribeToStream();
+    }
+
+    final bool sourceChanged = oldWidget.source?.mode != widget.source?.mode ||
+        oldWidget.source?.assetKey != widget.source?.assetKey ||
+        oldWidget.source?.version != widget.source?.version ||
+        (oldWidget.source == null &&
+            widget.source == null &&
+            oldWidget.isLocal != widget.isLocal);
+
+    if (sourceChanged) {
+      final FusionChartsSource? source = _resolveSource();
+      if (source == null) {
+        if (_initialised) {
+          setState(() {
+            _initialised = false;
+          });
+        }
+        return;
+      }
+      _reloadSource(source);
+      return;
+    }
+
+    // A chart-type or license change needs a fresh chart; anything else can be
+    // applied in place. 1.x built the render string once in initState and so
+    // ignored every subsequent change.
+    final bool needsRecreate = oldWidget.type != widget.type ||
+        oldWidget.licenseKey != widget.licenseKey;
+
+    if (needsRecreate) {
+      _bridge.send(_renderMessage());
+      return;
+    }
+
+    final Map<String, dynamic> changes = <String, dynamic>{};
+    if (!identical(oldWidget.dataSource, widget.dataSource)) {
+      changes['dataSource'] = widget.dataSource;
+    }
+    if (oldWidget.width != widget.width) {
+      changes['width'] = widget.width;
+    }
+    if (oldWidget.height != widget.height) {
+      changes['height'] = widget.height;
+    }
+    if (changes.isNotEmpty) {
+      _bridge.send(FusionChartsMessage(
+        type: FusionChartsOutbound.update,
+        chartId: _chartId,
+        payload: changes,
+      ));
+    }
+
+    final List<String> added = widget.events
+        .where((String e) => !oldWidget.events.contains(e))
+        .toList(growable: false);
+    final List<String> removed = oldWidget.events
+        .where((String e) => !widget.events.contains(e))
+        .toList(growable: false);
+    if (added.isNotEmpty) {
+      _controller.addEvents(added);
+    }
+    if (removed.isNotEmpty) {
+      _controller.removeEvents(removed);
+    }
+  }
+
+  void _handleEvent(
+      String eventName, String? senderId, Map<String, dynamic> _) {
+    if (!mounted) {
+      return;
+    }
+    final Function? callback = widget.fusionChartEvent;
+    if (callback != null) {
+      callback(senderId, eventName);
+    }
+  }
+
+  void _handleExport(FusionChartsExport export) {
+    if (!mounted) {
+      return;
+    }
+    widget.onExport?.call(export);
+  }
+
+  void _handleError(String code, String message) {
+    if (!mounted) {
+      return;
+    }
+    widget.onError?.call(FusionChartsError(code: code, message: message));
   }
 
   @override
   void dispose() {
+    // Ordering matters: release our own resources before handing control to
+    // the framework. 1.x called super.dispose() first.
+    _streamSubscription?.cancel();
+    _streamSubscription = null;
+    _controller.detachBridge();
+    _bridge.dispose();
+    if (_ownsController) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return gotData
-        ? Scaffold(
-            body: InAppWebView(
-              initialOptions: InAppWebViewGroupOptions(
-                crossPlatform: InAppWebViewOptions(
-                  useOnDownloadStart: true,
-                  javaScriptCanOpenWindowsAutomatically: true,
-                  javaScriptEnabled: true,
-                  useShouldOverrideUrlLoading: true,
-                ),
-                android: AndroidInAppWebViewOptions(
-                  defaultFixedFontSize: 10,
-                  useWideViewPort: false,
-                  defaultFontSize: 10,
-                  minimumLogicalFontSize: 50,
-                  useHybridComposition: true,
-                ),
-                ios: IOSInAppWebViewOptions(
-                  enableViewportScale: true,
-                  sharedCookiesEnabled: true,
-                ),
-              ),
-              initialFile: isLocal
-                  ? '$fcHome/integrate/index_local.html'
-                  : '$fcHome/integrate/index_cdn.html',
-              onLoadStop: (controller, url) async {
-                await controller.evaluateJavascript(source: chartString);
-              },
-              onDownloadStartRequest: (InAppWebViewController controller,
-                  DownloadStartRequest request) async {
-                PermissionManager().decode(
-                    request, widget.type, context, _fusionChartsController);
-                String url = (await controller.getUrl()).toString();
-              },
-              onWebViewCreated: (InAppWebViewController controller) {
-                _webViewController = controller;
-                _fusionChartsController
-                    .setWebViewController(_webViewController);
-                controller.addJavaScriptHandler(
-                    handlerName: 'fusionChartEventHandler',
-                    callback: (args) {
-                      print('FC evenHandler cons: $args');
-                      if (widget.fusionChartEvent != null) {
-                        widget.fusionChartEvent!(args[0], args[1]);
-                      }
-                    });
-              },
-              onConsoleMessage: (controller, message) {
-                print('Console Message: ' + message.toString());
-              },
-            ),
-          )
-        : const SizedBox();
+    // No Scaffold: the widget renders the WebView directly so it composes
+    // inside whatever layout the application already has.
+    return _initialised ? _host.buildView() : const SizedBox.shrink();
   }
 }

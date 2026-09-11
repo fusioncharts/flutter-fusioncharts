@@ -27,7 +27,6 @@ class _InverseLineState extends State<InverseLine> {
       "yAxisName": "Time (In Sec)",
       "numberSuffix": "s",
       "theme": "candy",
-      
     };
 
     List<dynamic> categories = [
@@ -97,9 +96,9 @@ class _InverseLineState extends State<InverseLine> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Inverse Line'),
               ],
             ),

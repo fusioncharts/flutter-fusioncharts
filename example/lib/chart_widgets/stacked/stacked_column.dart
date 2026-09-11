@@ -26,10 +26,9 @@ class _StackedColumnState extends State<StackedColumn> {
       "xAxisname": "Quarter",
       "yAxisName": "Revenue (In USD)",
       "numberPrefix": "\$",
-      "showsum":"1",
-      "drawcrossline":"1",
+      "showsum": "1",
+      "drawcrossline": "1",
       "theme": "ocean",
-
     };
     FusionChartsController fusionChartsController = FusionChartsController();
     Map<String, dynamic> dataSource = {
@@ -86,9 +85,9 @@ class _StackedColumnState extends State<StackedColumn> {
       body: Column(
         children: [
           Expanded(child: _fusionChart2D),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text('Stacked Column2D'),
             ],
           ),
@@ -96,9 +95,9 @@ class _StackedColumnState extends State<StackedColumn> {
             height: 10,
           ),
           Expanded(child: _fusionChart3D),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text('Stacked Column3D'),
             ],
           ),

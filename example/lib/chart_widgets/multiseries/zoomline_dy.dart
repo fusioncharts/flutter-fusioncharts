@@ -56,7 +56,6 @@ class _ZoomlineDYState extends State<ZoomlineDY> {
       "sYAxisMaxValue": "23000",
       "sYAxisMinValue": "15000",
       "theme": "zune",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -88,7 +87,6 @@ class _ZoomlineDYState extends State<ZoomlineDY> {
         type: "zoomlinedy",
         width: "100%",
         height: "100%",
-        isLocal: false,
         fusionChartsController: fusionChartsController,
         licenseKey: licenseKey);
   }
@@ -113,9 +111,9 @@ class _ZoomlineDYState extends State<ZoomlineDY> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Zoomline DY'),
                 ],
               ),

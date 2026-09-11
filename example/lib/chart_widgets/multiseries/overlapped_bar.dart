@@ -60,7 +60,6 @@ class _OverlappedBarState extends State<OverlappedBar> {
       "theme": "fusion",
       "xAxisNameFontSize": "30px",
       "yAxisNameFontSize": "30px",
-      
     };
 
     Map<String, dynamic> dataSource = {
@@ -116,9 +115,9 @@ class _OverlappedBarState extends State<OverlappedBar> {
           child: Column(
             children: [
               Expanded(child: _fusionChart2d),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('Overlapped Bar'),
                 ],
               ),

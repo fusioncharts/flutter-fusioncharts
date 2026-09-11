@@ -20,7 +20,7 @@ class _MultiSeriesMenuState extends State<MultiSeriesMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Choose Example')),
+        appBar: AppBar(title: const Text('Choose Example')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

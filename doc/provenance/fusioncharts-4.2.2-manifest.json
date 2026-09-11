@@ -1,0 +1,277 @@
+{
+  "fusioncharts_version": "4.2.2",
+  "asset_root": "assets/bridge/fusioncharts",
+  "acquired_from": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/ (exact version, never /latest/)",
+  "font_url_transform": "Seven exact fonts.gstatic.com WOFF2 URLs are rewritten to fusioncharts/fonts/ package assets resolved from fc_page.html.",
+  "font_urls_rewritten_to_local_assets": 7,
+  "remote_font_urls_remaining": 0,
+  "redistribution": "Commercial FusionCharts JavaScript is bundled in this package with FusionCharts approval.",
+  "file_count": 33,
+  "total_bytes": 5061290,
+  "files": [
+    {
+      "path": "fonts/fira-sans-light-300-latin.woff2",
+      "bytes": 15056,
+      "sha256": "969bdc335fa55bd57f33bb7df3b20f17774fb498a4d138c33494167986b3a116",
+      "sha256_upstream": "969bdc335fa55bd57f33bb7df3b20f17774fb498a4d138c33494167986b3a116",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://fonts.gstatic.com/s/firasans/v8/va9B4kDNxMZdWfMOD5VnPKreRhf6Xl7Glw.woff2"
+    },
+    {
+      "path": "fonts/fira-sans-regular-400-latin.woff2",
+      "bytes": 14892,
+      "sha256": "f7e6fbc051b999488b3914a139e192613c9964236075b9fc2278de021918a6d3",
+      "sha256_upstream": "f7e6fbc051b999488b3914a139e192613c9964236075b9fc2278de021918a6d3",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://fonts.gstatic.com/s/firasans/v8/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2"
+    },
+    {
+      "path": "fonts/licenses/FIRA_SANS_OFL.txt",
+      "bytes": 4370,
+      "sha256": "8f24842e9174beda18a556c2ae7d54f5dc444340c19a3a9ef77e23bca366adbd",
+      "sha256_upstream": "8f24842e9174beda18a556c2ae7d54f5dc444340c19a3a9ef77e23bca366adbd",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://raw.githubusercontent.com/google/fonts/038b637da7b3fd956a4ed93ffc607c3d5e4ce172/ofl/firasans/OFL.txt"
+    },
+    {
+      "path": "fonts/licenses/SOURCE_SANS_PRO_OFL.txt",
+      "bytes": 4486,
+      "sha256": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328",
+      "sha256_upstream": "56af9b9c6715597e458284a474dc118a50a4150e9d547c70f7b4a33c3e6a9328",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://raw.githubusercontent.com/adobe-fonts/source-sans/87b37a2daaed80fcb8e8ccb0085c4d72ddade12e/LICENSE.md"
+    },
+    {
+      "path": "fonts/licenses/TITILLIUM_WEB_OFL.txt",
+      "bytes": 4523,
+      "sha256": "c0562e066174197902a4a10606673d189f067970ef89c6013943b9cf182aadbc",
+      "sha256_upstream": "c0562e066174197902a4a10606673d189f067970ef89c6013943b9cf182aadbc",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://raw.githubusercontent.com/google/fonts/038b637da7b3fd956a4ed93ffc607c3d5e4ce172/ofl/titilliumweb/OFL.txt"
+    },
+    {
+      "path": "fonts/source-sans-pro-light-300-latin.woff2",
+      "bytes": 12968,
+      "sha256": "435102c6994284c58e63143d49204d6c3876633ffec220cc73ca05ff8e0156c9",
+      "sha256_upstream": "435102c6994284c58e63143d49204d6c3876633ffec220cc73ca05ff8e0156c9",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://fonts.gstatic.com/s/sourcesanspro/v11/6xKydSBYKcSV-LCoeQqfX1RYOo3ik4zwlxdu3cOWxw.woff2"
+    },
+    {
+      "path": "fonts/source-sans-pro-regular-400-latin.woff2",
+      "bytes": 12960,
+      "sha256": "547ea67155dac1c27efb550426c4848b7364357ed040fd531719c4797e356a1d",
+      "sha256_upstream": "547ea67155dac1c27efb550426c4848b7364357ed040fd531719c4797e356a1d",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://fonts.gstatic.com/s/sourcesanspro/v11/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2"
+    },
+    {
+      "path": "fonts/source-sans-pro-semibold-600-latin.woff2",
+      "bytes": 12916,
+      "sha256": "4a58441133d85539974e4b136c25eaa5512ac1b018d4f6d53124a08c6f19b55e",
+      "sha256_upstream": "4a58441133d85539974e4b136c25eaa5512ac1b018d4f6d53124a08c6f19b55e",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://fonts.gstatic.com/s/sourcesanspro/v11/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu3cOWxw.woff2"
+    },
+    {
+      "path": "fonts/titillium-web-regular-400-latin.woff2",
+      "bytes": 12344,
+      "sha256": "dd1dad45fd0dd168ad46427307aa8a206b857b783ca3afbcfe2bc8b8724acec0",
+      "sha256_upstream": "dd1dad45fd0dd168ad46427307aa8a206b857b783ca3afbcfe2bc8b8724acec0",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://fonts.gstatic.com/s/titilliumweb/v7/NaPecZTIAOhVxoMyOr9n_E7fdMPmDaZRbrw.woff2"
+    },
+    {
+      "path": "fonts/titillium-web-semibold-600-latin.woff2",
+      "bytes": 12276,
+      "sha256": "8658dcad983dacbb3bca7bc8217fd0b75f28df85bf9259bd0dccf69e58cb0ecd",
+      "sha256_upstream": "8658dcad983dacbb3bca7bc8217fd0b75f28df85bf9259bd0dccf69e58cb0ecd",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://fonts.gstatic.com/s/titilliumweb/v7/NaPDcZTIAOhVxoMyOr9n_E7ffBzCGItzY5abuWI.woff2"
+    },
+    {
+      "path": "fusioncharts.charts.js",
+      "bytes": 178637,
+      "sha256": "911a174214d52ca0645b40d9b1368e86c052ae85d67d52d00aede7e47a83d5a4",
+      "sha256_upstream": "911a174214d52ca0645b40d9b1368e86c052ae85d67d52d00aede7e47a83d5a4",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.charts.js"
+    },
+    {
+      "path": "fusioncharts.excelexport.js",
+      "bytes": 105609,
+      "sha256": "380cebac55d1b5fe935d3129498cdcfbcf93c6537ff108bcf29b5d917ad15273",
+      "sha256_upstream": "380cebac55d1b5fe935d3129498cdcfbcf93c6537ff108bcf29b5d917ad15273",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.excelexport.js"
+    },
+    {
+      "path": "fusioncharts.gantt.js",
+      "bytes": 155309,
+      "sha256": "a88a0916af5c364f61400f6e2e983f4ded1047e15390c6bef54d79091adec9c4",
+      "sha256_upstream": "a88a0916af5c364f61400f6e2e983f4ded1047e15390c6bef54d79091adec9c4",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.gantt.js"
+    },
+    {
+      "path": "fusioncharts.js",
+      "bytes": 2464263,
+      "sha256": "4e3899b78aaec8a42b9c4cffd45f33b6afe25a27ecb910b412f0da8307e0ef0b",
+      "sha256_upstream": "4e3899b78aaec8a42b9c4cffd45f33b6afe25a27ecb910b412f0da8307e0ef0b",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.js"
+    },
+    {
+      "path": "fusioncharts.maps.js",
+      "bytes": 70974,
+      "sha256": "b6a22f50e7ad27c6878f5f50f5fad1664a175c42f6fa2df26893abe29b62fb5a",
+      "sha256_upstream": "b6a22f50e7ad27c6878f5f50f5fad1664a175c42f6fa2df26893abe29b62fb5a",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.maps.js"
+    },
+    {
+      "path": "fusioncharts.overlappedbar2d.js",
+      "bytes": 4524,
+      "sha256": "864508d243d0bcff59af099dcde49d7bc650fc477892b78f54c06e13c930d89e",
+      "sha256_upstream": "864508d243d0bcff59af099dcde49d7bc650fc477892b78f54c06e13c930d89e",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.overlappedbar2d.js"
+    },
+    {
+      "path": "fusioncharts.overlappedcolumn2d.js",
+      "bytes": 3810,
+      "sha256": "fefc3062e9207d67b0a19bd075282a797ea7b1b9897fc8a33519b8d425adcba2",
+      "sha256_upstream": "fefc3062e9207d67b0a19bd075282a797ea7b1b9897fc8a33519b8d425adcba2",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.overlappedcolumn2d.js"
+    },
+    {
+      "path": "fusioncharts.powercharts.js",
+      "bytes": 549549,
+      "sha256": "3157d029fecfa2eb950e4b320fc36e32b1398b7c035bd2c1dd953e9bf151bd06",
+      "sha256_upstream": "3157d029fecfa2eb950e4b320fc36e32b1398b7c035bd2c1dd953e9bf151bd06",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.powercharts.js"
+    },
+    {
+      "path": "fusioncharts.timeseries.js",
+      "bytes": 443568,
+      "sha256": "0aa9f8182731cddac7659bcd00d8aee2bd12eb6557d1c2c8873edc5e1af4f9bc",
+      "sha256_upstream": "0aa9f8182731cddac7659bcd00d8aee2bd12eb6557d1c2c8873edc5e1af4f9bc",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.timeseries.js"
+    },
+    {
+      "path": "fusioncharts.treemap.js",
+      "bytes": 53388,
+      "sha256": "c990421850b57ccb931bda323860454b0039e7dfeece7eac7185d7b3b16e8243",
+      "sha256_upstream": "c990421850b57ccb931bda323860454b0039e7dfeece7eac7185d7b3b16e8243",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.treemap.js"
+    },
+    {
+      "path": "fusioncharts.widgets.js",
+      "bytes": 398103,
+      "sha256": "a0842c7fc68c3157e9605350a574a7b6fb520277d9349ae24b30750828b51aa0",
+      "sha256_upstream": "a0842c7fc68c3157e9605350a574a7b6fb520277d9349ae24b30750828b51aa0",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.widgets.js"
+    },
+    {
+      "path": "fusioncharts.zoomline.js",
+      "bytes": 31093,
+      "sha256": "629e0cbbb5364bf37271dcf06991d25e3dc908f0a04db27570af7b5eae177c88",
+      "sha256_upstream": "629e0cbbb5364bf37271dcf06991d25e3dc908f0a04db27570af7b5eae177c88",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.zoomline.js"
+    },
+    {
+      "path": "fusioncharts.zoomscatter.js",
+      "bytes": 24599,
+      "sha256": "550a2daafb48e51488e36ac6c2af09510ac9a793ac2a40aa014f41c316c1e76e",
+      "sha256_upstream": "550a2daafb48e51488e36ac6c2af09510ac9a793ac2a40aa014f41c316c1e76e",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/fusioncharts.zoomscatter.js"
+    },
+    {
+      "path": "maps/fusioncharts.usa.js",
+      "bytes": 136839,
+      "sha256": "b2d93b481ec53d5f2e67d332ce4688272ced152d3d71a7dc1e717a1b9d966f0d",
+      "sha256_upstream": "b2d93b481ec53d5f2e67d332ce4688272ced152d3d71a7dc1e717a1b9d966f0d",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/maps/fusioncharts.usa.js"
+    },
+    {
+      "path": "maps/fusioncharts.world.js",
+      "bytes": 152850,
+      "sha256": "deb569817a79e4c54001680f343259d28499aee7eb6dbce23cd121213826bb28",
+      "sha256_upstream": "deb569817a79e4c54001680f343259d28499aee7eb6dbce23cd121213826bb28",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/maps/fusioncharts.world.js"
+    },
+    {
+      "path": "themes/fusioncharts.theme.candy.js",
+      "bytes": 46176,
+      "sha256": "c4d2597d422ca4092b970de6043bb570dbbddf076c55549cca4687f79120f6c0",
+      "sha256_upstream": "76ee592a1b40e235ec77d70cc61321b435ad7944048a77f53aa6868a1bfcd105",
+      "font_urls_rewritten_to_local_assets": 2,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/themes/fusioncharts.theme.candy.js"
+    },
+    {
+      "path": "themes/fusioncharts.theme.carbon.js",
+      "bytes": 6359,
+      "sha256": "74abcdb2cc27053fb49f6eac62307431d5ff1356530b2623d61fe34028ae76ff",
+      "sha256_upstream": "74abcdb2cc27053fb49f6eac62307431d5ff1356530b2623d61fe34028ae76ff",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/themes/fusioncharts.theme.carbon.js"
+    },
+    {
+      "path": "themes/fusioncharts.theme.fint.js",
+      "bytes": 6376,
+      "sha256": "393a8297b4e2eb23065a05649282f72d43070790589ca74e3be71e1f44d8d0bd",
+      "sha256_upstream": "393a8297b4e2eb23065a05649282f72d43070790589ca74e3be71e1f44d8d0bd",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/themes/fusioncharts.theme.fint.js"
+    },
+    {
+      "path": "themes/fusioncharts.theme.fusion.js",
+      "bytes": 39175,
+      "sha256": "6e47d335b971e59315a641c24ff1122fbe27dc555c739af7b7778781661baac1",
+      "sha256_upstream": "b2a65f55433172c80de7797863dd989318b16719608bd94b5d164b10453817a9",
+      "font_urls_rewritten_to_local_assets": 3,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/themes/fusioncharts.theme.fusion.js"
+    },
+    {
+      "path": "themes/fusioncharts.theme.gammel.js",
+      "bytes": 31880,
+      "sha256": "f7533480c5857eaed2ef7e947bfc7cec6e1878cc89492257827d3382c3732cd0",
+      "sha256_upstream": "f7533480c5857eaed2ef7e947bfc7cec6e1878cc89492257827d3382c3732cd0",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/themes/fusioncharts.theme.gammel.js"
+    },
+    {
+      "path": "themes/fusioncharts.theme.ocean.js",
+      "bytes": 6353,
+      "sha256": "fa813a126aef88d3082abd9f162c0ba856c1dd5f43d4b4e67566e7f5613e9f36",
+      "sha256_upstream": "fa813a126aef88d3082abd9f162c0ba856c1dd5f43d4b4e67566e7f5613e9f36",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/themes/fusioncharts.theme.ocean.js"
+    },
+    {
+      "path": "themes/fusioncharts.theme.umber.js",
+      "bytes": 38718,
+      "sha256": "a40a2637da1bc19b2976488b414871e234de51a8edbe7b7434a876d63120aa1e",
+      "sha256_upstream": "950939e28e647d222791b0627c0c710bfaf30cb43b886d4535919aa13170fcdd",
+      "font_urls_rewritten_to_local_assets": 2,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/themes/fusioncharts.theme.umber.js"
+    },
+    {
+      "path": "themes/fusioncharts.theme.zune.js",
+      "bytes": 6347,
+      "sha256": "4b6a2603b144b78f009b5c7c087a091e2138835fff447ac26b462fbe40952ff0",
+      "sha256_upstream": "4b6a2603b144b78f009b5c7c087a091e2138835fff447ac26b462fbe40952ff0",
+      "font_urls_rewritten_to_local_assets": 0,
+      "source": "https://cdn.fusioncharts.com/fusioncharts/4.2.2/themes/fusioncharts.theme.zune.js"
+    }
+  ]
+}

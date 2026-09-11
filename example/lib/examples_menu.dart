@@ -18,6 +18,7 @@ import 'package:flutter_fusioncharts_example/chart_widgets/spline/spline_menu.da
 import 'package:flutter_fusioncharts_example/chart_widgets/stacked/stacked_menu.dart';
 import 'package:flutter_fusioncharts_example/chart_widgets/xyplot/xyplot_menu.dart';
 import 'chart_widgets/drilldown/drill_down.dart';
+import 'chart_widgets/export/export_example.dart';
 import 'chart_widgets/spark/spark_menu.dart';
 
 class Menu extends StatefulWidget {
@@ -336,6 +337,21 @@ class _MenuState extends State<Menu> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const EventsMenu()));
+                          }),
+                    ),
+                  ),
+                  InkWell(
+                    child: SizedBox(
+                      height: 40,
+                      child: InkWell(
+                          child: const Text("Export",
+                              style: TextStyle(fontSize: 16)),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ExportExample()));
                           }),
                     ),
                   ),

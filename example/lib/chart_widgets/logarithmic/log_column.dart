@@ -26,7 +26,6 @@ class _LogColumnState extends State<LogColumn> {
       "yAxisName": "No of visitors",
       "base": "10",
       "theme": "candy",
-      
     };
 
     List<dynamic> dataset = [
@@ -103,9 +102,9 @@ class _LogColumnState extends State<LogColumn> {
             SizedBox(
                 height: MediaQuery.of(context).size.height / 2,
                 child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Logarithmic Column'),
               ],
             ),

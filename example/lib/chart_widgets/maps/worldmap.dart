@@ -21,13 +21,19 @@ class _WorldMapState extends State<WorldMap> {
     WidgetsFlutterBinding.ensureInitialized();
 
     List<dynamic> dataset = [
-      {"id": "NA", "value": "515","label":"North America",
+      {
+        "id": "NA",
+        "value": "515",
+        "label": "North America",
       },
-      {"id": "SA", "value": "373","label":"South America"},
-      {"id": "AS", "value": "3875","label":"Asia"},
-      {"id": "EU", "value": "727","label":"Europe"},
-      {"id": "AF", "value": "885","label":"Africa"},
-      {"id": "AU", "value": "32","label":"Australia",
+      {"id": "SA", "value": "373", "label": "South America"},
+      {"id": "AS", "value": "3875", "label": "Asia"},
+      {"id": "EU", "value": "727", "label": "Europe"},
+      {"id": "AF", "value": "885", "label": "Africa"},
+      {
+        "id": "AU",
+        "value": "32",
+        "label": "Australia",
         "Font": "Helvetica",
         "FontSize": "40",
         "FontColor": "#383838",
@@ -40,7 +46,6 @@ class _WorldMapState extends State<WorldMap> {
       "theme": "fusion",
       "formatNumberScale": "0",
       "numberSuffix": "M",
-      
       "showLabels": "1",
       "useSNameInLabels": "1",
     };
@@ -162,9 +167,9 @@ class _WorldMapState extends State<WorldMap> {
           child: Column(
             children: [
               Expanded(child: _fusionChart),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text('World Map'),
                 ],
               ),

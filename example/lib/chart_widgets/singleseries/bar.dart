@@ -13,11 +13,10 @@ class Bar extends StatefulWidget {
 class _BarState extends State<Bar> {
   late FusionCharts _fusionChart2D;
   late FusionCharts _fusionChart3D;
+  @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-
-
 
     Map<String, dynamic> chart = {
       "caption": "Countries With Most Oil Reserves [2017-18]",
@@ -28,7 +27,10 @@ class _BarState extends State<Bar> {
       "theme": "carbon",
     };
     FusionChartsController fusionChartsController = FusionChartsController();
-    Map<String, dynamic> dataSource = {"chart": chart, "data": ChartData.chartData};
+    Map<String, dynamic> dataSource = {
+      "chart": chart,
+      "data": ChartData.chartData
+    };
     fusionChartsController.addEvents([]);
 
     _fusionChart2D = FusionCharts(
@@ -57,36 +59,36 @@ class _BarState extends State<Bar> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () => Navigator.of(context).pop()),
-            title: const Text('Fusion Charts - Bar'),
-          ),
-          body: Column(
-            children: [
-              Expanded(child: _fusionChart2D),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text('Bar 2D'),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Expanded(child: _fusionChart3D),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text('Bar 3D'),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => Navigator.of(context).pop()),
+          title: const Text('Fusion Charts - Bar'),
+        ),
+        body: Column(
+          children: [
+            Expanded(child: _fusionChart2D),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Bar 2D'),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Expanded(child: _fusionChart3D),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Bar 3D'),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
       ),
     );
   }

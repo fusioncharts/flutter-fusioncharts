@@ -27,7 +27,6 @@ class _ErrorScatterState extends State<ErrorScatter> {
       "halfverticalerrorbar": "0",
       "numberPrefix": "\$",
       "theme": "fusion",
-      
     };
 
     List<dynamic> categories = [
@@ -109,9 +108,9 @@ class _ErrorScatterState extends State<ErrorScatter> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Error Scatter'),
               ],
             ),

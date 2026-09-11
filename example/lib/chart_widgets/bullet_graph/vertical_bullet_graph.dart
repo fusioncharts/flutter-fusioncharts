@@ -31,7 +31,6 @@ class _VerticalBulletGraphState extends State<VerticalBulletGraph> {
       "colorRangeFillMix": "{light+0}",
       "valuePadding": "7",
       "theme": "fusion",
-      
     };
     Map<String, dynamic> colorrange = {
       "color": [
@@ -41,29 +40,11 @@ class _VerticalBulletGraphState extends State<VerticalBulletGraph> {
       ]
     };
 
-    List<dynamic> dataset = [
-      {
-        "data": [
-          {"value": "783000"},
-          {"value": "601000"},
-          {"value": "515000"},
-          {"value": "315900"},
-          {"value": "388000"},
-          {"value": "433000"},
-          {"value": "910000"},
-          {"value": "798000"},
-          {"value": "483300"},
-          {"value": "562000"},
-          {"value": "359400"},
-          {"value": "485000"}
-        ]
-      }
-    ];
     Map<String, dynamic> dataSource = {
       "chart": chart,
       "colorRange": colorrange,
-      "value":"82",
-      "target":"90"
+      "value": "82",
+      "target": "90"
     };
 
     _fusionChart2D = FusionCharts(
@@ -75,7 +56,7 @@ class _VerticalBulletGraphState extends State<VerticalBulletGraph> {
         fusionChartEvent: (eventType, eventDetail) =>
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content:
-                Text("Event Raised: $eventType + Details: $eventDetail"))),
+                    Text("Event Raised: $eventType + Details: $eventDetail"))),
         fusionChartsController: fc);
   }
 
@@ -98,9 +79,9 @@ class _VerticalBulletGraphState extends State<VerticalBulletGraph> {
         body: Column(
           children: [
             Expanded(child: _fusionChart2D),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text('Vertical Bullet'),
               ],
             ),

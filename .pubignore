@@ -1,0 +1,37 @@
+# Local/generated state
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.git/
+.github/
+.idea/
+.packages
+.pub/
+build/
+pubspec.lock
+
+# Generated state in the example application
+example/.dart_tool/
+example/.env
+example/.flutter-plugins
+example/.flutter-plugins-dependencies
+example/build/
+example/pubspec.lock
+example/compatibility/**/.dart_tool/
+example/compatibility/**/.flutter-plugins
+example/compatibility/**/.flutter-plugins-dependencies
+example/compatibility/**/build/
+example/compatibility/**/pubspec.lock
+
+# Retired 1.x platform/plugin and app-owned asset trees. These paths remain in
+# the current base commit but are deleted by the 2.0 upgrade.
+/android/
+/ios/
+/example/fusioncharts/
+
+# pub.dev package-ownership verification file. It is an empty marker that has to
+# stay in the repository, where pub.dev reads it, but it has no meaning inside a
+# published archive. `.pubignore` governs only the tarball, never the repository,
+# so excluding it here does not affect verification. Retire the file itself in a
+# release after 2.0.0, not during one.
+/8C28G7G2JX
