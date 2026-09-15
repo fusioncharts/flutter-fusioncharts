@@ -332,6 +332,19 @@ upgrading.
 | `export-unsupported` on iOS | Use SVG, CSV, or XLSX |
 | Trial watermark | Supply a valid FusionCharts license key |
 
+## License information
+
+This Flutter wrapper is open source and distributed under the terms of the MIT
+License. That licence covers the wrapper source and examples only.
+
+The package bundles the FusionCharts JavaScript library under
+`assets/bridge/fusioncharts/`, which is commercial software under a
+[separate license](https://www.fusioncharts.com/buy) and is **not** covered by
+the MIT licence. Charts render with a FusionCharts watermark until you apply
+your own FusionCharts licence. See [LICENSE](LICENSE) and
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the full terms and
+attributions.
+
 ## Support and licensing
 
 - Browse the runnable [example application](example/).
